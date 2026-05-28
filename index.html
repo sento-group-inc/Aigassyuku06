@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Codex分身OS 合宿サイト | 2026年6月9-10日</title>
+  <meta name="description" content="Codexで自分の分身OSを作る1泊2日合宿の講義サイト。AGENTS.md、MCP、GitHub/X取り込み、gogcli、GAS、Vercel公開まで。" />
+  <style>
+    :root {
+      --bg: #f7f8f7;
+      --surface: #ffffff;
+      --surface-soft: #f1f5f3;
+      --ink: #17211d;
+      --muted: #66736e;
+      --line: #dce4df;
+      --line-strong: #c5d0ca;
+      --accent: #0f766e;
+      --accent-soft: #e6f5f2;
+      --accent-strong: #0b5d56;
+      --blue: #2563eb;
+      --blue-soft: #eff6ff;
+      --gold: #b7791f;
+      --gold-soft: #fff7e6;
+      --red: #b42318;
+      --red-soft: #fff1f0;
+      --code-bg: #101513;
+      --code-text: #e7f1ed;
+      --shadow: 0 10px 28px rgba(23, 33, 29, 0.08);
+      --radius: 8px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.78;
+      letter-spacing: 0;
+    }
+
+    a { color: var(--accent-strong); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    code {
+      font-family: "SFMono-Regular", "Menlo", "Consolas", monospace;
+      font-size: 0.88em;
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      padding: 1px 5px;
+    }
+
+    .hero {
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 42px 22px 28px;
+    }
+    .eyebrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 4px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface-soft);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .pill.primary {
+      background: var(--accent-soft);
+      border-color: #b6ded7;
+      color: var(--accent-strong);
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(34px, 6vw, 64px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+    .lead {
+      max-width: 820px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 19px);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+      gap: 22px;
+      align-items: stretch;
+      margin-top: 28px;
+    }
+    .outcome-panel, .status-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+    .outcome-panel h2, .status-panel h2 {
+      margin: 0 0 12px;
+      font-size: 17px;
+    }
+    .outcomes {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .outcomes li {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface-soft);
+      padding: 10px 12px;
+      color: var(--muted);
+      min-height: 62px;
+    }
+    .outcomes strong { display: block; color: var(--ink); }
+    .status-panel .big {
+      margin: 6px 0 10px;
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--accent-strong);
+    }
+
+    .flow-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(247, 248, 247, 0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .flow {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(11, minmax(86px, 1fr));
+      gap: 8px;
+      overflow-x: auto;
+      padding: 12px 22px;
+    }
+    .flow a {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 58px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px;
+      white-space: normal;
+    }
+    .flow a.active {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+    }
+    .flow .num {
+      font-size: 11px;
+      font-weight: 800;
+      color: inherit;
+    }
+    .flow .label {
+      font-size: 12px;
+      line-height: 1.25;
+      font-weight: 700;
+    }
+
+    .layout {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 22px 70px;
+      display: grid;
+      grid-template-columns: 248px minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+    .toc {
+      position: sticky;
+      top: 96px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+    .toc-title {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+    .toc a {
+      display: block;
+      padding: 7px 8px;
+      border-radius: 6px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .toc a:hover, .toc a.active {
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+    }
+
+    main {
+      display: grid;
+      gap: 22px;
+    }
+    section {
+      scroll-margin-top: 96px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+    .section-head {
+      display: grid;
+      grid-template-columns: 54px minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+      margin-bottom: 18px;
+    }
+    .section-no {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      font-size: 17px;
+      font-weight: 900;
+    }
+    h2 {
+      margin: 0 0 6px;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.22;
+      letter-spacing: 0;
+    }
+    .section-sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    h3 {
+      margin: 24px 0 10px;
+      font-size: 18px;
+      line-height: 1.35;
+    }
+    p { margin: 0 0 13px; }
+    ul, ol { margin: 0 0 14px 22px; padding: 0; }
+    li { margin-bottom: 6px; }
+
+    .meaning {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .meaning .box, .note, .warn, .check, .resource {
+      border-radius: var(--radius);
+      padding: 13px 15px;
+      border: 1px solid var(--line);
+    }
+    .meaning .box { background: var(--surface-soft); }
+    .meaning strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--ink);
+    }
+    .meaning span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .note {
+      background: var(--blue-soft);
+      border-color: #c7d8ff;
+      color: #193f8f;
+    }
+    .warn {
+      background: var(--red-soft);
+      border-color: #ffd2cc;
+      color: #8e1d13;
+    }
+    .check {
+      background: var(--accent-soft);
+      border-color: #b6ded7;
+      color: var(--accent-strong);
+    }
+    .resource {
+      background: var(--gold-soft);
+      border-color: #f2d7a5;
+      color: #7a4d0b;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface-soft);
+      padding: 15px;
+    }
+    .card h4 {
+      margin: 0 0 6px;
+      font-size: 15px;
+    }
+    .card p { color: var(--muted); font-size: 13px; margin: 0; }
+
+    .code-block {
+      position: relative;
+      margin: 14px 0 18px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid #26332f;
+      background: var(--code-bg);
+    }
+    .code-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 40px;
+      padding: 8px 10px 8px 14px;
+      color: #9fb4ad;
+      border-bottom: 1px solid #26332f;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    button.copy {
+      border: 1px solid #3b4b45;
+      border-radius: 6px;
+      background: #1a2420;
+      color: #e7f1ed;
+      padding: 6px 10px;
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    button.copy:hover { background: #24322d; }
+    pre {
+      margin: 0;
+      padding: 16px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: var(--code-text);
+      font-family: "SFMono-Regular", "Menlo", "Consolas", monospace;
+      font-size: 13px;
+      line-height: 1.62;
+    }
+
+    .timeline {
+      position: relative;
+      margin: 18px 0;
+      padding-left: 28px;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: var(--line-strong);
+    }
+    .tl {
+      position: relative;
+      margin-bottom: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 13px 15px;
+    }
+    .tl::before {
+      content: "";
+      position: absolute;
+      left: -24px;
+      top: 16px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg);
+    }
+    .tl strong { display: block; margin-bottom: 3px; }
+    .tl span { color: var(--muted); font-size: 13px; }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    figure {
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface-soft);
+    }
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    figcaption {
+      padding: 8px 10px;
+      color: var(--muted);
+      font-size: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin: 15px 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 640px;
+      background: #fff;
+    }
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: var(--surface-soft);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    tr:last-child td { border-bottom: none; }
+
+    .complete {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .complete label {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface-soft);
+      padding: 10px 12px;
+      color: var(--muted);
+    }
+    .complete input { margin-top: 5px; }
+
+    footer {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 26px 22px 46px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid, .layout, .meaning, .cards, .image-grid, .complete {
+        grid-template-columns: 1fr;
+      }
+      .toc { position: static; }
+      .flow { grid-template-columns: repeat(11, 118px); }
+      section { padding: 22px 18px; }
+      .outcomes { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">
+        <span class="pill primary">2026.06.09-10</span>
+        <span class="pill">千葉・古民家</span>
+        <span class="pill">Codex / AGENTS.md / MCP / GAS / Vercel</span>
+      </div>
+      <h1>Codex分身OS<br />合宿サイト</h1>
+      <p class="lead">AIに毎回説明する状態を終わらせる。自分の会社・判断軸・業務の型を読んだCodex環境を作り、調査、実装、社内アプリ、公開まで一気に進める。</p>
+
+      <div class="hero-grid">
+        <div class="outcome-panel">
+          <h2>持ち帰るもの</h2>
+          <ul class="outcomes">
+            <li><strong>分身OS</strong>AGENTS / memory / state / logs の最小構成</li>
+            <li><strong>深掘り導線</strong>grill-me型プロンプトを単語登録</li>
+            <li><strong>外部取り込み</strong>GitHub / X / MCP をCodexに接続</li>
+            <li><strong>公開体験</strong>HTMLサイトとGASアプリを公開</li>
+          </ul>
+        </div>
+        <div class="status-panel">
+          <h2>今日の成功ライン</h2>
+          <div class="big">「仕事を任せて、レビューして、育てる」</div>
+          <p>自動化で放置しない。Codexを部下のように扱い、引き継ぎ書を渡し、ズレを直し、環境を育てる。</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="flow-wrap" aria-label="現在地フロー">
+    <div class="flow" id="flow">
+      <a href="#why"><span class="num">01</span><span class="label">なぜ作る</span></a>
+      <a href="#grill"><span class="num">02</span><span class="label">深掘り</span></a>
+      <a href="#codex"><span class="num">03</span><span class="label">Codex</span></a>
+      <a href="#agents"><span class="num">04</span><span class="label">AGENTS</span></a>
+      <a href="#mcp"><span class="num">05</span><span class="label">MCP</span></a>
+      <a href="#intake"><span class="num">06</span><span class="label">外部取り込み</span></a>
+      <a href="#gog"><span class="num">07</span><span class="label">gogcli</span></a>
+      <a href="#gas"><span class="num">08</span><span class="label">GAS</span></a>
+      <a href="#vercel"><span class="num">09</span><span class="label">Vercel</span></a>
+      <a href="#run"><span class="num">10</span><span class="label">起動維持</span></a>
+      <a href="#grow"><span class="num">11</span><span class="label">育てる</span></a>
+    </div>
+  </nav>
+
+  <div class="layout">
+    <aside class="toc" aria-label="目次">
+      <p class="toc-title">目次</p>
+      <a href="#why">01 なぜ分身OSを作るのか</a>
+      <a href="#grill">02 grill-me型プロンプト</a>
+      <a href="#codex">03 Codexセットアップ</a>
+      <a href="#agents">04 AGENTS / memory / state</a>
+      <a href="#mcp">05 MCPを取り込む</a>
+      <a href="#intake">06 GitHub / X取り込み</a>
+      <a href="#gog">07 gogcli / Sheets</a>
+      <a href="#gas">08 GAS社内アプリ</a>
+      <a href="#vercel">09 Vercel公開</a>
+      <a href="#run">10 Macを起動維持</a>
+      <a href="#grow">11 継続アップデート</a>
+    </aside>
+
+    <main>
+      <section id="why">
+        <div class="section-head">
+          <div class="section-no">1</div>
+          <div>
+            <h2>なぜ分身OSを作るのか</h2>
+            <p class="section-sub">AIを「便利な質問箱」から「仕事を任せる相手」に変える。</p>
+          </div>
+        </div>
+        <div class="meaning">
+          <div class="box"><strong>予測利得</strong><span>AIが何を知っている状態で動くかが見える。</span></div>
+          <div class="box"><strong>行為影響度</strong><span>毎回の説明をAGENTS.mdへ移し、次回から省略できる。</span></div>
+          <div class="box"><strong>共有度</strong><span>10人全員が同じフォルダ構成で再現できる。</span></div>
+        </div>
+        <p>あのね、みなさんAIを使ってるじゃないですか。ChatGPTに聞く。Claudeに聞く。資料を作らせる。メール文を直させる。それ自体はもう珍しくないんですよ。</p>
+        <p>でも、たぶん同時にこういう感覚もあると思ってて。毎回、説明してませんか。「うちの会社はこうで」「このお客さんはこうで」「僕はこういう判断をしたくて」「この表現はうちっぽくないからやめて」。</p>
+        <p>社員を雇ったとして、毎朝その人に「うちの会社は何をしている会社です」から説明し直してたら、仕事にならない。でもAIにはそれをやっている。今日と明日でやるのは、ここを終わらせることです。</p>
+        <div class="cards">
+          <div class="card"><h4>Before</h4><p>AIに毎回背景を説明し、出てきたものを場当たり的に直す。</p></div>
+          <div class="card"><h4>After</h4><p>Codexが会社・判断軸・失敗パターンを読み、作業単位で任せられる。</p></div>
+        </div>
+        <div class="check">今日作るのは「全自動で放置する仕組み」ではなく、引き継ぎ書を渡し、仕事を任せ、レビューして育てる環境です。</div>
+      </section>
+
+      <section id="grill">
+        <div class="section-head">
+          <div class="section-no">2</div>
+          <div>
+            <h2>grill-me型プロンプトを単語登録する</h2>
+            <p class="section-sub">「AIに任せたい作業は？」では浅い。先に業務の因果と依存関係を掘る。</p>
+          </div>
+        </div>
+        <div class="meaning">
+          <div class="box"><strong>予測利得</strong><span>自分が何を任せたいのかではなく、何が詰まりかが見える。</span></div>
+          <div class="box"><strong>行為影響度</strong><span>深掘り結果をAGENTS / state / memoryに入れる。</span></div>
+          <div class="box"><strong>共有度</strong><span>単語登録で誰でも同じ入口から始められる。</span></div>
+        </div>
+        <p>オープンクエスチョンで「自分の業務でAIに任せたい作業を書いてください」と言っても、たいてい浅くなります。本人もまだ因果を掘れていないからです。</p>
+        <p>そこで先に、AIに執拗にインタビューさせる。AI Heroで紹介されているgrill-me系の発想を、合宿の最初の道具にします。前に身につけたスキルを、次の学習の入口に使う。これが因果連鎖です。</p>
+        <div class="resource">参考: <a href="https://www.aihero.dev/my-grill-me-skill-has-gone-viral" target="_blank" rel="noopener">AI Hero: My Grill Me Skill Has Gone Viral</a></div>
+        <div class="code-block">
+          <div class="code-label">単語登録するプロンプト<button class="copy" data-copy>コピー</button></div>
+          <pre>この件のあらゆる側面について執拗にインタビューして。共通理解に達するまで、デザインの因果関係と決定事項間の依存関係を1つずつ解決し、各質問に推奨回答も提示して。</pre>
+        </div>
+        <h3>Macユーザ辞書に登録</h3>
+        <ol>
+          <li>システム設定を開く。</li>
+          <li>キーボード → テキスト入力 → ユーザ辞書を開く。</li>
+          <li>入力に <code>ぐりる</code>、変換に上のプロンプトを登録する。</li>
+        </ol>
+        <h3>Google日本語入力に登録</h3>
+        <ol>
+          <li>メニューバーのGoogle日本語入力アイコンから「辞書ツール」を開く。</li>
+          <li>新規エントリーで、よみに <code>ぐりる</code>、単語にプロンプトを入れる。</li>
+          <li>品詞は短縮よみ、または名詞でよい。</li>
+        </ol>
+        <div class="code-block">
+          <div class="code-label">深掘り結果をCodex環境へ反映<button class="copy" data-copy>コピー</button></div>
+          <pre>今のインタビュー結果を、次の3つに分けて整理してください。
+1. AGENTS.mdに入れるべき恒久ルール
+2. state.mdに入れるべき現在の重点テーマ
+3. memory.mdに入れるべき長期的な会社情報・判断軸
+
+そのうえで、初回の実務タスクとして一番筋が良いものを1つ選んでください。</pre>
+        </div>
+      </section>
+
+      <section id="codex">
+        <div class="section-head">
+          <div class="section-no">3</div>
+          <div>
+            <h2>Codex Desktop / CLI セットアップ</h2>
+            <p class="section-sub">作業フォルダを限定して、Codexが触れる範囲を安全にする。</p>
+          </div>
+        </div>
+        <div class="meaning">
+          <div class="box"><strong>予測利得</strong><span>どのフォルダをAIが読めるか明確になる。</span></div>
+          <div class="box"><strong>行為影響度</strong><span>作業フォルダを開き、実際にHTMLを1枚作る。</span></div>
+          <div class="box"><strong>共有度</strong><span>画像付き手順で全員が同じ画面を確認できる。</span></div>
+        </div>
+        <div class="warn">ホームフォルダや書類フォルダ全体を開かない。Codexは開いた作業フォルダ以下を読んだり編集したりできます。</div>
+        <div class="timeline">
+          <div class="tl"><strong>1. 公式ページからCodex Appを取得</strong><span><a href="https://developers.openai.com/codex/app/" target="_blank" rel="noopener">developers.openai.com/codex/app/</a> を開く。</span></div>
+          <div class="tl"><strong>2. ChatGPTでサインイン</strong><span>GitHubアカウントは後で使う。ここはChatGPTアカウント。</span></div>
+          <div class="tl"><strong>3. 作業フォルダを作る</strong><span>例: デスクトップに <code>codex-bunshin-os</code> を作成。</span></div>
+          <div class="tl"><strong>4. フォルダをCodexで開く</strong><span>左下のフォルダ表示が変わればOK。</span></div>
+        </div>
+        <div class="image-grid">
+          <figure><img src="assets/images/20260528-codex-setup/00_codex_app_page.png" alt="Codex公式ページ" loading="lazy"><figcaption>公式ページからCodex Appへ</figcaption></figure>
+          <figure><img src="assets/images/20260528-codex-setup/02_signin.png" alt="ChatGPTでサインイン" loading="lazy"><figcaption>ChatGPTでサインイン</figcaption></figure>
+          <figure><img src="assets/images/20260528-codex-setup/04_add_project.png" alt="新しいプロジェクトを追加" loading="lazy"><figcaption>作業フォルダを追加</figcaption></figure>
+          <figure><img src="assets/images/20260528-codex-setup/06_folder_opened.png" alt="フォルダが開かれた状態" loading="lazy"><figcaption>フォルダ名が見えればOK</figcaption></figure>
+        </div>
+        <div class="code-block">
+          <div class="code-label">CLIで作業フォルダを作る場合<button class="copy" data-copy>コピー</button></div>
+          <pre>mkdir -p ~/codex-bunshin-os/logs ~/codex-bunshin-os/outputs
+cd ~/codex-bunshin-os
+codex</pre>
+        </div>
+      </section>
+
+      <section id="agents">
+        <div class="section-head">
+          <div class="section-no">4</div>
+          <div>
+            <h2>AGENTS.md / memory.md / state.md を作る</h2>
+            <p class="section-sub">Codexに毎回読ませる業務引き継ぎ書を作る。</p>
+          </div>
+        </div>
+        <div class="meaning">
+          <div class="box"><strong>予測利得</strong><span>Codexが何を前提に回答するか固定される。</span></div>
+          <div class="box"><strong>行為影響度</strong><span>深掘り結果をファイル化し、次回から読ませる。</span></div>
+          <div class="box"><strong>共有度</strong><span>テンプレートを埋めるだけで初版ができる。</span></div>
+        </div>
+        <div class="code-block">
+          <div class="code-label">Codexに初期ファイルを作らせる<button class="copy" data-copy>コピー</button></div>
+          <pre>このフォルダに、私専用のCodex分身OSの最小構成を作ってください。
+
+作るファイル:
+1. AGENTS.md
+2. memory.md
+3. state.md
+4. logs/YYYY-MM-DD.md
+5. outputs/README.md
+
+前提:
+- 日本語で使う
+- 会社情報、役割、判断軸、安全ルールをAGENTS.mdに入れる
+- 長期的に覚えることはmemory.md
+- 今の重点テーマと詰まりはstate.md
+- 作業の最後にlogsへ追記する
+
+まず空欄付きテンプレートとして作ってください。</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">AGENTS.mdの核<button class="copy" data-copy>コピー</button></div>
+          <pre># AGENTS.md — 私のCodex運用ルール
+
+## 基本方針
+あなたは私の仕事を支援するAIエージェント。
+目的は単発の回答ではなく、私の会社の仕事を前に進めること。
+
+## 判断軸
+1. 顧客に価値が出るか
+2. すぐ実行できるか
+3. チームの手間が減るか
+4. 将来の変更コストが低いか
+5. 今完璧である必要があるか
+
+## 安全ルール
+- APIキー、パスワード、個人情報を外部に出さない
+- メール送信、Slack投稿、SNS投稿は実行前に確認する
+- ファイル削除、大量変更、上書きは実行前に確認する
+- わからないことを断定しない。必要なら調べる
+
+## 継続改善
+同じミスを2回したらAGENTS.mdにルールを追加する。
+同じ作業を3回やったらテンプレート化またはSkill化を検討する。</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">動作確認<button class="copy" data-copy>コピー</button></div>
+          <pre>このフォルダのAGENTS.md、memory.md、state.mdを読んでください。
+私の会社・役割・判断軸・あなたが手伝える仕事を要約してください。
+ズレていそうなところがあれば、質問ではなく「仮説」として出してください。</pre>
+        </div>
+      </section>
+
+      <section id="mcp">
+        <div class="section-head">
+          <div class="section-no">5</div>
+          <div>
+            <h2>Context7 / GitHub / Exa をMCPで取り込む</h2>
+            <p class="section-sub">Codexのチャットから、外部の手と目を増やす。</p>
+          </div>
+        </div>
+        <div class="meaning">
+          <div class="box"><strong>予測利得</strong><span>最新ドキュメント、GitHub、Web検索を参照できる。</span></div>
+          <div class="box"><strong>行為影響度</strong><span>config.tomlをCodexに作成・更新させる。</span></div>
+          <div class="box"><strong>共有度</strong><span>プレースホルダ方式なのでAPIキーを公開せず説明できる。</span></div>
+        </div>
+        <div class="image-grid">
+          <figure><img src="assets/images/20260528-codex-setup/10_context7_docs_api_keys.png" alt="Context7 API Keys" loading="lazy"><figcaption>Context7 APIキー</figcaption></figure>
+          <figure><img src="assets/images/20260528-codex-setup/13_github_tokens.png" alt="GitHub Tokens" loading="lazy"><figcaption>GitHub Token</figcaption></figure>
+        </div>
+        <div class="warn">公開サイトに本物のAPIキーを載せない。参加者は自分の画面で発行し、Codexに置換を依頼します。</div>
+        <div class="code-block">
+          <div class="code-label">MCP一括設定プロンプト<button class="copy" data-copy>コピー</button></div>
+          <pre>あなたはセットアップ担当です。以下を順に実行してください。
+
+1. node / npx / uv / mcp-proxy が使えるか確認。不足があれば Homebrew 等で導入方法を提案し、実行前に私に確認してください。
+2. ~/.codex/config.toml を次の内容で作成または更新してください。既存設定があれば破壊せずマージしてください。
+3. YOUR_CONTEXT7_API_KEY / YOUR_EXA_API_KEY / YOUR_GITHUB_TOKEN はプレースホルダのまま書いてください。
+4. 完了したら /mcp で確認する手順を教えてください。
+
+--- config.toml 本文 ---
+
+model = "gpt-5-codex"
+model_reasoning_effort = "medium"
+
+[features]
+web_search_request = true
+
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp", "--api-key", "YOUR_CONTEXT7_API_KEY"]
+
+[mcp_servers.github]
+command = "mcp-proxy"
+args = ["--transport", "streamablehttp", "-H", "Authorization", "Bearer YOUR_GITHUB_TOKEN", "https://api.githubcopilot.com/mcp/"]
+
+[mcp_servers.exa]
+command = "npx"
+args = ["-y", "mcp-remote", "https://mcp.exa.ai/mcp?exaApiKey=YOUR_EXA_API_KEY"]
+
+[mcp_servers.chrome-devtools]
+command = "npx"
+args = ["chrome-devtools-mcp@latest"]</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">キー取得後の置換<button class="copy" data-copy>コピー</button></div>
+          <pre>YOUR_CONTEXT7_API_KEY を ctx7sk-... に
+YOUR_EXA_API_KEY を Exaのキーに
+YOUR_GITHUB_TOKEN を GitHubのトークンに
+置き換えて config.toml を更新してください。
+更新後、/mcp で確認する手順も出してください。</pre>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>MCP</th><th>役割</th><th>使いどころ</th></tr></thead>
+            <tbody>
+              <tr><td>Context7</td><td>ライブラリ最新ドキュメント参照</td><td>GAS / Vercel / フレームワーク調査</td></tr>
+              <tr><td>GitHub</td><td>Issue / PR / repo情報</td><td>便利リポジトリ取り込み</td></tr>
+              <tr><td>Exa</td><td>Web・コード検索</td><td>X投稿や記事の裏取り</td></tr>
+              <tr><td>Chrome DevTools</td><td>ブラウザ確認</td><td>HTMLサイトやGASアプリの検証</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="intake">
+        <div class="section-head">
+          <div class="section-no">6</div>
+          <div>
+            <h2>GitHubリポジトリやX投稿を調査・導入判断させる</h2>
+            <p class="section-sub">保存で終わらせず、自分の環境を更新する。</p>
+          </div>
+        </div>
+        <div class="meaning">
+          <div class="box"><strong>予測利得</strong><span>その情報が自社に関係するか判断できる。</span></div>
+          <div class="box"><strong>行為影響度</strong><span>導入、保留、見送りのいずれかに着地する。</span></div>
+          <div class="box"><strong>共有度</strong><span>URLを貼るだけの共通型で運用できる。</span></div>
+        </div>
+        <div class="code-block">
+          <div class="code-label">GitHub repo導入判断<button class="copy" data-copy>コピー</button></div>
+          <pre>以下のGitHubリポジトリを、私の環境に取り込むべきか判断してください。
+
+URL: 【GitHub URL】
+
+前提:
+- 私の会社情報・判断軸はAGENTS.mdを読んでください
+- いきなりインストールしないでください
+- まず導入判断だけしてください
+
+出力:
+1. 何をするリポジトリか
+2. 私の業務に使える場面
+3. 導入する場合の手順
+4. 必要なAPIキー・アカウント・料金
+5. セキュリティ/保守リスク
+6. 類似ツールが既に環境にあるか
+7. 結論: 導入する / 保留 / 見送り
+8. 今日試すなら最小の一手</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">X投稿・記事取り込み<button class="copy" data-copy>コピー</button></div>
+          <pre>このX投稿または記事を読んでください。
+
+URL: 【URL】
+
+以下の形式で整理してください。
+
+## 主張
+投稿者は何を言っているか。
+
+## 使える部分
+私の仕事・Codex環境に取り込めるところ。
+
+## 危ない部分
+誇張、再現性の低さ、セキュリティリスク、前提違い。
+
+## 反映先
+- AGENTS.mdに追記するなら何か
+- memory.mdに残すなら何か
+- Skill化するなら何か
+- 今は見送るなら理由
+
+## 次の一手
+今日10分で試せることを1つ。</pre>
+        </div>
+      </section>
+
+      <section id="gog">
+        <div class="section-head">
+          <div class="section-no">7</div>
+          <div>
+            <h2>gogcliでGoogle Sheetsを作成・操作する</h2>
+            <p class="section-sub">Codexに「スプレッドシートを作って」と頼めるようにする。</p>
+          </div>
+        </div>
+        <div class="meaning">
+          <div class="box"><strong>予測利得</strong><span>表データをAIの作業対象にできる。</span></div>
+          <div class="box"><strong>行為影響度</strong><span>Sheets/Drive APIをつなぎ、CLIから作成・読み書きする。</span></div>
+          <div class="box"><strong>共有度</strong><span>Googleアカウントがあれば再現できる。</span></div>
+        </div>
+        <div class="resource">参考: <a href="https://github.com/openclaw/gogcli" target="_blank" rel="noopener">openclaw/gogcli</a> / <a href="https://gogcli.sh/" target="_blank" rel="noopener">gogcli rendered docs</a></div>
+        <div class="code-block">
+          <div class="code-label">インストール<button class="copy" data-copy>コピー</button></div>
+          <pre>brew install openclaw/tap/gogcli
+gog --version</pre>
+        </div>
+        <div class="timeline">
+          <div class="tl"><strong>1. Google Cloud Project作成</strong><span><a href="https://console.cloud.google.com/projectcreate" target="_blank" rel="noopener">Project作成画面</a> を開く。</span></div>
+          <div class="tl"><strong>2. OAuth同意画面</strong><span>外部/テストで開始し、自分のGoogleアカウントをテストユーザーに追加。</span></div>
+          <div class="tl"><strong>3. Desktop OAuth Client作成</strong><span>JSONをダウンロードする。</span></div>
+          <div class="tl"><strong>4. Sheets API / Drive APIを有効化</strong><span>OAuth Clientと同じProjectで有効化。</span></div>
+          <div class="tl"><strong>5. gogに認証情報を登録</strong><span>ブラウザ認証まで完了させる。</span></div>
+        </div>
+        <div class="code-block">
+          <div class="code-label">認証<button class="copy" data-copy>コピー</button></div>
+          <pre>gog auth credentials ~/Downloads/client_secret_....json
+gog auth add you@gmail.com --services drive,sheets,docs,calendar
+gog auth doctor --check</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">Codexへの依頼<button class="copy" data-copy>コピー</button></div>
+          <pre>gog CLIでGoogle Sheetsに接続できる前提で進めてください。
+
+「社内アプリ用データ」という新規スプレッドシートを作成し、次の列を持つシートを作ってください。
+- title
+- owner
+- status
+- priority
+- url
+- memo
+
+サンプルデータを5件入れて、作成したスプレッドシートURLを教えてください。</pre>
+        </div>
+      </section>
+
+      <section id="gas">
+        <div class="section-head">
+          <div class="section-no">8</div>
+          <div>
+            <h2>GASで簡単な社内アプリを作る</h2>
+            <p class="section-sub">スプレッドシートをデータベースにして、HTMLの社内ポータルを公開する。</p>
+          </div>
+        </div>
+        <div class="meaning">
+          <div class="box"><strong>予測利得</strong><span>表がWebアプリになる流れが分かる。</span></div>
+          <div class="box"><strong>行為影響度</strong><span>Code.gsとindex.htmlを貼ってデプロイする。</span></div>
+          <div class="box"><strong>共有度</strong><span>Googleアカウントだけで試せる。</span></div>
+        </div>
+        <div class="resource">公式: <a href="https://developers.google.com/apps-script/guides/html" target="_blank" rel="noopener">HTML Service</a> / <a href="https://developers.google.com/apps-script/guides/web" target="_blank" rel="noopener">Web Apps</a></div>
+        <ol>
+          <li>対象スプレッドシートを開く。</li>
+          <li>拡張機能 → Apps Scriptを開く。</li>
+          <li><code>Code.gs</code> に下のコードを貼る。</li>
+          <li>HTMLファイル <code>index</code> を追加し、下のHTMLを貼る。</li>
+          <li>デプロイ → 新しいデプロイ → ウェブアプリ。</li>
+          <li>実行ユーザーは自分、アクセス範囲は用途に合わせる。合宿では「リンクを知っている全員」または「自分のみ」で試す。</li>
+        </ol>
+        <div class="code-block">
+          <div class="code-label">Code.gs<button class="copy" data-copy>コピー</button></div>
+          <pre>function doGet() {
+  return HtmlService.createHtmlOutputFromFile('index')
+    .setTitle('社内アプリ')
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
+
+function getItems() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
+  const values = sheet.getDataRange().getValues();
+  const headers = values.shift();
+  return values.map(row => {
+    const item = {};
+    headers.forEach((header, index) => item[header] = row[index]);
+    return item;
+  });
+}</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">index.html<button class="copy" data-copy>コピー</button></div>
+          <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;base target="_top"&gt;
+  &lt;style&gt;
+    body { font-family: system-ui, sans-serif; margin: 24px; background: #f7f8f7; color: #17211d; }
+    h1 { margin-bottom: 16px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+    .card { background: white; border: 1px solid #dce4df; border-radius: 8px; padding: 14px; }
+    .meta { color: #66736e; font-size: 13px; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;社内アプリ&lt;/h1&gt;
+  &lt;div id="app"&gt;読み込み中...&lt;/div&gt;
+  &lt;script&gt;
+    google.script.run.withSuccessHandler(items =&gt; {
+      document.getElementById('app').innerHTML = '&lt;div class="grid"&gt;' + items.map(item =&gt; `
+        &lt;div class="card"&gt;
+          &lt;h2&gt;${item.title || ''}&lt;/h2&gt;
+          &lt;p class="meta"&gt;担当: ${item.owner || ''} / 状態: ${item.status || ''}&lt;/p&gt;
+          &lt;p&gt;${item.memo || ''}&lt;/p&gt;
+        &lt;/div&gt;
+      `).join('') + '&lt;/div&gt;';
+    }).getItems();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        </div>
+      </section>
+
+      <section id="vercel">
+        <div class="section-head">
+          <div class="section-no">9</div>
+          <div>
+            <h2>Vercelアカウント作成からHTMLサイト公開まで</h2>
+            <p class="section-sub">GitHubに置いたHTMLを、URLで共有できる状態にする。</p>
+          </div>
+        </div>
+        <div class="meaning">
+          <div class="box"><strong>予測利得</strong><span>自分の成果物がURLで見える。</span></div>
+          <div class="box"><strong>行為影響度</strong><span>GitHub pushから自動デプロイまで確認する。</span></div>
+          <div class="box"><strong>共有度</strong><span>Vercelアカウントなしの人も同じ入口から始める。</span></div>
+        </div>
+        <div class="resource">公式: <a href="https://vercel.com/docs" target="_blank" rel="noopener">Vercel Docs</a> / <a href="https://vercel.com/new" target="_blank" rel="noopener">New Project</a></div>
+        <div class="timeline">
+          <div class="tl"><strong>1. VercelでContinue with GitHub</strong><span>GitHubアカウントでVercelにログイン/登録。</span></div>
+          <div class="tl"><strong>2. Add New Project</strong><span>GitHubリポジトリをImport。</span></div>
+          <div class="tl"><strong>3. Static HTMLとして設定</strong><span>Framework Presetなし、Build Command空、Output Directory空。</span></div>
+          <div class="tl"><strong>4. Deploy</strong><span>公開URLが発行される。</span></div>
+          <div class="tl"><strong>5. 以後はpushで更新</strong><span>GitHubにpushするとVercelが自動デプロイ。</span></div>
+        </div>
+        <div class="code-block">
+          <div class="code-label">ローカルで確認<button class="copy" data-copy>コピー</button></div>
+          <pre>python3 -m http.server 8000</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">GitHubへ反映<button class="copy" data-copy>コピー</button></div>
+          <pre>git status
+git add .
+git commit -m "Add Codex bunshin OS lecture site"
+git push origin main</pre>
+        </div>
+      </section>
+
+      <section id="run">
+        <div class="section-head">
+          <div class="section-no">10</div>
+          <div>
+            <h2>Macを起動維持してCodexを走らせる</h2>
+            <p class="section-sub">長い作業を任せるときは、Macが寝ない状態を作る。</p>
+          </div>
+        </div>
+        <div class="meaning">
+          <div class="box"><strong>予測利得</strong><span>途中停止の原因がMacのスリープか切り分けられる。</span></div>
+          <div class="box"><strong>行為影響度</strong><span>6時間だけ起動維持して作業させる。</span></div>
+          <div class="box"><strong>共有度</strong><span>標準コマンドとGUIアプリの2択を用意。</span></div>
+        </div>
+        <div class="code-block">
+          <div class="code-label">6時間スリープさせない<button class="copy" data-copy>コピー</button></div>
+          <pre>caffeinate -dimsu -t 21600</pre>
+        </div>
+        <ul>
+          <li><code>-d</code>: ディスプレイをスリープさせにくくする。</li>
+          <li><code>-i</code>: システムスリープを防ぐ。</li>
+          <li><code>-m</code>: ディスクスリープを防ぐ。</li>
+          <li><code>-s</code>: AC電源接続時のスリープを防ぐ。</li>
+          <li><code>-u</code>: ユーザー操作があった扱いにする。</li>
+          <li><code>-t 21600</code>: 21600秒、つまり6時間。</li>
+        </ul>
+        <div class="note">GUIがよければ <a href="https://apps.apple.com/us/app/amphetamine/id937984704" target="_blank" rel="noopener">Amphetamine</a> を使う。メニューバーから「指定時間だけ起動維持」を選べるので、講義中や長いCodex作業に向いています。</div>
+      </section>
+
+      <section id="grow">
+        <div class="section-head">
+          <div class="section-no">11</div>
+          <div>
+            <h2>継続アップデート: 失敗ログ、AGENTS追記、Skill化</h2>
+            <p class="section-sub">分身OSは作って終わりではなく、使うたびに育てる。</p>
+          </div>
+        </div>
+        <div class="meaning">
+          <div class="box"><strong>予測利得</strong><span>次回の出力がなぜ良くなるか説明できる。</span></div>
+          <div class="box"><strong>行為影響度</strong><span>毎回のズレをルール化する。</span></div>
+          <div class="box"><strong>共有度</strong><span>2回ミス、3回繰り返しの基準で迷わない。</span></div>
+        </div>
+        <div class="code-block">
+          <div class="code-label">作業後レビュー<button class="copy" data-copy>コピー</button></div>
+          <pre>今回の作業を振り返って、次回からCodexがより良く動くようにするには何を更新すべきですか。
+
+候補:
+- AGENTS.md
+- memory.md
+- state.md
+- logs/YYYY-MM-DD.md
+- 新しいテンプレート
+- 新しいSkill
+
+更新が必要なものだけ提案し、必要なら実際に更新してください。</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">Skill化判断<button class="copy" data-copy>コピー</button></div>
+          <pre>この作業は繰り返し発生しています。
+テンプレート化またはSkill化すべきか判断してください。
+
+判断軸:
+1. 月1回以上使うか
+2. 毎回同じ判断が必要か
+3. 出力形式が固定できるか
+4. 失敗しやすい注意点があるか
+5. 他の人にも使えるか
+
+結論:
+- テンプレートで十分
+- Skill化する
+- まだ早い</pre>
+        </div>
+        <h3>合宿完走チェック</h3>
+        <div class="complete">
+          <label><input type="checkbox"> Codexが作業フォルダを開けている</label>
+          <label><input type="checkbox"> grill-me型プロンプトを単語登録した</label>
+          <label><input type="checkbox"> AGENTS / memory / state がある</label>
+          <label><input type="checkbox"> Context7/GitHubなどMCPの導線を理解した</label>
+          <label><input type="checkbox"> gogcliでSheetsを扱う流れを理解した</label>
+          <label><input type="checkbox"> GAS社内アプリの公開手順を理解した</label>
+          <label><input type="checkbox"> VercelでHTMLを公開する流れを理解した</label>
+          <label><input type="checkbox"> 作業後レビューで環境を育てられる</label>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    参考リンク:
+    <a href="https://developers.openai.com/codex/app/" target="_blank" rel="noopener">OpenAI Codex App</a> /
+    <a href="https://github.com/openclaw/gogcli" target="_blank" rel="noopener">openclaw/gogcli</a> /
+    <a href="https://developers.google.com/apps-script/guides/html" target="_blank" rel="noopener">Google Apps Script HTML Service</a> /
+    <a href="https://vercel.com/docs" target="_blank" rel="noopener">Vercel Docs</a>
+  </footer>
+
+  <script>
+    const copyButtons = document.querySelectorAll('[data-copy]');
+    copyButtons.forEach((button) => {
+      button.addEventListener('click', async () => {
+        const block = button.closest('.code-block');
+        const text = block ? block.querySelector('pre').innerText : '';
+        try {
+          await navigator.clipboard.writeText(text);
+          const original = button.textContent;
+          button.textContent = 'コピー済み';
+          setTimeout(() => button.textContent = original, 1300);
+        } catch {
+          button.textContent = '選択してコピー';
+        }
+      });
+    });
+
+    const links = [...document.querySelectorAll('.flow a, .toc a')];
+    const sections = [...document.querySelectorAll('main section')];
+    const byId = new Map(links.map((link) => [link.getAttribute('href').slice(1), link]));
+
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      const id = visible.target.id;
+      document.querySelectorAll('.flow a, .toc a').forEach((link) => link.classList.remove('active'));
+      document.querySelectorAll(`a[href="#${id}"]`).forEach((link) => link.classList.add('active'));
+      const flowLink = byId.get(id);
+      if (flowLink) flowLink.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+    }, { rootMargin: '-35% 0px -55% 0px', threshold: [0.1, 0.25, 0.5] });
+
+    sections.forEach((section) => observer.observe(section));
+  </script>
+</body>
+</html>
