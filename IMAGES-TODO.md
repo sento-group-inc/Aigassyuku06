@@ -11,6 +11,12 @@ APIキー、PAT、メールアドレス、個人名、ワークスペース名�
 | `agent-browser-snapshot.png` | `index.html` Section 18 agent-browser | `agent-browser snapshot -i` の出力例 | https://github.com/vercel-labs/agent-browser | ローカルパスや個人名を隠す |
 | `prep-codex-app-download.png` | `prep.html` Codex準備 | Codex App公式ページのダウンロード導線 | https://developers.openai.com/codex/app/ | 公式ページのみ撮る |
 | `prep-vercel-github-login.png` | `prep.html` アカウント準備 | VercelのContinue with GitHub画面 | https://vercel.com/signup | 個人アカウント情報を映さない |
+| `homebrew-terminal-open.png` | `prep.html` Step 1 Homebrew | Spotlight（⌘+Space）で「terminal」と検索している画面 | — | 個人名・ファイル名を映さない |
+| `homebrew-site.png` | `prep.html` Step 1 Homebrew | brew.sh 公式サイトのコピーボタン位置がわかる画面 | https://brew.sh/ | そのまま撮影OK |
+| `homebrew-install-running.png` | `prep.html` Step 1 Homebrew | ターミナルでインストールコマンドが実行中の画面 | — | パスワードは必ず隠す。実行中のプログレス表示が理想 |
+| `composio-dashboard.png` | `prep.html` Step 7 Composio | Composioダッシュボードのトップ画面 | https://dashboard.composio.dev/ | APIキーを完全に隠す。接続ツール一覧が見えると良い |
+| `composio-apikey.png` | `prep.html` Step 7 Composio | Composio APIキー取得画面 | https://dashboard.composio.dev/ | キーの実値は隠す。ページ上の取得UIがわかる画面 |
+| `composio-tools.png` | `prep.html` Step 7 Composio | Composioの接続ツール一覧（GitHub/Asana/Slack等が並ぶ画面） | https://dashboard.composio.dev/ | 個人情報なし。ツール一覧がわかる画面 |
 
 ## 配置先
 

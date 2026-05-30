@@ -7,11 +7,12 @@
   <style>
     :root {
       --bg:#f7f8f7; --surface:#fff; --surface-soft:#f1f5f3; --ink:#17211d; --muted:#66736e;
-      --line:#dce4df; --accent:#0f766e; --accent-soft:#e6f5f2; --accent-strong:#0b5d56;
+      --line:#dce4df; --line-strong:#c5d0ca; --accent:#0f766e; --accent-soft:#e6f5f2; --accent-strong:#0b5d56;
       --gold-soft:#fff7e6; --blue-soft:#eff6ff; --red-soft:#fff1f0; --radius:8px;
       --shadow:0 10px 28px rgba(23,33,29,.08); --max:1480px;
     }
     * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
     body { margin:0; background:var(--bg); color:var(--ink); font-family:"Hiragino Sans","Noto Sans JP",system-ui,sans-serif; font-size:15px; line-height:1.78; }
     a { color:var(--accent-strong); text-underline-offset:3px; }
     .page-header { background:#fff; border-bottom:1px solid var(--line); padding:32px clamp(16px,4vw,40px) 24px; }
@@ -20,37 +21,59 @@
     h1 { margin:0 0 8px; font-size:clamp(30px,5vw,52px); line-height:1.1; }
     .lead { margin:0; color:var(--muted); font-size:17px; max-width:900px; }
     .content { padding:28px clamp(16px,4vw,40px) 70px; display:grid; gap:22px; }
-    section { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:28px; box-shadow:var(--shadow); }
+    section { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:28px; box-shadow:var(--shadow); scroll-margin-top:80px; }
     h2 { margin:0 0 14px; font-size:clamp(22px,3vw,32px); }
     h3 { margin:22px 0 10px; font-size:18px; }
+    h4 { margin:16px 0 8px; font-size:15px; font-weight:800; }
     p { margin:0 0 12px; }
     ul, ol { margin:0 0 14px 22px; padding:0; }
+    li { margin-bottom:6px; }
     code { background:var(--surface-soft); border:1px solid var(--line); border-radius:5px; padding:1px 5px; font-family:"SFMono-Regular","Menlo",monospace; font-size:.88em; }
     .page-nav { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
     .page-nav a { border:1px solid #b6ded7; border-radius:999px; background:var(--accent-soft); padding:7px 13px; font-weight:800; font-size:13px; text-decoration:none; }
-    .note, .warn, .resource { border-radius:var(--radius); padding:13px 15px; border:1px solid var(--line); margin:14px 0; }
+    .note, .warn, .resource, .ai-tip { border-radius:var(--radius); padding:13px 15px; border:1px solid var(--line); margin:14px 0; }
     .note { background:var(--blue-soft); color:#193f8f; border-color:#c7d8ff; }
     .warn { background:var(--red-soft); color:#8e1d13; border-color:#ffd2cc; }
     .resource { background:var(--gold-soft); color:#7a4d0b; border-color:#f2d7a5; }
-    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+    .ai-tip { background:#f3e8ff; color:#6b21a8; border-color:#d8b4fe; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:14px 0; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:14px 0; }
     .card { border:1px solid var(--line); border-radius:var(--radius); background:var(--surface-soft); padding:14px; }
     .card strong { display:block; margin-bottom:4px; }
     .card span { color:var(--muted); font-size:13px; }
+    .card.accent { background:var(--accent-soft); border-color:#b6ded7; }
+    .card.accent span { color:var(--accent-strong); }
+    .step-flow { display:grid; gap:0; margin:16px 0; }
+    .step { display:grid; grid-template-columns:40px 1fr; gap:14px; align-items:start; padding:14px 0; border-bottom:1px solid var(--line); }
+    .step:last-child { border-bottom:none; }
+    .step-no { display:grid; place-items:center; width:36px; height:36px; border-radius:50%; background:var(--ink); color:#fff; font-weight:900; font-size:15px; flex-shrink:0; }
+    .step-no.done { background:var(--accent); }
     .image-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:16px 0; }
+    .image-grid-3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:16px 0; }
     figure { margin:0; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--surface-soft); }
     figure img { display:block; width:100%; height:auto; }
     figcaption { padding:8px 10px; color:var(--muted); font-size:12px; border-top:1px solid var(--line); }
-    .code-block { margin:14px 0 18px; border-radius:var(--radius); overflow:hidden; border:1px solid #26332f; background:#101513; }
-    .code-label { min-height:38px; padding:8px 14px; color:#9fb4ad; border-bottom:1px solid #26332f; font-size:12px; font-weight:800; }
+    .placeholder-fig { display:grid; place-items:center; min-height:160px; background:var(--surface-soft); color:var(--muted); font-size:13px; border-radius:var(--radius); border:2px dashed var(--line); }
+    .code-block { margin:10px 0 14px; border-radius:var(--radius); overflow:hidden; border:1px solid #26332f; background:#101513; position:relative; }
+    .code-label { display:flex; align-items:center; justify-content:space-between; min-height:38px; padding:8px 14px; color:#9fb4ad; border-bottom:1px solid #26332f; font-size:12px; font-weight:800; }
+    button.copy { border:1px solid #3b4b45; border-radius:6px; background:#1a2420; color:#e7f1ed; padding:5px 10px; font-size:12px; cursor:pointer; }
+    button.copy:hover { background:#24322d; }
     pre { margin:0; padding:16px; overflow-x:auto; white-space:pre-wrap; color:#e7f1ed; font-family:"SFMono-Regular","Menlo",monospace; font-size:13px; line-height:1.62; }
-    .checklist { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
-    .checklist label { border:1px solid var(--line); border-radius:var(--radius); background:var(--surface-soft); padding:10px 12px; color:var(--muted); }
-    table { width:100%; border-collapse:collapse; min-width:720px; background:#fff; }
-    .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); }
+    .checklist { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:14px 0; }
+    .checklist label { border:1px solid var(--line); border-radius:var(--radius); background:var(--surface-soft); padding:10px 12px; color:var(--muted); display:flex; align-items:flex-start; gap:9px; }
+    table { width:100%; border-collapse:collapse; background:#fff; }
+    .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); margin:14px 0; }
     th, td { padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
     th { background:var(--surface-soft); color:var(--muted); font-size:12px; }
+    tr:last-child td { border-bottom:none; }
+    .mermaid { overflow-x:auto; background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:20px; margin:14px 0; }
+    .mermaid svg { display:block; max-width:100%; height:auto; }
+    .section-no { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; background:var(--ink); color:#fff; font-weight:900; font-size:15px; margin-right:10px; vertical-align:middle; }
     footer { padding:20px clamp(16px,4vw,40px) 46px; color:var(--muted); font-size:13px; }
-    @media (max-width:920px) { .grid, .checklist, .image-grid { grid-template-columns:1fr; } section { padding:22px 18px; } }
+    @media (max-width:920px) {
+      .grid, .grid-3, .checklist, .image-grid, .image-grid-3 { grid-template-columns:1fr; }
+      section { padding:22px 18px; }
+    }
   </style>
 </head>
 <body>
@@ -58,118 +81,381 @@
     <div class="page-header-inner">
       <p class="breadcrumb"><a href="index.html">合宿サイト TOP</a> / 事前準備</p>
       <h1>事前準備</h1>
-      <p class="lead">午前をセットアップで溶かさないための準備ページ。アカウント作成、CLI、AGENTS.md / CLAUDE.md の用語を先に揃えます。</p>
+      <p class="lead">午前をセットアップで溶かさないための準備ページ。当日9:30から自分の業務深掘りに入れる状態をここで作る。</p>
       <div class="page-nav">
         <a href="index.html">講義本編</a>
         <a href="ipoa.html">IPOA</a>
-        <a href="shared-standard.html">個人OSからチーム標準へ</a>
-        <a href="schedule.html">合宿スケジュール</a>
+        <a href="shared-standard.html">チーム標準へ</a>
+        <a href="schedule.html">スケジュール</a>
         <a href="repos.html">リポジトリ一覧</a>
       </div>
     </div>
   </div>
 
   <div class="content">
-    <section>
-      <h2>なぜ事前準備をするか</h2>
-      <p>合宿の価値は、インストール画面を眺めることではありません。自分の業務を深掘りし、AGENTS.mdに落とし、Codexで動かし、公開して、次回も育つ状態を作ることです。</p>
-      <div class="note">事前準備のゴールは「当日9:30から自分の分身OSづくりに入れる」ことです。</div>
+
+    <!-- ====== なぜ事前準備か ====== -->
+    <section id="why">
+      <h2>なぜ事前準備をするのか</h2>
+      <p>合宿の価値は「インストール画面を眺めること」ではありません。自分の業務を深掘りし、AGENTS.mdに落とし、Codexで動かし、公開して、次回も育つ状態を作ることです。</p>
+      <div class="grid">
+        <div class="card accent"><strong>当日9:30からやること</strong><span>grill-meで自分の業務を深掘り → 分身OS作り開始</span></div>
+        <div class="card"><strong>この事前準備でやること</strong><span>ツールのインストール・アカウント作成・基本用語の確認</span></div>
+      </div>
+      <div class="note">目安時間: 慣れていない人でも1〜2時間で終わります。詰まったら <strong>AIに質問しながら進めてOK</strong> です。</div>
+      <div class="ai-tip"><strong>わからなければAIに聞こう！</strong><br>ChatGPT、Claude、どちらでも使えます。「Macで〇〇のインストール方法を教えて」と話しかけるだけ。コマンドが意味不明なときも、そのままコピペして「これは何をするコマンド？」と聞けば教えてくれます。</div>
     </section>
 
-    <section>
-      <h2>用語プライマー</h2>
+    <!-- ====== 用語プライマー ====== -->
+    <section id="terms">
+      <h2>用語プライマー — AGENTS.md / CLAUDE.md とは</h2>
+      <p>この合宿で何度も出てくる用語を先に整理します。</p>
       <div class="grid">
-        <div class="card"><strong>AGENTS.md</strong><span>AIエージェント向けREADME。Cursor、Copilot、Codex CLIなど複数ツールで共通利用しやすい指示置き場。Linux Foundation AAIFで標準化が進む形式です。</span></div>
-        <div class="card"><strong>CLAUDE.md</strong><span>Claude Code専用の指示ファイル。<code>@import</code>、Planモードなど、Claude Code固有の使い方を置く場所です。</span></div>
-        <div class="card"><strong>共通指示と専用指示</strong><span>会社情報・判断軸・安全ルールはAGENTS.md。Claude Code専用の挙動はCLAUDE.md。必要ならシンボリックリンクで互換します。</span></div>
-        <div class="card"><strong>Progressive Disclosure</strong><span>全部を一気に読ませず、必要になった時に段階的に開示する設計。Context Rotを避けるために重要です。</span></div>
+        <div class="card"><strong>AGENTS.md</strong><span>AIエージェント向けのREADME。Cursor、Copilot、Codex CLIなど<strong>複数ツールで共通利用</strong>できる指示置き場。Linux Foundation AAIF で標準化が進む。</span></div>
+        <div class="card"><strong>CLAUDE.md</strong><span>Claude Code<strong>専用</strong>の指示ファイル。<code>@import</code>、Planモードなど、Claude Code固有の機能を書く場所。</span></div>
+        <div class="card"><strong>共通 vs 専用</strong><span>会社情報・判断軸・安全ルール → AGENTS.md。Claude固有の設定 → CLAUDE.md。重複を避けてシンボリックリンクで互換もできる。</span></div>
+        <div class="card"><strong>memory.md / state.md</strong><span>memory = AIが長期で覚えてほしい会社・業務情報。state = 今この瞬間の重点テーマ・ブロッカー。セッションをまたいでコンテキストを保持する。</span></div>
       </div>
       <div class="table-wrap">
         <table>
           <thead><tr><th>用語</th><th>意味</th><th>合宿での使い方</th></tr></thead>
           <tbody>
-            <tr><td>インストラクション・バジェット</td><td>AIが安定して守れる指示量には限界がある。150-200指示を超えると崩れやすい。</td><td>AGENTS.mdを肥大化させず、Skillや別ファイルへ分ける。</td></tr>
-            <tr><td>Context Rot</td><td>トークンが増えるほど、検索・参照・判断の性能が落ちる現象。</td><td>全部を貼らず、必要な資料だけ読ませる。</td></tr>
-            <tr><td>Progressive Disclosure</td><td>必要な時に必要な情報だけ開く設計。</td><td>AGENTS.mdを目次にし、詳細はskillsやdocsに分ける。</td></tr>
+            <tr><td><strong>インストラクション・バジェット</strong></td><td>AIが安定して守れる指示量の限界。150〜200指示を超えると崩れやすい。</td><td>AGENTS.mdを肥大化させず、SkillやDocsに分ける。</td></tr>
+            <tr><td><strong>Context Rot</strong></td><td>会話が長くなるほど、AIの参照・判断精度が落ちる現象。</td><td>必要な資料だけを読ませる。全部貼らない。</td></tr>
+            <tr><td><strong>Progressive Disclosure</strong></td><td>必要な時に必要な情報だけ開く設計。</td><td>AGENTS.mdを目次にし、詳細はskillsやdocsに分ける。</td></tr>
           </tbody>
         </table>
       </div>
-      <div class="resource">参考: <a href="https://qiita.com/nogataka/items/ad15bfa383c98ae5cc36" target="_blank" rel="noopener">AGENTS.md解説</a> / <a href="https://qiita.com/dai_chi/items/61019c602c2c40dade07" target="_blank" rel="noopener">CLAUDE.md運用</a></div>
+      <div class="resource">参考（常設）: <a href="https://qiita.com/nogataka/items/ad15bfa383c98ae5cc36" target="_blank" rel="noopener">AGENTS.md完全入門</a> / <a href="https://qiita.com/dai_chi/items/61019c602c2c40dade07" target="_blank" rel="noopener">AGENTS.mdベストプラクティス</a></div>
     </section>
 
-    <section>
-      <h2>インストール</h2>
-      <h3>Homebrew</h3>
-      <div class="code-block"><div class="code-label">コマンド</div><pre>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</pre></div>
-      <h3>Node.js</h3>
-      <div class="code-block"><div class="code-label">コマンド</div><pre>brew install node</pre></div>
-      <h3>Git</h3>
-      <div class="code-block"><div class="code-label">コマンド</div><pre>brew install git</pre></div>
-      <h3>Codex App</h3>
-      <p>Codex Appは公式ページから取得します。インストール後、ChatGPTアカウントでログインしてください。</p>
-      <div class="resource">参考: <a href="https://developers.openai.com/codex/app/" target="_blank" rel="noopener">OpenAI Codex App</a> / <a href="https://note.com/munakata_souri/n/n4aacfa6d9729" target="_blank" rel="noopener">Codexセットアップ解説</a></div>
-      <h3>Claude Code（任意）</h3>
-      <div class="resource">参考: <a href="https://code.claude.com/docs/ja/overview" target="_blank" rel="noopener">Claude Code Docs</a></div>
-      <h3>ngrok</h3>
-      <div class="code-block"><div class="code-label">コマンド</div><pre>brew install --cask ngrok</pre></div>
-      <h3>agent-browser</h3>
-      <div class="code-block"><div class="code-label">コマンド</div><pre>npm install -g agent-browser</pre></div>
-    </section>
+    <!-- ====== STEP 1: Homebrew ====== -->
+    <section id="homebrew">
+      <h2><span class="section-no">1</span>Homebrew のインストール</h2>
+      <p>Homebrewは「Macのアプリストア」のようなもの。これを入れると、ほぼすべての開発ツールを1行のコマンドでインストールできるようになります。</p>
+      <div class="note">Homebrew は macOS 専用です。インストールには <strong>管理者パスワード</strong> が必要です。</div>
 
-    <section>
-      <h2>Codex Desktop / CLI セットアップ</h2>
-      <p>ここまで当日前に終わっていると、合宿当日はIPOAと業務改善HTMLに時間を使えます。ホームフォルダ全体ではなく、合宿用の作業フォルダだけをCodexに開かせます。</p>
-      <div class="warn">ホームフォルダや書類フォルダ全体を開かない。Codexは開いた作業フォルダ以下を読んだり編集したりできます。</div>
-      <div class="grid">
-        <div class="card"><strong>Desktopでやる人</strong><span>Codex Appを開き、合宿用フォルダを追加する。画面で確認しながら進めたい人向け。</span></div>
-        <div class="card"><strong>CLIでやる人</strong><span>ターミナルで作業フォルダを作り、<code>codex</code> を起動する。CLIに慣れている人向け。</span></div>
+      <h3>ターミナルの開き方（初めての人向け）</h3>
+      <div class="step-flow">
+        <div class="step">
+          <div class="step-no">1</div>
+          <div>
+            <strong>Finder を開く</strong><br>
+            <span style="color:var(--muted);font-size:14px;">Dockの一番左にある笑顔のアイコン、または画面左上の 🔍 で「Finder」と検索。</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-no">2</div>
+          <div>
+            <strong>「アプリケーション」→「ユーティリティ」→「ターミナル.app」</strong><br>
+            <span style="color:var(--muted);font-size:14px;">または Spotlight（⌘ + Space）で「terminal」と入力して起動。黒い画面が出ればOK。</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-no">3</div>
+          <div>
+            <strong>コマンドを貼り付けて Enter</strong><br>
+            <span style="color:var(--muted);font-size:14px;">⌘ + V で貼り付けられます。右クリック → 「ペースト」でもOK。</span>
+          </div>
+        </div>
       </div>
+
+      <div class="image-grid">
+        <!-- IMG: homebrew-terminal-open.png  ターミナルを開く様子 — インターン挿入予定 -->
+        <figure>
+          <div class="placeholder-fig">ターミナルの開き方スクリーンショット<br><small>（インターン挿入予定: homebrew-terminal-open.png）</small></div>
+          <figcaption>Spotlight で「terminal」と検索</figcaption>
+        </figure>
+        <!-- IMG: homebrew-site.png  brew.sh の公式サイト — インターン挿入予定 -->
+        <figure>
+          <div class="placeholder-fig">Homebrew公式サイト（brew.sh）<br><small>（インターン挿入予定: homebrew-site.png）</small></div>
+          <figcaption>brew.sh のコピーボタン位置</figcaption>
+        </figure>
+      </div>
+
+      <h3>インストールコマンド</h3>
+      <div class="code-block">
+        <div class="code-label">① Homebrew をインストール<button class="copy" data-copy>コピー</button></div>
+        <pre>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</pre>
+      </div>
+      <div class="warn"><strong>パスワードを入力するときの注意</strong><br>Macのパスワードを求められます。入力しても画面には文字が表示されません（セキュリティのため）。でも入力はされています。そのまま Enter を押してください。</div>
+
+      <h3>PATH を通す（Apple Silicon Macの場合）</h3>
+      <p>M1/M2/M3/M4 Mac を使っている場合、インストール後にターミナルの指示に従って PATH を通します。インストール完了時に <strong>「Run these two commands...」</strong> と表示されるので、その2行をコピーして実行してください。</p>
+      <div class="code-block">
+        <div class="code-label">② PATH の設定（表示された内容をそのまま実行。以下は例）<button class="copy" data-copy>コピー</button></div>
+        <pre>echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile</pre>
+      </div>
+      <div class="code-block">
+        <div class="code-label">③ 設定を反映<button class="copy" data-copy>コピー</button></div>
+        <pre>eval "$(/opt/homebrew/bin/brew shellenv)"</pre>
+      </div>
+
+      <h3>インストール確認</h3>
+      <div class="code-block">
+        <div class="code-label">④ バージョン確認<button class="copy" data-copy>コピー</button></div>
+        <pre>brew --version</pre>
+      </div>
+      <div class="note">「Homebrew 4.x.x」のような表示が出ればインストール成功です。</div>
+      <div class="ai-tip"><strong>わからなければAIに聞こう！</strong><br>エラーが出たら、赤いメッセージをそのままコピーして ChatGPT か Claude に「このエラーの直し方を教えて」と貼り付けてください。ほとんどのエラーは解決できます。</div>
+      <div class="resource">参考（常設）: <a href="https://www.kikagaku.co.jp/personal/blog/homebrew-install-howto" target="_blank" rel="noopener">Homebrew インストール方法 — 株式会社キカガク</a> / <a href="https://brew.sh/" target="_blank" rel="noopener">Homebrew 公式</a></div>
+    </section>
+
+    <!-- ====== STEP 2: Node.js / Git / npm ====== -->
+    <section id="node-git">
+      <h2><span class="section-no">2</span>Node.js と Git のインストール</h2>
+      <p>Homebrew が入れば、残りは1コマンドずつ。エラーが出たら AIに聞きながら進めてOKです。</p>
+
+      <h3>Node.js</h3>
+      <p>JavaScript の実行環境。多くのCLIツールが Node.js ベースなので必須。</p>
+      <div class="code-block">
+        <div class="code-label">① Node.js をインストール<button class="copy" data-copy>コピー</button></div>
+        <pre>brew install node</pre>
+      </div>
+      <div class="code-block">
+        <div class="code-label">② バージョン確認<button class="copy" data-copy>コピー</button></div>
+        <pre>node --version</pre>
+      </div>
+      <div class="code-block">
+        <div class="code-label">③ npm も確認<button class="copy" data-copy>コピー</button></div>
+        <pre>npm --version</pre>
+      </div>
+
+      <h3>Git</h3>
+      <p>コードのバージョン管理。Vercel公開でも使う。</p>
+      <div class="code-block">
+        <div class="code-label">④ Git をインストール<button class="copy" data-copy>コピー</button></div>
+        <pre>brew install git</pre>
+      </div>
+      <div class="code-block">
+        <div class="code-label">⑤ バージョン確認<button class="copy" data-copy>コピー</button></div>
+        <pre>git --version</pre>
+      </div>
+      <div class="ai-tip"><strong>わからなければAIに聞こう！</strong><br>「node --version が通りません」のように状況をそのまま伝えればOK。「私は Mac の M3 チップを使っています」のように環境を添えるとより正確に答えてくれます。</div>
+    </section>
+
+    <!-- ====== STEP 3: Codex App ====== -->
+    <section id="codex-setup">
+      <h2><span class="section-no">3</span>Codex App のセットアップ</h2>
+      <p>Codex App は公式サイトから取得します。ブラウザダウンロード → インストール → ChatGPTアカウントでログイン の流れです。</p>
+      <div class="warn"><strong>セキュリティの注意</strong><br>ホームフォルダ全体や書類フォルダ全体を開かない。Codexは開いた作業フォルダ以下を読んだり編集したりできます。</div>
+
+      <div class="step-flow">
+        <div class="step">
+          <div class="step-no">1</div>
+          <div><strong>公式ページにアクセス</strong><br><a href="https://developers.openai.com/codex/app/" target="_blank" rel="noopener">developers.openai.com/codex/app/</a> を開いてダウンロード。</div>
+        </div>
+        <div class="step">
+          <div class="step-no">2</div>
+          <div><strong>ChatGPTアカウントでサインイン</strong><br>GitHubアカウントは後で使う。ここはChatGPTアカウント（OpenAI）でログイン。</div>
+        </div>
+        <div class="step">
+          <div class="step-no">3</div>
+          <div><strong>作業フォルダを作って開く</strong><br>デスクトップ等に <code>codex-bunshin-os</code> フォルダを作り、Codexで開く。左下にフォルダ名が見えればOK。</div>
+        </div>
+        <div class="step">
+          <div class="step-no done">4</div>
+          <div><strong>動作確認</strong><br>チャット欄に「こんにちは」と入力して返事が来ればセットアップ完了。</div>
+        </div>
+      </div>
+
       <div class="image-grid">
         <figure><img src="assets/images/20260528-codex-setup/00_codex_app_page.png" alt="Codex公式ページ" loading="lazy"><figcaption>公式ページからCodex Appへ</figcaption></figure>
         <figure><img src="assets/images/20260528-codex-setup/02_signin.png" alt="ChatGPTでサインイン" loading="lazy"><figcaption>ChatGPTでサインイン</figcaption></figure>
         <figure><img src="assets/images/20260528-codex-setup/04_add_project.png" alt="新しいプロジェクトを追加" loading="lazy"><figcaption>作業フォルダを追加</figcaption></figure>
         <figure><img src="assets/images/20260528-codex-setup/06_folder_opened.png" alt="フォルダが開かれた状態" loading="lazy"><figcaption>フォルダ名が見えればOK</figcaption></figure>
       </div>
-      <h3>Desktopでの確認</h3>
-      <ol>
-        <li><a href="https://developers.openai.com/codex/app/" target="_blank" rel="noopener">OpenAI Codex App</a> からアプリを入手する。</li>
-        <li>ChatGPTアカウントでサインインする。</li>
-        <li>デスクトップ等に <code>codex-bunshin-os</code> フォルダを作る。</li>
-        <li>Codexでそのフォルダを開く。左下にフォルダ名が見えればOK。</li>
-      </ol>
-      <h3>CLIで作業フォルダを作る場合</h3>
-      <div class="code-block"><div class="code-label">① 作業フォルダを作成</div><pre>mkdir -p ~/codex-bunshin-os/logs ~/codex-bunshin-os/outputs</pre></div>
-      <div class="code-block"><div class="code-label">② 作業フォルダへ移動</div><pre>cd ~/codex-bunshin-os</pre></div>
-      <div class="code-block"><div class="code-label">③ Codex CLI を起動</div><pre>codex</pre></div>
-      <div class="note">ここまで終わっていれば、本編Section 02のgrill-meから始められます。</div>
-    </section>
 
-    <section>
-      <h2>アカウント作成</h2>
-      <p>アカウント作成、APIキー、PAT入力は本人が行います。AIに代行入力させないでください。</p>
-      <ul>
-        <li><a href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPT / Codex</a></li>
-        <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://vercel.com/new" target="_blank" rel="noopener">Vercel</a></li>
-        <li><a href="https://asana.com/" target="_blank" rel="noopener">Asana</a></li>
-        <li><a href="https://dashboard.ngrok.com/get-started/your-authtoken" target="_blank" rel="noopener">ngrok</a></li>
-      </ul>
-      <div class="warn">APIキー、PAT、パスワードは公開サイト、GitHub、スクリーンショットに載せない。教材では必ず <code>YOUR_XXX</code> の形で扱います。</div>
-    </section>
-
-    <section>
-      <h2>事前チェックリスト</h2>
-      <div class="checklist">
-        <label><input type="checkbox"> GitHubアカウントにログインできる</label>
-        <label><input type="checkbox"> Codex Appを開ける</label>
-        <label><input type="checkbox"> ターミナルで <code>git --version</code> が通る</label>
-        <label><input type="checkbox"> ターミナルで <code>node --version</code> が通る</label>
-        <label><input type="checkbox"> VercelへGitHubログインできる</label>
-        <label><input type="checkbox"> Asanaアカウントを作った</label>
-        <label><input type="checkbox"> ngrokアカウントを作った</label>
-        <label><input type="checkbox"> APIキーを公開しないルールを理解した</label>
+      <h3>CLIで作業フォルダを作る場合（任意）</h3>
+      <div class="code-block">
+        <div class="code-label">① 作業フォルダを作成<button class="copy" data-copy>コピー</button></div>
+        <pre>mkdir -p ~/codex-bunshin-os/logs ~/codex-bunshin-os/outputs</pre>
       </div>
+      <div class="code-block">
+        <div class="code-label">② 作業フォルダへ移動<button class="copy" data-copy>コピー</button></div>
+        <pre>cd ~/codex-bunshin-os</pre>
+      </div>
+      <div class="code-block">
+        <div class="code-label">③ Codex CLI を起動<button class="copy" data-copy>コピー</button></div>
+        <pre>codex</pre>
+      </div>
+      <div class="resource">参考（常設）: <a href="https://developers.openai.com/codex/app/" target="_blank" rel="noopener">OpenAI Codex App</a> / <a href="https://note.com/munakata_souri/n/n4aacfa6d9729" target="_blank" rel="noopener">Codexセットアップ解説（むなかた note 2026年4月）</a></div>
     </section>
+
+    <!-- ====== STEP 4: Claude Code（任意） ====== -->
+    <section id="claude-code">
+      <h2><span class="section-no">4</span>Claude Code のセットアップ（任意）</h2>
+      <p>合宿では Codex メインですが、Claude Code も使える状態にしておくと、agmsg でのデュアル運用ができます（本編 agmsg セクション参照）。</p>
+      <div class="code-block">
+        <div class="code-label">① Claude Code をインストール<button class="copy" data-copy>コピー</button></div>
+        <pre>npm install -g @anthropic-ai/claude-code</pre>
+      </div>
+      <div class="code-block">
+        <div class="code-label">② バージョン確認<button class="copy" data-copy>コピー</button></div>
+        <pre>claude --version</pre>
+      </div>
+      <div class="resource">参考（常設）: <a href="https://code.claude.com/docs/ja/overview" target="_blank" rel="noopener">Claude Code 公式ドキュメント</a></div>
+    </section>
+
+    <!-- ====== STEP 5: ngrok ====== -->
+    <section id="ngrok">
+      <h2><span class="section-no">5</span>ngrok のインストール</h2>
+      <p>ngrok はローカルで動かしているサーバーを、インターネット経由で一時的に公開するツール。「自社の方針HTMLを作って今すぐURLで共有したい」ときに便利。</p>
+      <div class="grid">
+        <div class="card"><strong>Vercel との違い</strong><span>Vercel = GitHubに push するたびに自動デプロイ。恒久公開。<br>ngrok = コマンド1行で今すぐ外部公開。一時的な共有向け。</span></div>
+        <div class="card"><strong>使いどころ</strong><span>会議中に「今作ったHTMLを見せたい」「スマホで確認したい」「チームに即共有したい」</span></div>
+      </div>
+      <div class="code-block">
+        <div class="code-label">① ngrok をインストール<button class="copy" data-copy>コピー</button></div>
+        <pre>brew install --cask ngrok</pre>
+      </div>
+      <p>インストール後は <a href="https://dashboard.ngrok.com/get-started/your-authtoken" target="_blank" rel="noopener">ngrokダッシュボード</a> でアカウント作成してトークンを取得してください（無料）。</p>
+      <div class="code-block">
+        <div class="code-label">② 認証（YOUR_NGROK_TOKEN を自分のトークンに置き換え）<button class="copy" data-copy>コピー</button></div>
+        <pre>ngrok config add-authtoken YOUR_NGROK_TOKEN</pre>
+      </div>
+      <div class="note">ここまでやれば当日すぐ使えます。詳細な使い方は本編 Section 16 で。</div>
+    </section>
+
+    <!-- ====== STEP 6: agent-browser ====== -->
+    <section id="agent-browser">
+      <h2><span class="section-no">6</span>agent-browser のインストール</h2>
+      <p>公開した URL を AI に読ませながら進めるためのツール（Rust製 CLI）。「この合宿サイトを Codex に読ませて、次にやることを聞く」ような使い方ができます。</p>
+      <div class="code-block">
+        <div class="code-label">① agent-browser をインストール<button class="copy" data-copy>コピー</button></div>
+        <pre>npm install -g agent-browser</pre>
+      </div>
+      <div class="code-block">
+        <div class="code-label">② Chrome for Testing を取得<button class="copy" data-copy>コピー</button></div>
+        <pre>agent-browser install</pre>
+      </div>
+      <div class="resource">参考（常設）: <a href="https://github.com/vercel-labs/agent-browser" target="_blank" rel="noopener">vercel-labs/agent-browser</a></div>
+    </section>
+
+    <!-- ====== STEP 7: Composio ====== -->
+    <section id="composio">
+      <h2><span class="section-no">7</span>Composio — MCP をまとめて管理する</h2>
+      <p>MCP を1つずつ手で設定するのが面倒な人向け。Composio を使うと <strong>GitHub / Asana / Slack / Notion など 1000以上のツール</strong> を、ダッシュボードから一元管理できます。</p>
+
+      <h3>Composio とは</h3>
+      <div class="grid">
+        <div class="card accent">
+          <strong>MCPのハブ</strong>
+          <span>Composio の API キー1つで、1000以上の外部ツールに Codex / Claude から接続できます。ツールごとのAPIキーやOAuth設定を Composio が代わりに管理してくれます。</span>
+        </div>
+        <div class="card">
+          <strong>なにが便利か</strong>
+          <span>通常は Context7・GitHub・Exa それぞれのAPIキーを config.toml に書く必要があります。Composio を使うと Composio の API キー1つで複数ツールに繋がります。</span>
+        </div>
+      </div>
+
+      <h3>仕組みのイメージ（Composio なし vs あり）</h3>
+      <div class="grid">
+        <div>
+          <p style="font-weight:800;margin-bottom:8px;">Composio なし</p>
+          <div class="mermaid">
+flowchart TB
+    Codex["Codex / Claude"] --> C7["Context7\nAPIキー個別設定"]
+    Codex --> GH["GitHub Token\n個別設定"]
+    Codex --> EX["Exa APIキー\n個別設定"]
+    Codex --> AS["Asana PAT\n個別設定"]
+          </div>
+        </div>
+        <div>
+          <p style="font-weight:800;margin-bottom:8px;">Composio あり</p>
+          <div class="mermaid">
+flowchart TB
+    Codex["Codex / Claude"] --> CP["Composio Hub\n1つのAPIキーで管理"]
+    CP --> C7["Context7"]
+    CP --> GH["GitHub"]
+    CP --> AS["Asana"]
+    CP --> SL["Slack / Notion\nほか1000+ツール"]
+          </div>
+        </div>
+      </div>
+
+      <h3>セットアップ手順</h3>
+      <div class="step-flow">
+        <div class="step">
+          <div class="step-no">1</div>
+          <div>
+            <strong>アカウント作成（無料）</strong><br>
+            <a href="https://dashboard.composio.dev/" target="_blank" rel="noopener">dashboard.composio.dev</a> でアカウントを作成。
+            <!-- IMG: composio-dashboard.png  ダッシュボードの画面 — インターン挿入予定 -->
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-no">2</div>
+          <div>
+            <strong>APIキーを取得</strong><br>
+            ダッシュボード右上の API Keys セクションから <code>YOUR_COMPOSIO_API_KEY</code> をコピー。
+            <!-- IMG: composio-apikey.png  APIキー画面 — インターン挿入予定 -->
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-no">3</div>
+          <div>
+            <strong>Composio MCP を config.toml に追加</strong><br>
+            Codex の設定ファイル（<code>~/.codex/config.toml</code>）に追記する。
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-no">4</div>
+          <div>
+            <strong>ブラウザで認証</strong><br>
+            Codex から Composio にアクセスすると認証ウィンドウが開く。ダッシュボードで各ツールを接続すれば完了。
+          </div>
+        </div>
+      </div>
+
+      <div class="code-block">
+        <div class="code-label">config.toml に追加（YOUR_COMPOSIO_API_KEY は自分のキーに置き換え）<button class="copy" data-copy>コピー</button></div>
+        <pre>[mcp_servers.composio]
+command = "npx"
+args = ["-y", "@composio/mcp@latest", "--api-key", "YOUR_COMPOSIO_API_KEY"]</pre>
+      </div>
+
+      <div class="note"><strong>Composio は任意です</strong><br>合宿では各MCPを個別設定する方法（Section 06）をメインで説明します。Composio は「もっと楽にまとめて管理したい人向け」の選択肢として紹介します。</div>
+      <div class="ai-tip"><strong>わからなければAIに聞こう！</strong><br>「Composio のセットアップ方法を教えて」と Claude か Codex に聞くと、ダッシュボードの操作手順も含めて答えてくれます。</div>
+      <div class="resource">参考（常設）: <a href="https://composio.dev/toolkits/composio/framework/codex" target="_blank" rel="noopener">Composio × Codex セットアップ（公式）</a> / <a href="https://dashboard.composio.dev/" target="_blank" rel="noopener">Composio ダッシュボード</a></div>
+    </section>
+
+    <!-- ====== アカウント作成 ====== -->
+    <section id="accounts">
+      <h2>アカウント作成</h2>
+      <p>アカウント作成・APIキー取得・パスワード入力は<strong>本人が行ってください</strong>。AIに代行入力させないでください。</p>
+      <div class="grid">
+        <div class="card"><strong>ChatGPT / Codex</strong><span><a href="https://chatgpt.com/" target="_blank" rel="noopener">chatgpt.com</a> でアカウント作成。Plus（月額$20）以上推奨。</span></div>
+        <div class="card"><strong>GitHub</strong><span><a href="https://github.com/" target="_blank" rel="noopener">github.com</a> でアカウント作成。Vercel連携で使う。</span></div>
+        <div class="card"><strong>Vercel</strong><span><a href="https://vercel.com/new" target="_blank" rel="noopener">vercel.com</a> にGitHubでログイン。HTMLサイトを自動デプロイ。</span></div>
+        <div class="card"><strong>Asana</strong><span><a href="https://asana.com/" target="_blank" rel="noopener">asana.com</a> でアカウント作成。タスク管理の自動化演習で使う。</span></div>
+        <div class="card"><strong>ngrok</strong><span><a href="https://ngrok.com/" target="_blank" rel="noopener">ngrok.com</a> でアカウント作成。<a href="https://dashboard.ngrok.com/get-started/your-authtoken" target="_blank" rel="noopener">ダッシュボード</a>でトークン取得。</span></div>
+        <div class="card"><strong>Composio（任意）</strong><span><a href="https://dashboard.composio.dev/" target="_blank" rel="noopener">dashboard.composio.dev</a>。MCPまとめ管理に使いたい人向け。</span></div>
+      </div>
+      <div class="warn">APIキー、PAT、パスワードは公開サイト・GitHubリポジトリ・スクリーンショットに載せない。教材では必ず <code>YOUR_XXX</code> の形で扱います。</div>
+    </section>
+
+    <!-- ====== 事前チェックリスト ====== -->
+    <section id="checklist">
+      <h2>事前チェックリスト</h2>
+      <p>当日9:30からすぐ深掘りに入るための確認リストです。全部にチェックが付く状態を目指してください。</p>
+      <div class="checklist">
+        <label><input type="checkbox"> <span>ターミナルを開ける</span></label>
+        <label><input type="checkbox"> <span>Homebrew が入っている（<code>brew --version</code> が通る）</span></label>
+        <label><input type="checkbox"> <span>Node.js が入っている（<code>node --version</code> が通る）</span></label>
+        <label><input type="checkbox"> <span>Git が入っている（<code>git --version</code> が通る）</span></label>
+        <label><input type="checkbox"> <span>Codex App を開けて、フォルダを追加できる</span></label>
+        <label><input type="checkbox"> <span>ChatGPT（OpenAI）アカウントにログインできる</span></label>
+        <label><input type="checkbox"> <span>GitHub アカウントにログインできる</span></label>
+        <label><input type="checkbox"> <span>Vercel に GitHub でログインできる</span></label>
+        <label><input type="checkbox"> <span>Asana アカウントを作った</span></label>
+        <label><input type="checkbox"> <span>ngrok アカウントを作り、トークンを設定した</span></label>
+        <label><input type="checkbox"> <span>AGENTS.md と CLAUDE.md の違いを説明できる</span></label>
+        <label><input type="checkbox"> <span>APIキーを公開しないルールを理解した</span></label>
+      </div>
+      <div class="ai-tip"><strong>詰まったら AIに聞こう！</strong><br>上のリストが通らないとき → エラーメッセージや状況を ChatGPT か Claude に貼り付けて「どうすれば直せる？私は Mac を使っています」と聞いてください。自分の環境を添えると回答が精度上がります。</div>
+    </section>
+
   </div>
 
   <footer>
@@ -179,5 +465,29 @@
     <a href="schedule.html">合宿スケジュール</a> /
     <a href="repos.html">リポジトリ一覧</a>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'base',
+      themeVariables: {
+        primaryColor: '#e6f5f2', primaryTextColor: '#0b5d56', primaryBorderColor: '#b6ded7',
+        lineColor: '#0f766e', secondaryColor: '#f1f5f3', tertiaryColor: '#ffffff',
+        fontFamily: '"Hiragino Sans","Noto Sans JP",system-ui,sans-serif', fontSize: '15px'
+      }
+    });
+    document.querySelectorAll('[data-copy]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const text = btn.closest('.code-block')?.querySelector('pre')?.innerText || '';
+        try {
+          await navigator.clipboard.writeText(text);
+          const orig = btn.textContent;
+          btn.textContent = 'コピー済み';
+          setTimeout(() => btn.textContent = orig, 1300);
+        } catch { btn.textContent = '選択してコピー'; }
+      });
+    });
+  </script>
 </body>
 </html>
