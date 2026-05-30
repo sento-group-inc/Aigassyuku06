@@ -150,7 +150,7 @@
       max-width: var(--max);
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(11, minmax(86px, 1fr));
+      grid-template-columns: repeat(13, minmax(86px, 1fr));
       gap: 8px;
       overflow-x: auto;
       padding: 12px 22px;
@@ -314,6 +314,104 @@
       border-color: #f2d7a5;
       color: #7a4d0b;
     }
+
+    .section-purpose {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .purpose-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface-soft);
+      padding: 13px 15px;
+    }
+    .purpose-card strong {
+      display: block;
+      margin-bottom: 3px;
+    }
+    .purpose-card span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .purpose-card.action {
+      background: var(--accent-soft);
+      border-color: #b6ded7;
+    }
+    .purpose-card.action span { color: var(--accent-strong); }
+
+    .diagram {
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, #fff, var(--surface-soft));
+      padding: 16px;
+      overflow-x: auto;
+    }
+    .diagram-title {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .chain {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(130px, 1fr));
+      gap: 10px;
+      min-width: 720px;
+    }
+    .stepbox {
+      position: relative;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 12px;
+      min-height: 82px;
+    }
+    .stepbox:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -16px;
+      top: 32px;
+      color: var(--accent);
+      font-weight: 900;
+    }
+    .stepbox strong { display: block; margin-bottom: 3px; }
+    .stepbox span { color: var(--muted); font-size: 12px; }
+    .split-flow {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(170px, 1fr));
+      gap: 12px;
+      min-width: 640px;
+    }
+    .node {
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 14px;
+      text-align: center;
+    }
+    .node.main {
+      background: var(--accent-soft);
+      border-color: #b6ded7;
+      color: var(--accent-strong);
+      font-weight: 800;
+    }
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 14px 0;
+    }
+    .mini {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px;
+      background: #fff;
+    }
+    .mini strong { display: block; margin-bottom: 4px; }
+    .mini span { color: var(--muted); font-size: 13px; }
 
     .cards {
       display: grid;
@@ -489,11 +587,11 @@
     }
 
     @media (max-width: 920px) {
-      .hero-grid, .layout, .meaning, .cards, .image-grid, .complete {
+      .hero-grid, .layout, .meaning, .cards, .image-grid, .complete, .section-purpose, .mini-grid {
         grid-template-columns: 1fr;
       }
       .toc { position: static; }
-      .flow { grid-template-columns: repeat(11, 118px); }
+      .flow { grid-template-columns: repeat(13, 118px); }
       section { padding: 22px 18px; }
       .outcomes { grid-template-columns: 1fr; }
     }
@@ -514,10 +612,10 @@
         <div class="outcome-panel">
           <h2>持ち帰るもの</h2>
           <ul class="outcomes">
-            <li><strong>分身OS</strong>AGENTS / memory / state / logs の最小構成</li>
-            <li><strong>深掘り導線</strong>grill-me型プロンプトを単語登録</li>
-            <li><strong>外部取り込み</strong>GitHub / X / MCP をCodexに接続</li>
-            <li><strong>公開体験</strong>HTMLサイトとGASアプリを公開</li>
+            <li><strong>分身OS</strong>AGENTS / memory / state / logs がある作業環境</li>
+            <li><strong>深掘り導線</strong>grill-meを単語登録し、Skill化して使う</li>
+            <li><strong>外部取り込み</strong>GitHub / X / MCP / NotebookLMをCodexに接続</li>
+            <li><strong>公開体験</strong>Sheets、GAS、HTMLサイトをURLで見せる</li>
           </ul>
         </div>
         <div class="status-panel">
@@ -534,14 +632,16 @@
       <a href="#why"><span class="num">01</span><span class="label">なぜ作る</span></a>
       <a href="#grill"><span class="num">02</span><span class="label">深掘り</span></a>
       <a href="#codex"><span class="num">03</span><span class="label">Codex</span></a>
-      <a href="#agents"><span class="num">04</span><span class="label">AGENTS</span></a>
-      <a href="#mcp"><span class="num">05</span><span class="label">MCP</span></a>
-      <a href="#intake"><span class="num">06</span><span class="label">外部取り込み</span></a>
-      <a href="#gog"><span class="num">07</span><span class="label">gogcli</span></a>
-      <a href="#gas"><span class="num">08</span><span class="label">GAS</span></a>
-      <a href="#vercel"><span class="num">09</span><span class="label">Vercel</span></a>
-      <a href="#run"><span class="num">10</span><span class="label">起動維持</span></a>
-      <a href="#grow"><span class="num">11</span><span class="label">育てる</span></a>
+      <a href="#claude-migrate"><span class="num">04</span><span class="label">引っ越し</span></a>
+      <a href="#agents"><span class="num">05</span><span class="label">AGENTS</span></a>
+      <a href="#mcp"><span class="num">06</span><span class="label">MCP</span></a>
+      <a href="#intake"><span class="num">07</span><span class="label">Skill化</span></a>
+      <a href="#gog"><span class="num">08</span><span class="label">gogcli</span></a>
+      <a href="#gas"><span class="num">09</span><span class="label">GAS</span></a>
+      <a href="#notebooklm"><span class="num">10</span><span class="label">NotebookLM</span></a>
+      <a href="#vercel"><span class="num">11</span><span class="label">Vercel</span></a>
+      <a href="#run"><span class="num">12</span><span class="label">起動維持</span></a>
+      <a href="#grow"><span class="num">13</span><span class="label">育てる</span></a>
     </div>
   </nav>
 
@@ -551,14 +651,16 @@
       <a href="#why">01 なぜ分身OSを作るのか</a>
       <a href="#grill">02 grill-me型プロンプト</a>
       <a href="#codex">03 Codexセットアップ</a>
-      <a href="#agents">04 AGENTS / memory / state</a>
-      <a href="#mcp">05 MCPを取り込む</a>
-      <a href="#intake">06 GitHub / X取り込み</a>
-      <a href="#gog">07 gogcli / Sheets</a>
-      <a href="#gas">08 GAS社内アプリ</a>
-      <a href="#vercel">09 Vercel公開</a>
-      <a href="#run">10 Macを起動維持</a>
-      <a href="#grow">11 継続アップデート</a>
+      <a href="#claude-migrate">04 Claude Codeから引っ越す</a>
+      <a href="#agents">05 AGENTS / memory / state</a>
+      <a href="#mcp">06 MCPを取り込む</a>
+      <a href="#intake">07 長いプロンプトをSkill化</a>
+      <a href="#gog">08 gogcli / Sheets</a>
+      <a href="#gas">09 GAS社内アプリ</a>
+      <a href="#notebooklm">10 NotebookLM-py連動</a>
+      <a href="#vercel">11 Vercel公開</a>
+      <a href="#run">12 Macを起動維持</a>
+      <a href="#grow">13 継続アップデート</a>
     </aside>
 
     <main>
@@ -571,13 +673,23 @@
           </div>
         </div>
         <div class="meaning">
-          <div class="box"><strong>予測利得</strong><span>AIが何を知っている状態で動くかが見える。</span></div>
-          <div class="box"><strong>行為影響度</strong><span>毎回の説明をAGENTS.mdへ移し、次回から省略できる。</span></div>
-          <div class="box"><strong>共有度</strong><span>10人全員が同じフォルダ構成で再現できる。</span></div>
+          <div class="box"><strong>何が見えるようになるか</strong><span>AIが何を知っている状態で動くかが見える。</span></div>
+          <div class="box"><strong>今やること</strong><span>毎回の説明をAGENTS.mdへ移し、次回から省略できる。</span></div>
+          <div class="box"><strong>全員が同じようにできるか</strong><span>10人全員が同じフォルダ構成で再現できる。</span></div>
         </div>
         <p>あのね、みなさんAIを使ってるじゃないですか。ChatGPTに聞く。Claudeに聞く。資料を作らせる。メール文を直させる。それ自体はもう珍しくないんですよ。</p>
         <p>でも、たぶん同時にこういう感覚もあると思ってて。毎回、説明してませんか。「うちの会社はこうで」「このお客さんはこうで」「僕はこういう判断をしたくて」「この表現はうちっぽくないからやめて」。</p>
         <p>社員を雇ったとして、毎朝その人に「うちの会社は何をしている会社です」から説明し直してたら、仕事にならない。でもAIにはそれをやっている。今日と明日でやるのは、ここを終わらせることです。</p>
+        <div class="diagram">
+          <p class="diagram-title">今日の学習は、この順番でつながります</p>
+          <div class="chain">
+            <div class="stepbox"><strong>業務を深掘り</strong><span>任せたい作業ではなく、詰まりと判断軸を出す。</span></div>
+            <div class="stepbox"><strong>AGENTSに保存</strong><span>毎回の説明をファイルに移す。</span></div>
+            <div class="stepbox"><strong>Codexで実行</strong><span>調査、実装、検証を作業単位で任せる。</span></div>
+            <div class="stepbox"><strong>Skill化</strong><span>長い依頼を短い呼び出しに変える。</span></div>
+            <div class="stepbox"><strong>ログで育てる</strong><span>ズレを次回のルールに変える。</span></div>
+          </div>
+        </div>
         <div class="cards">
           <div class="card"><h4>Before</h4><p>AIに毎回背景を説明し、出てきたものを場当たり的に直す。</p></div>
           <div class="card"><h4>After</h4><p>Codexが会社・判断軸・失敗パターンを読み、作業単位で任せられる。</p></div>
@@ -594,9 +706,9 @@
           </div>
         </div>
         <div class="meaning">
-          <div class="box"><strong>予測利得</strong><span>自分が何を任せたいのかではなく、何が詰まりかが見える。</span></div>
-          <div class="box"><strong>行為影響度</strong><span>深掘り結果をAGENTS / state / memoryに入れる。</span></div>
-          <div class="box"><strong>共有度</strong><span>単語登録で誰でも同じ入口から始められる。</span></div>
+          <div class="box"><strong>何が見えるようになるか</strong><span>自分が何を任せたいのかではなく、何が詰まりかが見える。</span></div>
+          <div class="box"><strong>今やること</strong><span>深掘り結果をAGENTS / state / memoryに入れる。</span></div>
+          <div class="box"><strong>全員が同じようにできるか</strong><span>単語登録で誰でも同じ入口から始められる。</span></div>
         </div>
         <p>オープンクエスチョンで「自分の業務でAIに任せたい作業を書いてください」と言っても、たいてい浅くなります。本人もまだ因果を掘れていないからです。</p>
         <p>そこで先に、AIに執拗にインタビューさせる。AI Heroで紹介されているgrill-me系の発想を、合宿の最初の道具にします。前に身につけたスキルを、次の学習の入口に使う。これが因果連鎖です。</p>
@@ -637,9 +749,9 @@
           </div>
         </div>
         <div class="meaning">
-          <div class="box"><strong>予測利得</strong><span>どのフォルダをAIが読めるか明確になる。</span></div>
-          <div class="box"><strong>行為影響度</strong><span>作業フォルダを開き、実際にHTMLを1枚作る。</span></div>
-          <div class="box"><strong>共有度</strong><span>画像付き手順で全員が同じ画面を確認できる。</span></div>
+          <div class="box"><strong>何が見えるようになるか</strong><span>どのフォルダをAIが読めるか明確になる。</span></div>
+          <div class="box"><strong>今やること</strong><span>作業フォルダを開き、実際にHTMLを1枚作る。</span></div>
+          <div class="box"><strong>全員が同じようにできるか</strong><span>画像付き手順で全員が同じ画面を確認できる。</span></div>
         </div>
         <div class="warn">ホームフォルダや書類フォルダ全体を開かない。Codexは開いた作業フォルダ以下を読んだり編集したりできます。</div>
         <div class="timeline">
@@ -662,18 +774,61 @@ codex</pre>
         </div>
       </section>
 
-      <section id="agents">
+      <section id="claude-migrate">
         <div class="section-head">
           <div class="section-no">4</div>
+          <div>
+            <h2>Claude CodeからCodexへ引っ越す</h2>
+            <p class="section-sub">すでにClaude Codeを使っている人は、育てた資産を捨てずに移す。</p>
+          </div>
+        </div>
+        <div class="section-purpose">
+          <div class="purpose-card"><strong>この章の目的</strong><span>Claude Codeで作ったルール、Skill、作業ログをCodexでも使える材料に変える。</span></div>
+          <div class="purpose-card action"><strong>ここでやること</strong><span>Claude側の設定を棚卸しし、Codex用AGENTS.mdへ移す計画を作る。</span></div>
+        </div>
+        <p>Claude Codeを使っていた人が最初に聞くのは「今まで作ったものはどうなるんですか？」です。答えは、捨てない。移します。</p>
+        <div class="diagram">
+          <p class="diagram-title">引っ越しの考え方</p>
+          <div class="split-flow">
+            <div class="node">Claude Code側<br>CLAUDE.md / skills / logs</div>
+            <div class="node main">棚卸し<br>残す / 直す / 捨てる</div>
+            <div class="node">Codex側<br>AGENTS.md / skills / logs</div>
+          </div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><strong>そのまま移せる</strong><span>口調、判断軸、安全ルール、作業後レビュー、よく使う依頼。</span></div>
+          <div class="mini"><strong>見直して移す</strong><span>MCP設定、ローカルパス、APIキー、Claude専用コマンド。</span></div>
+          <div class="mini"><strong>Codex向けに直す</strong><span>「Claudeが」ではなく「Codexが」。Git運用と検証手順を明記する。</span></div>
+          <div class="mini"><strong>移さない</strong><span>個人情報、実APIキー、古い失敗ルール、今の仕事に関係ない設定。</span></div>
+        </div>
+        <div class="code-block">
+          <div class="code-label">Claude Code資産の棚卸しをCodexに依頼<button class="copy" data-copy>コピー</button></div>
+          <pre>このフォルダにはClaude Codeで使っていた設定やSkillがあります。
+Codexへ引っ越す前提で、次を実行してください。
+
+1. CLAUDE.md / AGENTS.md / skills / scripts / logs の有無を確認
+2. Codexでも使うべきルールを抽出
+3. Claude専用で書き換えが必要な部分を抽出
+4. 公開してはいけない情報が混ざっていないか確認
+5. Codex用AGENTS.mdの追記案を作成
+
+まだファイルは変更せず、まず移行計画だけ出してください。</pre>
+        </div>
+        <div class="check">講師版のSOUL.md / AGENTS.mdから参考にする核は「答えから入る」「自律的に動く」「作業後にログを残す」「判断軸をファイルに置く」です。丸ごとコピーではなく、自分の仕事用に薄く移植します。</div>
+      </section>
+
+      <section id="agents">
+        <div class="section-head">
+          <div class="section-no">5</div>
           <div>
             <h2>AGENTS.md / memory.md / state.md を作る</h2>
             <p class="section-sub">Codexに毎回読ませる業務引き継ぎ書を作る。</p>
           </div>
         </div>
         <div class="meaning">
-          <div class="box"><strong>予測利得</strong><span>Codexが何を前提に回答するか固定される。</span></div>
-          <div class="box"><strong>行為影響度</strong><span>深掘り結果をファイル化し、次回から読ませる。</span></div>
-          <div class="box"><strong>共有度</strong><span>テンプレートを埋めるだけで初版ができる。</span></div>
+          <div class="box"><strong>何が見えるようになるか</strong><span>Codexが何を前提に回答するか固定される。</span></div>
+          <div class="box"><strong>今やること</strong><span>深掘り結果をファイル化し、次回から読ませる。</span></div>
+          <div class="box"><strong>全員が同じようにできるか</strong><span>テンプレートを埋めるだけで初版ができる。</span></div>
         </div>
         <div class="code-block">
           <div class="code-label">Codexに初期ファイルを作らせる<button class="copy" data-copy>コピー</button></div>
@@ -703,6 +858,12 @@ codex</pre>
 あなたは私の仕事を支援するAIエージェント。
 目的は単発の回答ではなく、私の会社の仕事を前に進めること。
 
+## 返答方針
+- 前置きは短く、答えから入る
+- 不明点は調べてから返す
+- 判断が必要なときは筋良 / 筋悪を出す
+- 成果物は「次に何をするか」まで落とす
+
 ## 判断軸
 1. 顧客に価値が出るか
 2. すぐ実行できるか
@@ -730,17 +891,18 @@ codex</pre>
 
       <section id="mcp">
         <div class="section-head">
-          <div class="section-no">5</div>
+          <div class="section-no">6</div>
           <div>
             <h2>Context7 / GitHub / Exa をMCPで取り込む</h2>
             <p class="section-sub">Codexのチャットから、外部の手と目を増やす。</p>
           </div>
         </div>
         <div class="meaning">
-          <div class="box"><strong>予測利得</strong><span>最新ドキュメント、GitHub、Web検索を参照できる。</span></div>
-          <div class="box"><strong>行為影響度</strong><span>config.tomlをCodexに作成・更新させる。</span></div>
-          <div class="box"><strong>共有度</strong><span>プレースホルダ方式なのでAPIキーを公開せず説明できる。</span></div>
+          <div class="box"><strong>何が見えるようになるか</strong><span>最新ドキュメント、GitHub、Web検索を参照できる。</span></div>
+          <div class="box"><strong>今やること</strong><span>config.tomlをCodexに作成・更新させる。</span></div>
+          <div class="box"><strong>全員が同じようにできるか</strong><span>プレースホルダ方式なのでAPIキーを公開せず説明できる。</span></div>
         </div>
+        <p>MCPは「Codexに目と手を増やす仕組み」です。Context7は最新ドキュメントを見る目。GitHubはリポジトリやIssueを見る目。ExaはWebやX由来の情報を探す目。Chrome DevToolsは作った画面を検証する目。これがないと、Codexは古い知識と手元ファイルだけで判断しがちです。</p>
         <div class="image-grid">
           <figure><img src="assets/images/20260528-codex-setup/10_context7_docs_api_keys.png" alt="Context7 API Keys" loading="lazy"><figcaption>Context7 APIキー</figcaption></figure>
           <figure><img src="assets/images/20260528-codex-setup/13_github_tokens.png" alt="GitHub Tokens" loading="lazy"><figcaption>GitHub Token</figcaption></figure>
@@ -802,27 +964,40 @@ YOUR_GITHUB_TOKEN を GitHubのトークンに
 
       <section id="intake">
         <div class="section-head">
-          <div class="section-no">6</div>
+          <div class="section-no">7</div>
           <div>
-            <h2>GitHubリポジトリやX投稿を調査・導入判断させる</h2>
-            <p class="section-sub">保存で終わらせず、自分の環境を更新する。</p>
+            <h2>長いプロンプトをSkill化して使う</h2>
+            <p class="section-sub">毎回コピペする依頼を、短い呼び出しに変える。</p>
           </div>
         </div>
-        <div class="meaning">
-          <div class="box"><strong>予測利得</strong><span>その情報が自社に関係するか判断できる。</span></div>
-          <div class="box"><strong>行為影響度</strong><span>導入、保留、見送りのいずれかに着地する。</span></div>
-          <div class="box"><strong>共有度</strong><span>URLを貼るだけの共通型で運用できる。</span></div>
+        <div class="section-purpose">
+          <div class="purpose-card"><strong>この章の目的</strong><span>GitHub repo導入判断、X投稿の取り込み、grill-me深掘りをSkillとして保存する。</span></div>
+          <div class="purpose-card action"><strong>ここでやること</strong><span>長いプロンプトを3つのSkillにし、URLを渡すだけで使う。</span></div>
+        </div>
+        <p>長いプロンプトは教材には載せます。でも実務で毎回人間が打つものではないです。大事なのは「良い依頼文を覚えること」ではなく「良い依頼文をSkillとして保存し、短く呼ぶこと」です。</p>
+        <div class="diagram">
+          <p class="diagram-title">Skill化の流れ</p>
+          <div class="chain">
+            <div class="stepbox"><strong>一度だけ長く書く</strong><span>出力形式、注意点、判断軸を明文化。</span></div>
+            <div class="stepbox"><strong>Skill化する</strong><span>SKILL.mdとして保存。</span></div>
+            <div class="stepbox"><strong>短く呼ぶ</strong><span>「このrepoを導入判断して」。</span></div>
+            <div class="stepbox"><strong>結果を見る</strong><span>導入 / 保留 / 見送りに着地。</span></div>
+            <div class="stepbox"><strong>Skillを直す</strong><span>ズレたら注意点を追記。</span></div>
+          </div>
         </div>
         <div class="code-block">
-          <div class="code-label">GitHub repo導入判断<button class="copy" data-copy>コピー</button></div>
-          <pre>以下のGitHubリポジトリを、私の環境に取り込むべきか判断してください。
+          <div class="code-label">repo導入判断Skillを作る<button class="copy" data-copy>コピー</button></div>
+          <pre>このフォルダに skills/repo-intake/SKILL.md を作ってください。
 
-URL: 【GitHub URL】
+目的:
+GitHubリポジトリのURLを渡されたら、私の業務環境に取り込むべきか判断する。
 
-前提:
-- 私の会社情報・判断軸はAGENTS.mdを読んでください
-- いきなりインストールしないでください
-- まず導入判断だけしてください
+必ず守ること:
+- AGENTS.mdを読んでから判断する
+- いきなりインストールしない
+- 導入 / 保留 / 見送りのどれかで結論を出す
+- 必要なAPIキー、料金、セキュリティリスクを書く
+- 今日10分で試す最小手順を書く
 
 出力:
 1. 何をするリポジトリか
@@ -835,21 +1010,22 @@ URL: 【GitHub URL】
 8. 今日試すなら最小の一手</pre>
         </div>
         <div class="code-block">
-          <div class="code-label">X投稿・記事取り込み<button class="copy" data-copy>コピー</button></div>
-          <pre>このX投稿または記事を読んでください。
+          <div class="code-label">X投稿・記事取り込みSkillを作る<button class="copy" data-copy>コピー</button></div>
+          <pre>このフォルダに skills/source-intake/SKILL.md を作ってください。
 
-URL: 【URL】
+目的:
+X投稿、記事、動画、GitHub URLを渡されたら、自分のCodex環境に取り込む価値があるか判断する。
 
-以下の形式で整理してください。
+出力形式:
 
 ## 主張
-投稿者は何を言っているか。
+投稿者は何を言っているか
 
 ## 使える部分
-私の仕事・Codex環境に取り込めるところ。
+私の仕事・Codex環境に取り込めるところ
 
 ## 危ない部分
-誇張、再現性の低さ、セキュリティリスク、前提違い。
+誇張、再現性の低さ、セキュリティリスク、前提違い
 
 ## 反映先
 - AGENTS.mdに追記するなら何か
@@ -858,23 +1034,42 @@ URL: 【URL】
 - 今は見送るなら理由
 
 ## 次の一手
-今日10分で試せることを1つ。</pre>
+今日10分で試せることを1つ
+
+注意:
+URLを貼られただけで実行せず、まず導入判断を出す。</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">Skillを使う例<button class="copy" data-copy>コピー</button></div>
+          <pre>repo-intakeスキルを使って、このリポジトリを導入判断してください。
+URL: https://github.com/openclaw/gogcli
+
+結論が「導入する」の場合だけ、次に最小インストール手順を出してください。</pre>
         </div>
       </section>
 
       <section id="gog">
         <div class="section-head">
-          <div class="section-no">7</div>
+          <div class="section-no">8</div>
           <div>
             <h2>gogcliでGoogle Sheetsを作成・操作する</h2>
             <p class="section-sub">Codexに「スプレッドシートを作って」と頼めるようにする。</p>
           </div>
         </div>
         <div class="meaning">
-          <div class="box"><strong>予測利得</strong><span>表データをAIの作業対象にできる。</span></div>
-          <div class="box"><strong>行為影響度</strong><span>Sheets/Drive APIをつなぎ、CLIから作成・読み書きする。</span></div>
-          <div class="box"><strong>共有度</strong><span>Googleアカウントがあれば再現できる。</span></div>
+          <div class="box"><strong>何が見えるようになるか</strong><span>表データをAIの作業対象にできる。</span></div>
+          <div class="box"><strong>今やること</strong><span>Sheets/Drive APIをつなぎ、CLIから作成・読み書きする。</span></div>
+          <div class="box"><strong>全員が同じようにできるか</strong><span>Googleアカウントがあれば再現できる。</span></div>
         </div>
+        <div class="diagram">
+          <p class="diagram-title">CodexからSheetsを触る構造</p>
+          <div class="split-flow">
+            <div class="node">受講者<br>自然言語で依頼</div>
+            <div class="node main">Codex Desktop<br>ターミナルでgogを実行</div>
+            <div class="node">Google OAuth + Sheets/Drive API<br>スプレッドシート作成・読み書き</div>
+          </div>
+        </div>
+        <figure><img src="assets/images/diagrams/gog-setup-overview.svg" alt="gogcliセットアップ概念図" loading="lazy"><figcaption>gogcliセットアップ概念図。自然言語の依頼が、gog CLI経由でSheets/Drive APIへ届く。</figcaption></figure>
         <div class="resource">参考: <a href="https://github.com/openclaw/gogcli" target="_blank" rel="noopener">openclaw/gogcli</a> / <a href="https://gogcli.sh/" target="_blank" rel="noopener">gogcli rendered docs</a></div>
         <div class="code-block">
           <div class="code-label">インストール<button class="copy" data-copy>コピー</button></div>
@@ -888,9 +1083,17 @@ gog --version</pre>
           <div class="tl"><strong>4. Sheets API / Drive APIを有効化</strong><span>OAuth Clientと同じProjectで有効化。</span></div>
           <div class="tl"><strong>5. gogに認証情報を登録</strong><span>ブラウザ認証まで完了させる。</span></div>
         </div>
+        <div class="image-grid">
+          <figure><img src="assets/images/20260312gogcli/gog-install-request.png" alt="gog導入を依頼する画面" loading="lazy"><figcaption>自然言語でgog導入を依頼</figcaption></figure>
+          <figure><img src="assets/images/20260312gogcli/google-project-create.png" alt="Google Cloudプロジェクト作成" loading="lazy"><figcaption>Google Cloudプロジェクト作成</figcaption></figure>
+          <figure><img src="assets/images/20260312gogcli/oauth-desktop-app.png" alt="OAuthデスクトップアプリ選択" loading="lazy"><figcaption>OAuthはデスクトップアプリ</figcaption></figure>
+          <figure><img src="assets/images/20260312gogcli/sheets-api-enable.png" alt="Sheets API有効化" loading="lazy"><figcaption>Sheets APIを有効化</figcaption></figure>
+          <figure><img src="assets/images/20260312gogcli/oauth-consent.png" alt="Google OAuth同意画面" loading="lazy"><figcaption>Googleアカウントで許可</figcaption></figure>
+          <figure><img src="assets/images/20260312gogcli/sheet-created.png" alt="作成されたスプレッドシート" loading="lazy"><figcaption>gogで作成したスプレッドシート</figcaption></figure>
+        </div>
         <div class="code-block">
           <div class="code-label">認証<button class="copy" data-copy>コピー</button></div>
-          <pre>gog auth credentials ~/Downloads/client_secret_....json
+          <pre>gog auth credentials set ~/Downloads/client_secret_....json
 gog auth add you@gmail.com --services drive,sheets,docs,calendar
 gog auth doctor --check</pre>
         </div>
@@ -912,16 +1115,16 @@ gog auth doctor --check</pre>
 
       <section id="gas">
         <div class="section-head">
-          <div class="section-no">8</div>
+          <div class="section-no">9</div>
           <div>
             <h2>GASで簡単な社内アプリを作る</h2>
             <p class="section-sub">スプレッドシートをデータベースにして、HTMLの社内ポータルを公開する。</p>
           </div>
         </div>
         <div class="meaning">
-          <div class="box"><strong>予測利得</strong><span>表がWebアプリになる流れが分かる。</span></div>
-          <div class="box"><strong>行為影響度</strong><span>Code.gsとindex.htmlを貼ってデプロイする。</span></div>
-          <div class="box"><strong>共有度</strong><span>Googleアカウントだけで試せる。</span></div>
+          <div class="box"><strong>何が見えるようになるか</strong><span>表がWebアプリになる流れが分かる。</span></div>
+          <div class="box"><strong>今やること</strong><span>Code.gsとindex.htmlを貼ってデプロイする。</span></div>
+          <div class="box"><strong>全員が同じようにできるか</strong><span>Googleアカウントだけで試せる。</span></div>
         </div>
         <div class="resource">公式: <a href="https://developers.google.com/apps-script/guides/html" target="_blank" rel="noopener">HTML Service</a> / <a href="https://developers.google.com/apps-script/guides/web" target="_blank" rel="noopener">Web Apps</a></div>
         <ol>
@@ -984,18 +1187,61 @@ function getItems() {
         </div>
       </section>
 
+      <section id="notebooklm">
+        <div class="section-head">
+          <div class="section-no">10</div>
+          <div>
+            <h2>NotebookLM-pyで資料置き場と連動する</h2>
+            <p class="section-sub">重い資料を毎回Codexに貼らず、NotebookLMに置いて呼び出す。</p>
+          </div>
+        </div>
+        <div class="section-purpose">
+          <div class="purpose-card"><strong>この章の目的</strong><span>PDF、Web記事、議事録をNotebookLMに集め、Codexから参照する運用を作る。</span></div>
+          <div class="purpose-card action"><strong>ここでやること</strong><span>notebooklm-pyを入れ、ログイン、ノート作成、Skill登録まで試す。</span></div>
+        </div>
+        <p>分身OSが育つほど、資料が増えます。すべてを毎回Codexに貼ると重い。NotebookLM-pyを使うと、資料はNotebookLMに置き、Codexから「この資料群を見て」と頼めるようになります。</p>
+        <div class="warn">NotebookLM-pyは非公式ライブラリです。Google側の仕様変更で動かなくなる可能性があります。合宿ではプロトタイプ・調査補助として扱います。</div>
+        <div class="mini-grid">
+          <div class="mini"><strong>何が嬉しいか</strong><span>PDFや記事を何度もアップロードしなくてよい。</span></div>
+          <div class="mini"><strong>何に向くか</strong><span>講義資料、社内マニュアル、顧客資料、調査メモの横断検索。</span></div>
+          <div class="mini"><strong>Codexとの関係</strong><span>Codexは作業者。NotebookLMは資料置き場兼読み込み補助。</span></div>
+          <div class="mini"><strong>注意点</strong><span>機密資料は扱いを分ける。非公式ツールなので本番依存しすぎない。</span></div>
+        </div>
+        <div class="code-block">
+          <div class="code-label">インストールとログイン<button class="copy" data-copy>コピー</button></div>
+          <pre>pip install "notebooklm-py[browser]"
+playwright install chromium
+notebooklm login
+notebooklm auth check --test --json</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">ノート作成から質問まで<button class="copy" data-copy>コピー</button></div>
+          <pre>notebooklm create "AI合宿 資料置き場"
+notebooklm use &lt;notebook_id&gt;
+notebooklm source add ./AGENTS.md
+notebooklm source add ./outputs/lecture-notes.pdf
+notebooklm ask "この資料群から、受講者が詰まりそうな点を5つ出して"</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">Codex / Claude Code用Skillとして登録<button class="copy" data-copy>コピー</button></div>
+          <pre>notebooklm skill install
+notebooklm skill status</pre>
+        </div>
+        <div class="check">この章のゴールは「AIに資料を毎回貼る」から「資料置き場を作って、必要な時に呼ぶ」へ変えることです。</div>
+      </section>
+
       <section id="vercel">
         <div class="section-head">
-          <div class="section-no">9</div>
+          <div class="section-no">11</div>
           <div>
             <h2>Vercelアカウント作成からHTMLサイト公開まで</h2>
             <p class="section-sub">GitHubに置いたHTMLを、URLで共有できる状態にする。</p>
           </div>
         </div>
         <div class="meaning">
-          <div class="box"><strong>予測利得</strong><span>自分の成果物がURLで見える。</span></div>
-          <div class="box"><strong>行為影響度</strong><span>GitHub pushから自動デプロイまで確認する。</span></div>
-          <div class="box"><strong>共有度</strong><span>Vercelアカウントなしの人も同じ入口から始める。</span></div>
+          <div class="box"><strong>何が見えるようになるか</strong><span>自分の成果物がURLで見える。</span></div>
+          <div class="box"><strong>今やること</strong><span>GitHub pushから自動デプロイまで確認する。</span></div>
+          <div class="box"><strong>全員が同じようにできるか</strong><span>Vercelアカウントなしの人も同じ入口から始める。</span></div>
         </div>
         <div class="resource">公式: <a href="https://vercel.com/docs" target="_blank" rel="noopener">Vercel Docs</a> / <a href="https://vercel.com/new" target="_blank" rel="noopener">New Project</a></div>
         <div class="timeline">
@@ -1020,16 +1266,16 @@ git push origin main</pre>
 
       <section id="run">
         <div class="section-head">
-          <div class="section-no">10</div>
+          <div class="section-no">12</div>
           <div>
             <h2>Macを起動維持してCodexを走らせる</h2>
             <p class="section-sub">長い作業を任せるときは、Macが寝ない状態を作る。</p>
           </div>
         </div>
         <div class="meaning">
-          <div class="box"><strong>予測利得</strong><span>途中停止の原因がMacのスリープか切り分けられる。</span></div>
-          <div class="box"><strong>行為影響度</strong><span>6時間だけ起動維持して作業させる。</span></div>
-          <div class="box"><strong>共有度</strong><span>標準コマンドとGUIアプリの2択を用意。</span></div>
+          <div class="box"><strong>何が見えるようになるか</strong><span>途中停止の原因がMacのスリープか切り分けられる。</span></div>
+          <div class="box"><strong>今やること</strong><span>6時間だけ起動維持して作業させる。</span></div>
+          <div class="box"><strong>全員が同じようにできるか</strong><span>標準コマンドとGUIアプリの2択を用意。</span></div>
         </div>
         <div class="code-block">
           <div class="code-label">6時間スリープさせない<button class="copy" data-copy>コピー</button></div>
@@ -1048,16 +1294,16 @@ git push origin main</pre>
 
       <section id="grow">
         <div class="section-head">
-          <div class="section-no">11</div>
+          <div class="section-no">13</div>
           <div>
             <h2>継続アップデート: 失敗ログ、AGENTS追記、Skill化</h2>
             <p class="section-sub">分身OSは作って終わりではなく、使うたびに育てる。</p>
           </div>
         </div>
         <div class="meaning">
-          <div class="box"><strong>予測利得</strong><span>次回の出力がなぜ良くなるか説明できる。</span></div>
-          <div class="box"><strong>行為影響度</strong><span>毎回のズレをルール化する。</span></div>
-          <div class="box"><strong>共有度</strong><span>2回ミス、3回繰り返しの基準で迷わない。</span></div>
+          <div class="box"><strong>何が見えるようになるか</strong><span>次回の出力がなぜ良くなるか説明できる。</span></div>
+          <div class="box"><strong>今やること</strong><span>毎回のズレをルール化する。</span></div>
+          <div class="box"><strong>全員が同じようにできるか</strong><span>2回ミス、3回繰り返しの基準で迷わない。</span></div>
         </div>
         <div class="code-block">
           <div class="code-label">作業後レビュー<button class="copy" data-copy>コピー</button></div>
@@ -1094,10 +1340,13 @@ git push origin main</pre>
         <div class="complete">
           <label><input type="checkbox"> Codexが作業フォルダを開けている</label>
           <label><input type="checkbox"> grill-me型プロンプトを単語登録した</label>
+          <label><input type="checkbox"> Claude Code資産の移行方針がわかる</label>
           <label><input type="checkbox"> AGENTS / memory / state がある</label>
           <label><input type="checkbox"> Context7/GitHubなどMCPの導線を理解した</label>
+          <label><input type="checkbox"> 長いプロンプトをSkill化して使える</label>
           <label><input type="checkbox"> gogcliでSheetsを扱う流れを理解した</label>
           <label><input type="checkbox"> GAS社内アプリの公開手順を理解した</label>
+          <label><input type="checkbox"> NotebookLM-pyで資料置き場と連動できる</label>
           <label><input type="checkbox"> VercelでHTMLを公開する流れを理解した</label>
           <label><input type="checkbox"> 作業後レビューで環境を育てられる</label>
         </div>
@@ -1109,6 +1358,7 @@ git push origin main</pre>
     参考リンク:
     <a href="https://developers.openai.com/codex/app/" target="_blank" rel="noopener">OpenAI Codex App</a> /
     <a href="https://github.com/openclaw/gogcli" target="_blank" rel="noopener">openclaw/gogcli</a> /
+    <a href="https://github.com/teng-lin/notebooklm-py" target="_blank" rel="noopener">notebooklm-py</a> /
     <a href="https://developers.google.com/apps-script/guides/html" target="_blank" rel="noopener">Google Apps Script HTML Service</a> /
     <a href="https://vercel.com/docs" target="_blank" rel="noopener">Vercel Docs</a>
   </footer>
