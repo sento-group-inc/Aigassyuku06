@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>事前準備 | Codex分身OS合宿</title>
+  <style>
+    :root {
+      --bg:#f7f8f7; --surface:#fff; --surface-soft:#f1f5f3; --ink:#17211d; --muted:#66736e;
+      --line:#dce4df; --accent:#0f766e; --accent-soft:#e6f5f2; --accent-strong:#0b5d56;
+      --gold-soft:#fff7e6; --blue-soft:#eff6ff; --red-soft:#fff1f0; --radius:8px;
+      --shadow:0 10px 28px rgba(23,33,29,.08); --max:1480px;
+    }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:"Hiragino Sans","Noto Sans JP",system-ui,sans-serif; font-size:15px; line-height:1.78; }
+    a { color:var(--accent-strong); text-underline-offset:3px; }
+    .page-header { background:#fff; border-bottom:1px solid var(--line); padding:32px clamp(16px,4vw,40px) 24px; }
+    .page-header-inner, .content, footer { max-width:var(--max); margin:0 auto; }
+    .breadcrumb { font-size:13px; color:var(--muted); margin:0 0 12px; }
+    h1 { margin:0 0 8px; font-size:clamp(30px,5vw,52px); line-height:1.1; }
+    .lead { margin:0; color:var(--muted); font-size:17px; max-width:900px; }
+    .content { padding:28px clamp(16px,4vw,40px) 70px; display:grid; gap:22px; }
+    section { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:28px; box-shadow:var(--shadow); }
+    h2 { margin:0 0 14px; font-size:clamp(22px,3vw,32px); }
+    h3 { margin:22px 0 10px; font-size:18px; }
+    p { margin:0 0 12px; }
+    ul, ol { margin:0 0 14px 22px; padding:0; }
+    code { background:var(--surface-soft); border:1px solid var(--line); border-radius:5px; padding:1px 5px; font-family:"SFMono-Regular","Menlo",monospace; font-size:.88em; }
+    .page-nav { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+    .page-nav a { border:1px solid #b6ded7; border-radius:999px; background:var(--accent-soft); padding:7px 13px; font-weight:800; font-size:13px; text-decoration:none; }
+    .note, .warn, .resource { border-radius:var(--radius); padding:13px 15px; border:1px solid var(--line); margin:14px 0; }
+    .note { background:var(--blue-soft); color:#193f8f; border-color:#c7d8ff; }
+    .warn { background:var(--red-soft); color:#8e1d13; border-color:#ffd2cc; }
+    .resource { background:var(--gold-soft); color:#7a4d0b; border-color:#f2d7a5; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+    .card { border:1px solid var(--line); border-radius:var(--radius); background:var(--surface-soft); padding:14px; }
+    .card strong { display:block; margin-bottom:4px; }
+    .card span { color:var(--muted); font-size:13px; }
+    .code-block { margin:14px 0 18px; border-radius:var(--radius); overflow:hidden; border:1px solid #26332f; background:#101513; }
+    .code-label { min-height:38px; padding:8px 14px; color:#9fb4ad; border-bottom:1px solid #26332f; font-size:12px; font-weight:800; }
+    pre { margin:0; padding:16px; overflow-x:auto; white-space:pre-wrap; color:#e7f1ed; font-family:"SFMono-Regular","Menlo",monospace; font-size:13px; line-height:1.62; }
+    .checklist { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .checklist label { border:1px solid var(--line); border-radius:var(--radius); background:var(--surface-soft); padding:10px 12px; color:var(--muted); }
+    table { width:100%; border-collapse:collapse; min-width:720px; background:#fff; }
+    .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); }
+    th, td { padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { background:var(--surface-soft); color:var(--muted); font-size:12px; }
+    footer { padding:20px clamp(16px,4vw,40px) 46px; color:var(--muted); font-size:13px; }
+    @media (max-width:920px) { .grid, .checklist { grid-template-columns:1fr; } section { padding:22px 18px; } }
+  </style>
+</head>
+<body>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <p class="breadcrumb"><a href="index.html">合宿サイト TOP</a> / 事前準備</p>
+      <h1>事前準備</h1>
+      <p class="lead">午前をセットアップで溶かさないための準備ページ。アカウント作成、CLI、AGENTS.md / CLAUDE.md の用語を先に揃えます。</p>
+      <div class="page-nav">
+        <a href="index.html">講義本編</a>
+        <a href="schedule.html">合宿スケジュール</a>
+        <a href="repos.html">リポジトリ一覧</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <section>
+      <h2>なぜ事前準備をするか</h2>
+      <p>合宿の価値は、インストール画面を眺めることではありません。自分の業務を深掘りし、AGENTS.mdに落とし、Codexで動かし、公開して、次回も育つ状態を作ることです。</p>
+      <div class="note">事前準備のゴールは「当日9:30から自分の分身OSづくりに入れる」ことです。</div>
+    </section>
+
+    <section>
+      <h2>用語プライマー</h2>
+      <div class="grid">
+        <div class="card"><strong>AGENTS.md</strong><span>AIエージェント向けREADME。Cursor、Copilot、Codex CLIなど複数ツールで共通利用しやすい指示置き場。Linux Foundation AAIFで標準化が進む形式です。</span></div>
+        <div class="card"><strong>CLAUDE.md</strong><span>Claude Code専用の指示ファイル。<code>@import</code>、Planモードなど、Claude Code固有の使い方を置く場所です。</span></div>
+        <div class="card"><strong>共通指示と専用指示</strong><span>会社情報・判断軸・安全ルールはAGENTS.md。Claude Code専用の挙動はCLAUDE.md。必要ならシンボリックリンクで互換します。</span></div>
+        <div class="card"><strong>Progressive Disclosure</strong><span>全部を一気に読ませず、必要になった時に段階的に開示する設計。Context Rotを避けるために重要です。</span></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>用語</th><th>意味</th><th>合宿での使い方</th></tr></thead>
+          <tbody>
+            <tr><td>インストラクション・バジェット</td><td>AIが安定して守れる指示量には限界がある。150-200指示を超えると崩れやすい。</td><td>AGENTS.mdを肥大化させず、Skillや別ファイルへ分ける。</td></tr>
+            <tr><td>Context Rot</td><td>トークンが増えるほど、検索・参照・判断の性能が落ちる現象。</td><td>全部を貼らず、必要な資料だけ読ませる。</td></tr>
+            <tr><td>Progressive Disclosure</td><td>必要な時に必要な情報だけ開く設計。</td><td>AGENTS.mdを目次にし、詳細はskillsやdocsに分ける。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="resource">参考: <a href="https://qiita.com/nogataka/items/ad15bfa383c98ae5cc36" target="_blank" rel="noopener">AGENTS.md解説</a> / <a href="https://qiita.com/dai_chi/items/61019c602c2c40dade07" target="_blank" rel="noopener">CLAUDE.md運用</a></div>
+    </section>
+
+    <section>
+      <h2>インストール</h2>
+      <h3>Homebrew</h3>
+      <div class="code-block"><div class="code-label">コマンド</div><pre>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</pre></div>
+      <h3>Node.js</h3>
+      <div class="code-block"><div class="code-label">コマンド</div><pre>brew install node</pre></div>
+      <h3>Git</h3>
+      <div class="code-block"><div class="code-label">コマンド</div><pre>brew install git</pre></div>
+      <h3>Codex App</h3>
+      <p>Codex Appは公式ページから取得します。インストール後、ChatGPTアカウントでログインしてください。</p>
+      <div class="resource">参考: <a href="https://developers.openai.com/codex/app/" target="_blank" rel="noopener">OpenAI Codex App</a> / <a href="https://note.com/munakata_souri/n/n4aacfa6d9729" target="_blank" rel="noopener">Codexセットアップ解説</a></div>
+      <h3>Claude Code（任意）</h3>
+      <div class="resource">参考: <a href="https://code.claude.com/docs/ja/overview" target="_blank" rel="noopener">Claude Code Docs</a></div>
+      <h3>ngrok</h3>
+      <div class="code-block"><div class="code-label">コマンド</div><pre>brew install --cask ngrok</pre></div>
+      <h3>agent-browser</h3>
+      <div class="code-block"><div class="code-label">コマンド</div><pre>npm install -g agent-browser</pre></div>
+    </section>
+
+    <section>
+      <h2>アカウント作成</h2>
+      <p>アカウント作成、APIキー、PAT入力は本人が行います。AIに代行入力させないでください。</p>
+      <ul>
+        <li><a href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPT / Codex</a></li>
+        <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://vercel.com/new" target="_blank" rel="noopener">Vercel</a></li>
+        <li><a href="https://asana.com/" target="_blank" rel="noopener">Asana</a></li>
+        <li><a href="https://dashboard.ngrok.com/get-started/your-authtoken" target="_blank" rel="noopener">ngrok</a></li>
+      </ul>
+      <div class="warn">APIキー、PAT、パスワードは公開サイト、GitHub、スクリーンショットに載せない。教材では必ず <code>YOUR_XXX</code> の形で扱います。</div>
+    </section>
+
+    <section>
+      <h2>事前チェックリスト</h2>
+      <div class="checklist">
+        <label><input type="checkbox"> GitHubアカウントにログインできる</label>
+        <label><input type="checkbox"> Codex Appを開ける</label>
+        <label><input type="checkbox"> ターミナルで <code>git --version</code> が通る</label>
+        <label><input type="checkbox"> ターミナルで <code>node --version</code> が通る</label>
+        <label><input type="checkbox"> VercelへGitHubログインできる</label>
+        <label><input type="checkbox"> Asanaアカウントを作った</label>
+        <label><input type="checkbox"> ngrokアカウントを作った</label>
+        <label><input type="checkbox"> APIキーを公開しないルールを理解した</label>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <a href="index.html">講義本編</a> /
+    <a href="schedule.html">合宿スケジュール</a> /
+    <a href="repos.html">リポジトリ一覧</a>
+  </footer>
+</body>
+</html>

@@ -27,7 +27,7 @@
       --code-text: #e7f1ed;
       --shadow: 0 10px 28px rgba(23, 33, 29, 0.08);
       --radius: 8px;
-      --max: 1180px;
+      --max: 1480px;
     }
 
     * { box-sizing: border-box; }
@@ -59,7 +59,7 @@
     .hero-inner {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 42px 22px 28px;
+      padding: 42px clamp(16px,4vw,40px) 28px;
     }
     .eyebrow {
       display: flex;
@@ -150,10 +150,10 @@
       max-width: var(--max);
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(13, minmax(86px, 1fr));
+      grid-template-columns: repeat(19, minmax(86px, 1fr));
       gap: 8px;
       overflow-x: auto;
-      padding: 12px 22px;
+      padding: 12px clamp(16px,4vw,40px);
     }
     .flow a {
       display: flex;
@@ -187,9 +187,9 @@
     .layout {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 28px 22px 70px;
+      padding: 28px clamp(16px,4vw,40px) 70px;
       display: grid;
-      grid-template-columns: 248px minmax(0, 1fr);
+      grid-template-columns: 280px minmax(0, 1fr);
       gap: 28px;
       align-items: start;
     }
@@ -581,17 +581,71 @@
     footer {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 26px 22px 46px;
+      padding: 26px clamp(16px,4vw,40px) 46px;
       color: var(--muted);
       font-size: 13px;
     }
 
+    .benefit-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .benefit-card {
+      background: var(--accent-soft);
+      border: 1px solid #b6ded7;
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .benefit-card strong {
+      display: block;
+      color: var(--accent-strong);
+      margin-bottom: 5px;
+      font-size: 15px;
+    }
+    .benefit-card span {
+      color: #3b746e;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .mermaid {
+      margin: 14px 0;
+      overflow-x: auto;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .mermaid svg { display: block; max-width: 100%; height: auto; }
+    .page-nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+    .page-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 14px;
+      background: var(--accent-soft);
+      border: 1px solid #b6ded7;
+      border-radius: 999px;
+      color: var(--accent-strong);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .page-nav a:hover { background: #d0ede8; }
     @media (max-width: 920px) {
-      .hero-grid, .layout, .meaning, .cards, .image-grid, .complete, .section-purpose, .mini-grid {
+      .hero-grid, .layout, .meaning, .cards, .image-grid, .complete, .section-purpose, .mini-grid, .benefit-cards {
         grid-template-columns: 1fr;
       }
       .toc { position: static; }
-      .flow { grid-template-columns: repeat(13, 118px); }
+      .flow { grid-template-columns: repeat(19, 118px); }
       section { padding: 22px 18px; }
       .outcomes { grid-template-columns: 1fr; }
     }
@@ -613,57 +667,136 @@
           <h2>持ち帰るもの</h2>
           <ul class="outcomes">
             <li><strong>分身OS</strong>AGENTS / memory / state / logs がある作業環境</li>
-            <li><strong>深掘り導線</strong>grill-meを単語登録し、Skill化して使う</li>
+            <li><strong>深掘り導線</strong>grill-meで方針を言語化し、そのままAGENTS.mdへ変換</li>
             <li><strong>外部取り込み</strong>GitHub / X / MCP / NotebookLMをCodexに接続</li>
-            <li><strong>公開体験</strong>Sheets、GAS、HTMLサイトをURLで見せる</li>
+            <li><strong>運用証拠</strong>成果物ではなく、AGENTS.md改善履歴・Skill追加記録</li>
           </ul>
         </div>
         <div class="status-panel">
-          <h2>今日の成功ライン</h2>
-          <div class="big">「仕事を任せて、レビューして、育てる」</div>
-          <p>自動化で放置しない。Codexを部下のように扱い、引き継ぎ書を渡し、ズレを直し、環境を育てる。</p>
+          <h2>合宿の目的</h2>
+          <div class="big">「AI環境を育てる人」になる</div>
+          <p>「AI使える人」ではない。合宿後もAGENTS追記・Skill改善が続くこと、その運用証拠を持ち帰ること。</p>
         </div>
+      </div>
+      <div class="page-nav">
+        <a href="prep.html">事前準備</a>
+        <a href="schedule.html">合宿スケジュール</a>
+        <a href="repos.html">便利なリポジトリ一覧</a>
       </div>
     </div>
   </header>
 
   <nav class="flow-wrap" aria-label="現在地フロー">
     <div class="flow" id="flow">
+      <a href="#overview"><span class="num">00</span><span class="label">全体像</span></a>
       <a href="#why"><span class="num">01</span><span class="label">なぜ作る</span></a>
       <a href="#grill"><span class="num">02</span><span class="label">深掘り</span></a>
       <a href="#codex"><span class="num">03</span><span class="label">Codex</span></a>
       <a href="#claude-migrate"><span class="num">04</span><span class="label">引っ越し</span></a>
       <a href="#agents"><span class="num">05</span><span class="label">AGENTS</span></a>
       <a href="#mcp"><span class="num">06</span><span class="label">MCP</span></a>
-      <a href="#intake"><span class="num">07</span><span class="label">Skill化</span></a>
-      <a href="#gog"><span class="num">08</span><span class="label">gogcli</span></a>
-      <a href="#gas"><span class="num">09</span><span class="label">GAS</span></a>
-      <a href="#notebooklm"><span class="num">10</span><span class="label">NotebookLM</span></a>
-      <a href="#vercel"><span class="num">11</span><span class="label">Vercel</span></a>
-      <a href="#run"><span class="num">12</span><span class="label">起動維持</span></a>
-      <a href="#grow"><span class="num">13</span><span class="label">育てる</span></a>
+      <a href="#agmsg"><span class="num">07</span><span class="label">agmsg</span></a>
+      <a href="#intake"><span class="num">08</span><span class="label">Skill化</span></a>
+      <a href="#asana"><span class="num">09</span><span class="label">Asana</span></a>
+      <a href="#gog"><span class="num">10</span><span class="label">gogcli</span></a>
+      <a href="#gas"><span class="num">11</span><span class="label">GAS</span></a>
+      <a href="#notebooklm"><span class="num">12</span><span class="label">NotebookLM</span></a>
+      <a href="#vercel"><span class="num">13</span><span class="label">Vercel</span></a>
+      <a href="#ngrok"><span class="num">14</span><span class="label">ngrok</span></a>
+      <a href="#run"><span class="num">15</span><span class="label">起動維持</span></a>
+      <a href="#grow"><span class="num">16</span><span class="label">育てる</span></a>
+      <a href="#agents-create"><span class="num">17</span><span class="label">Agent作成</span></a>
+      <a href="#agent-browser"><span class="num">18</span><span class="label">ブラウザAI</span></a>
     </div>
   </nav>
 
   <div class="layout">
     <aside class="toc" aria-label="目次">
       <p class="toc-title">目次</p>
+      <a href="#overview">00 合宿の全体像</a>
       <a href="#why">01 なぜ分身OSを作るのか</a>
       <a href="#grill">02 grill-me型プロンプト</a>
       <a href="#codex">03 Codexセットアップ</a>
       <a href="#claude-migrate">04 Claude Codeから引っ越す</a>
       <a href="#agents">05 AGENTS / memory / state</a>
       <a href="#mcp">06 MCPを取り込む</a>
-      <a href="#intake">07 長いプロンプトをSkill化</a>
-      <a href="#gog">08 gogcli / Sheets</a>
-      <a href="#gas">09 GAS社内アプリ</a>
-      <a href="#notebooklm">10 NotebookLM-py連動</a>
-      <a href="#vercel">11 Vercel公開</a>
-      <a href="#run">12 Macを起動維持</a>
-      <a href="#grow">13 継続アップデート</a>
+      <a href="#agmsg">07 Claude/Codexデュアル運用</a>
+      <a href="#intake">08 長いプロンプトをSkill化</a>
+      <a href="#asana">09 Asana PAT取得</a>
+      <a href="#gog">10 gogcli / Sheets</a>
+      <a href="#gas">11 GAS社内アプリ</a>
+      <a href="#notebooklm">12 NotebookLM-py連動</a>
+      <a href="#vercel">13 Vercel公開</a>
+      <a href="#ngrok">14 ngrok一時公開</a>
+      <a href="#run">15 Macを起動維持</a>
+      <a href="#grow">16 継続アップデート</a>
+      <a href="#agents-create">17 エージェントを作る</a>
+      <a href="#agent-browser">18 agent-browser</a>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--line)">
+        <a href="prep.html" style="color:var(--accent-strong)">事前準備</a>
+        <a href="schedule.html" style="color:var(--accent-strong)">合宿スケジュール</a>
+        <a href="repos.html" style="color:var(--accent-strong)">リポジトリ一覧</a>
+      </div>
     </aside>
 
     <main>
+      <section id="overview">
+        <div class="section-head">
+          <div class="section-no" style="background:var(--accent);">00</div>
+          <div>
+            <h2>合宿の全体像</h2>
+            <p class="section-sub">最初に全体を把握する。どのツールが・なぜ・どの順でつながるか。</p>
+          </div>
+        </div>
+        <div class="check">目的は「AI使える人」ではなく<strong>「AI環境を育てる人」</strong>になること。成果物ではなく、AGENTS.md改善履歴・Skill追加記録という運用証拠を持ち帰ることがゴール。合宿後も更新が続くかどうかが判定基準。</div>
+
+        <h3>ツール連携の全体像</h3>
+        <div class="diagram">
+          <p class="diagram-title">この合宿で作る「分身OS」の構成</p>
+          <div class="mermaid">
+flowchart TB
+    A["Claude Code\n既存環境"] -->|"04 引越し"| B["Codex\nDesktop"]
+    B -->|"05 設定"| C["AGENTS.md\nmemory / state"]
+    C -->|"06 外部接続"| D["MCP\nContext7 / Exa / GitHub"]
+    D -->|"08 再利用化"| E["Skill化"]
+    E -->|"10-11 連携"| F["gogcli\nSheets / GAS"]
+    F -->|"13 公開"| G["Vercel"]
+    G -.->|"16 継続改善"| C
+          </div>
+        </div>
+
+        <h3>2日間の流れ</h3>
+        <div class="diagram">
+          <p class="diagram-title">合宿スケジュール概要 → 詳細は <a href="schedule.html">スケジュールページ</a></p>
+          <div class="mermaid">
+flowchart TB
+    subgraph D1["Day 1 (6/9)"]
+        direction TB
+        A["9:00\nスタート"] --> B["〜13:00\nセットアップ\n(Section 00-06)"]
+        B --> C["13:00〜\n各自作業"]
+        C --> D["18:00\n翌日目標を\n全体発表"]
+    end
+    subgraph D2["Day 2 (6/10)"]
+        direction TB
+        E["9:00\n朝作業"] --> F["10:00\n成果発表\n(各自5分)"]
+        F --> G["11:00\n振り返り\n閉会"]
+    end
+    D1 --> D2
+          </div>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <h4><a href="schedule.html">合宿スケジュール詳細 →</a></h4>
+            <p>何時に何をするか、発表のフォーマットまで確認できます。</p>
+          </div>
+          <div class="card">
+            <h4><a href="repos.html">便利なリポジトリ一覧 →</a></h4>
+            <p>合宿で参考になるGitHubリポジトリを用途別に整理しています。</p>
+          </div>
+        </div>
+      </section>
+
       <section id="why">
         <div class="section-head">
           <div class="section-no">1</div>
@@ -701,18 +834,49 @@
         <div class="section-head">
           <div class="section-no">2</div>
           <div>
-            <h2>grill-me型プロンプトを単語登録する</h2>
-            <p class="section-sub">「AIに任せたい作業は？」では浅い。先に業務の因果と依存関係を掘る。</p>
+            <h2>grill-me型プロンプトで業務を深掘りする</h2>
+            <p class="section-sub">方針が未定でも大丈夫。AIに執拗にインタビューさせて、深層心理から言語化する。</p>
           </div>
         </div>
+
+        <div class="benefit-cards">
+          <div class="benefit-card">
+            <strong>方針が未定でも大丈夫</strong>
+            <span>「何を作るかまだ漠然…」でも始められる。AIが質問を連打して言語化を手伝う。推奨回答も出してくれるので、答えられなくてもOK。</span>
+          </div>
+          <div class="benefit-card">
+            <strong>深層心理まで掘り下げられる</strong>
+            <span>自分では気づいていない前提・判断軸・詰まりが出てくる。「任せたい作業」ではなく「本当の課題」が見える。</span>
+          </div>
+          <div class="benefit-card">
+            <strong>AGENTS.mdに直結する</strong>
+            <span>インタビュー結果がそのままAGENTS.md / state.md / memory.mdに変換できる。深掘りが環境構築の最初の一歩になる。</span>
+          </div>
+        </div>
+
+        <div class="diagram">
+          <p class="diagram-title">grill-me を使った「分身OS」構築の入口</p>
+          <div class="mermaid">
+flowchart TD
+    A["「何を作るか、まだ漠然...」"] --> B["grill-me 実行\n(ぐりる と打つだけ)"]
+    B --> C["AIが深掘り質問を連打\n推奨回答付き"]
+    C --> D{"共通理解に\n達したか？"}
+    D -- "まだ" --> C
+    D -- "OK" --> E["方針が言語化される"]
+    E --> F["変換プロンプトを実行"]
+    F --> G["AGENTS.md / state.md\n/ memory.md に反映"]
+    G --> H["Section 17 へ\nエージェント設計に進む"]
+          </div>
+        </div>
+
         <div class="meaning">
-          <div class="box"><strong>何が見えるようになるか</strong><span>自分が何を任せたいのかではなく、何が詰まりかが見える。</span></div>
+          <div class="box"><strong>何が見えるようになるか</strong><span>任せたい作業ではなく、何が詰まりかが見える。</span></div>
           <div class="box"><strong>今やること</strong><span>深掘り結果をAGENTS / state / memoryに入れる。</span></div>
           <div class="box"><strong>全員が同じようにできるか</strong><span>単語登録で誰でも同じ入口から始められる。</span></div>
         </div>
-        <p>オープンクエスチョンで「自分の業務でAIに任せたい作業を書いてください」と言っても、たいてい浅くなります。本人もまだ因果を掘れていないからです。</p>
-        <p>そこで先に、AIに執拗にインタビューさせる。AI Heroで紹介されているgrill-me系の発想を、合宿の最初の道具にします。前に身につけたスキルを、次の学習の入口に使う。これが因果連鎖です。</p>
-        <div class="resource">参考: <a href="https://www.aihero.dev/my-grill-me-skill-has-gone-viral" target="_blank" rel="noopener">AI Hero: My Grill Me Skill Has Gone Viral</a></div>
+        <p>「自分の業務でAIに任せたい作業を書いてください」では浅くなる。本人もまだ因果を掘れていないからです。</p>
+        <p>そこで先に、AIに執拗にインタビューさせる。Matt Pocockが発表したgrill-meスキルはGitHub 10万スター超え（2026年5月現在）のバイラルスキル。合宿の最初の道具として使います。</p>
+        <div class="resource">参考: <a href="https://www.aihero.dev/my-grill-me-skill-has-gone-viral" target="_blank" rel="noopener">AI Hero: My Grill Me Skill Has Gone Viral</a> / <a href="https://github.com/satya-janghu/agent-skills/tree/main/skills/grill-me" target="_blank" rel="noopener">SKILL.md (GitHub)</a></div>
         <div class="code-block">
           <div class="code-label">単語登録するプロンプト<button class="copy" data-copy>コピー</button></div>
           <pre>この件のあらゆる側面について執拗にインタビューして。共通理解に達するまで、デザインの因果関係と決定事項間の依存関係を1つずつ解決し、各質問に推奨回答も提示して。</pre>
@@ -766,12 +930,30 @@
           <figure><img src="assets/images/20260528-codex-setup/04_add_project.png" alt="新しいプロジェクトを追加" loading="lazy"><figcaption>作業フォルダを追加</figcaption></figure>
           <figure><img src="assets/images/20260528-codex-setup/06_folder_opened.png" alt="フォルダが開かれた状態" loading="lazy"><figcaption>フォルダ名が見えればOK</figcaption></figure>
         </div>
-        <div class="code-block">
-          <div class="code-label">CLIで作業フォルダを作る場合<button class="copy" data-copy>コピー</button></div>
-          <pre>mkdir -p ~/codex-bunshin-os/logs ~/codex-bunshin-os/outputs
-cd ~/codex-bunshin-os
-codex</pre>
+        <div class="diagram">
+          <p class="diagram-title">Codex Desktop セットアップの流れ</p>
+          <div class="mermaid">
+flowchart TB
+    A["公式ページから\nCodex App取得"] --> B["ChatGPTで\nサインイン"]
+    B --> C["作業フォルダを\n新規作成"]
+    C --> D["フォルダを\nCodexで開く"]
+    D --> E["動作確認\nHTMLを1枚作る"]
+          </div>
         </div>
+        <h3>CLIで作業フォルダを作る場合</h3>
+        <div class="code-block">
+          <div class="code-label">① 作業フォルダを作成<button class="copy" data-copy>コピー</button></div>
+          <pre>mkdir -p ~/codex-bunshin-os/logs ~/codex-bunshin-os/outputs</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">② 作業フォルダへ移動<button class="copy" data-copy>コピー</button></div>
+          <pre>cd ~/codex-bunshin-os</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">③ Codex CLI を起動<button class="copy" data-copy>コピー</button></div>
+          <pre>codex</pre>
+        </div>
+        <div class="resource">参考: <a href="https://note.com/munakata_souri/n/n4aacfa6d9729" target="_blank" rel="noopener">むなかた — Codexのセットアップ方法（2026年4月）</a></div>
       </section>
 
       <section id="claude-migrate">
@@ -829,6 +1011,21 @@ Codexへ引っ越す前提で、次を実行してください。
           <div class="box"><strong>何が見えるようになるか</strong><span>Codexが何を前提に回答するか固定される。</span></div>
           <div class="box"><strong>今やること</strong><span>深掘り結果をファイル化し、次回から読ませる。</span></div>
           <div class="box"><strong>全員が同じようにできるか</strong><span>テンプレートを埋めるだけで初版ができる。</span></div>
+        </div>
+        <div class="note">AGENTS.md / CLAUDE.md / memory.md / state.md の用語が曖昧な人は、先に <a href="prep.html">事前準備ページの用語プライマー</a> を確認してください。ここを揃えると、講義中の「それ何のファイル？」で止まらなくなります。</div>
+        <div class="diagram">
+          <p class="diagram-title">3ファイルの役割分担</p>
+          <div class="mermaid">
+graph TB
+    A["AGENTS.md\n恒久ルール"] --> B["基本方針・口調"]
+    A --> C["判断軸"]
+    A --> D["安全ルール"]
+    A --> E["継続改善の基準"]
+    F["memory.md\n長期記憶"] --> G["会社情報\n長期知識・判断軸"]
+    H["state.md\n現在地"] --> I["今の重点テーマ\nブロッカー"]
+    A --- F
+    A --- H
+          </div>
         </div>
         <div class="code-block">
           <div class="code-label">Codexに初期ファイルを作らせる<button class="copy" data-copy>コピー</button></div>
@@ -903,6 +1100,17 @@ Codexへ引っ越す前提で、次を実行してください。
           <div class="box"><strong>全員が同じようにできるか</strong><span>プレースホルダ方式なのでAPIキーを公開せず説明できる。</span></div>
         </div>
         <p>MCPは「Codexに目と手を増やす仕組み」です。Context7は最新ドキュメントを見る目。GitHubはリポジトリやIssueを見る目。ExaはWebやX由来の情報を探す目。Chrome DevToolsは作った画面を検証する目。これがないと、Codexは古い知識と手元ファイルだけで判断しがちです。</p>
+        <div class="diagram">
+          <p class="diagram-title">MCPが増やす「目と手」</p>
+          <div class="mermaid">
+flowchart TB
+    CO["Codex"] --> C7["Context7\n最新ドキュメント参照"]
+    CO --> GH["GitHub MCP\nIssue / PR / repo情報"]
+    CO --> EX["Exa\nWeb・X検索"]
+    CO --> CD["Chrome DevTools\nブラウザ検証"]
+          </div>
+        </div>
+        <div class="resource">参考: <a href="https://zenn.dev/chiji/articles/57cb52773391ab" target="_blank" rel="noopener">Codexおすすめ設定&amp;MCP集（Zenn）</a> / <a href="https://context7.com/docs/howto/api-keys" target="_blank" rel="noopener">Context7 APIキー取得</a></div>
         <div class="image-grid">
           <figure><img src="assets/images/20260528-codex-setup/10_context7_docs_api_keys.png" alt="Context7 API Keys" loading="lazy"><figcaption>Context7 APIキー</figcaption></figure>
           <figure><img src="assets/images/20260528-codex-setup/13_github_tokens.png" alt="GitHub Tokens" loading="lazy"><figcaption>GitHub Token</figcaption></figure>
@@ -962,9 +1170,55 @@ YOUR_GITHUB_TOKEN を GitHubのトークンに
         </div>
       </section>
 
-      <section id="intake">
+      <section id="agmsg">
         <div class="section-head">
           <div class="section-no">7</div>
+          <div>
+            <h2>agmsgでClaude CodeとCodexをつなぐ</h2>
+            <p class="section-sub">Claudeで計画し、Codexで実装する往復を、口頭説明なしで渡せるようにする。</p>
+          </div>
+        </div>
+        <div class="meaning">
+          <div class="box"><strong>何ができるようになるか</strong><span>同じteamにClaude CodeとCodexをjoinし、相互にタスクを渡せる。</span></div>
+          <div class="box"><strong>今やること</strong><span>team名とagent名を決め、join.shで参加する。</span></div>
+          <div class="box"><strong>注意</strong><span>スクリプトを使う。DBや設定ファイルを直接編集しない。</span></div>
+        </div>
+        <div class="diagram">
+          <p class="diagram-title">Claudeで計画 → Codexで実行 → Claudeでレビュー</p>
+          <div class="mermaid">
+flowchart TB
+    A["Claude Code\n計画・分解"] --> B["agmsg\nsend"]
+    B --> C["Codex\n実装・検証"]
+    C --> D["agmsg\n完了報告"]
+    D --> E["Claude Code\nレビュー・次タスク化"]
+          </div>
+        </div>
+        <p>チーム名とエージェント名は自分で決めます。例: teamは <code>ai-camp</code>、Claude側は <code>claude-planner</code>、Codex側は <code>codex-builder</code>。</p>
+        <div class="code-block">
+          <div class="code-label">Claude Code側をjoinする<button class="copy" data-copy>コピー</button></div>
+          <pre>~/.agents/skills/agmsg/scripts/join.sh &lt;team&gt; &lt;name&gt; claude-code "$(pwd)"</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">Codex側をjoinする<button class="copy" data-copy>コピー</button></div>
+          <pre>~/.agents/skills/agmsg/scripts/join.sh &lt;team&gt; &lt;name&gt; codex "$(pwd)"</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">受信する<button class="copy" data-copy>コピー</button></div>
+          <pre>/agmsg</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">送信する<button class="copy" data-copy>コピー</button></div>
+          <pre>/agmsg send &lt;agent&gt; "&lt;msg&gt;"</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">名簿を見る<button class="copy" data-copy>コピー</button></div>
+          <pre>/agmsg team</pre>
+        </div>
+      </section>
+
+      <section id="intake">
+        <div class="section-head">
+          <div class="section-no">8</div>
           <div>
             <h2>長いプロンプトをSkill化して使う</h2>
             <p class="section-sub">毎回コピペする依頼を、短い呼び出しに変える。</p>
@@ -1048,9 +1302,39 @@ URL: https://github.com/openclaw/gogcli
         </div>
       </section>
 
+      <section id="asana">
+        <div class="section-head">
+          <div class="section-no">9</div>
+          <div>
+            <h2>Asana PATを取得してタスク登録できるようにする</h2>
+            <p class="section-sub">CodexからAsana APIへ接続し、タスク作成を依頼できる入口を作る。</p>
+          </div>
+        </div>
+        <div class="meaning">
+          <div class="box"><strong>何ができるようになるか</strong><span>タスク作成・一覧取得・更新をCodexに依頼できる。</span></div>
+          <div class="box"><strong>今やること</strong><span>Asanaアカウントを作り、Personal Access Tokenを取得する。</span></div>
+          <div class="box"><strong>注意</strong><span>PATはパスワード同等。教材やGitHubに載せない。</span></div>
+        </div>
+        <ol>
+          <li><a href="https://asana.com/" target="_blank" rel="noopener">Asana</a> でアカウントを作成する。</li>
+          <li>右上プロフィール → My Settings → Apps → Manage Developer Apps を開く。</li>
+          <li><a href="https://app.asana.com/0/my-apps" target="_blank" rel="noopener">Developer Apps</a> で Create new token を押す。</li>
+          <li>名前を入力し、規約に同意して Create。</li>
+          <li>表示されたPATをコピーする。表示は1回だけです。</li>
+        </ol>
+        <!-- IMG: asana-my-apps.png ここに挿入予定 -->
+        <!-- IMG: asana-create-token.png ここに挿入予定 -->
+        <div class="warn">PATは <code>Authorization: Bearer &lt;PAT&gt;</code> として使います。実値を公開ページ、チャットログ、GitHubに載せないでください。</div>
+        <div class="code-block">
+          <div class="code-label">Codexへの依頼例<button class="copy" data-copy>コピー</button></div>
+          <pre>このPATでAsana APIに接続し、〇〇プロジェクトにタスクを5件登録してください。PATは YOUR_ASANA_PAT として扱い、公開ファイルには書かないでください。</pre>
+        </div>
+        <div class="resource">参考: <a href="https://developers.asana.com/docs/personal-access-token" target="_blank" rel="noopener">Asana Personal Access Token</a> / <a href="https://app.asana.com/0/my-apps" target="_blank" rel="noopener">Manage Developer Apps</a></div>
+      </section>
+
       <section id="gog">
         <div class="section-head">
-          <div class="section-no">8</div>
+          <div class="section-no">10</div>
           <div>
             <h2>gogcliでGoogle Sheetsを作成・操作する</h2>
             <p class="section-sub">Codexに「スプレッドシートを作って」と頼めるようにする。</p>
@@ -1072,9 +1356,12 @@ URL: https://github.com/openclaw/gogcli
         <figure><img src="assets/images/diagrams/gog-setup-overview.svg" alt="gogcliセットアップ概念図" loading="lazy"><figcaption>gogcliセットアップ概念図。自然言語の依頼が、gog CLI経由でSheets/Drive APIへ届く。</figcaption></figure>
         <div class="resource">参考: <a href="https://github.com/openclaw/gogcli" target="_blank" rel="noopener">openclaw/gogcli</a> / <a href="https://gogcli.sh/" target="_blank" rel="noopener">gogcli rendered docs</a></div>
         <div class="code-block">
-          <div class="code-label">インストール<button class="copy" data-copy>コピー</button></div>
-          <pre>brew install openclaw/tap/gogcli
-gog --version</pre>
+          <div class="code-label">① gogcli をインストール<button class="copy" data-copy>コピー</button></div>
+          <pre>brew install openclaw/tap/gogcli</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">② バージョン確認<button class="copy" data-copy>コピー</button></div>
+          <pre>gog --version</pre>
         </div>
         <div class="timeline">
           <div class="tl"><strong>1. Google Cloud Project作成</strong><span><a href="https://console.cloud.google.com/projectcreate" target="_blank" rel="noopener">Project作成画面</a> を開く。</span></div>
@@ -1092,10 +1379,16 @@ gog --version</pre>
           <figure><img src="assets/images/20260312gogcli/sheet-created.png" alt="作成されたスプレッドシート" loading="lazy"><figcaption>gogで作成したスプレッドシート</figcaption></figure>
         </div>
         <div class="code-block">
-          <div class="code-label">認証<button class="copy" data-copy>コピー</button></div>
-          <pre>gog auth credentials set ~/Downloads/client_secret_....json
-gog auth add you@gmail.com --services drive,sheets,docs,calendar
-gog auth doctor --check</pre>
+          <div class="code-label">① OAuth認証情報を登録（ダウンロードしたJSONのパスに置き換え）<button class="copy" data-copy>コピー</button></div>
+          <pre>gog auth credentials set ~/Downloads/client_secret_....json</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">② Googleアカウントを追加（メールアドレスに置き換え）<button class="copy" data-copy>コピー</button></div>
+          <pre>gog auth add you@gmail.com --services drive,sheets,docs,calendar</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">③ 認証状態を確認<button class="copy" data-copy>コピー</button></div>
+          <pre>gog auth doctor --check</pre>
         </div>
         <div class="code-block">
           <div class="code-label">Codexへの依頼<button class="copy" data-copy>コピー</button></div>
@@ -1115,7 +1408,7 @@ gog auth doctor --check</pre>
 
       <section id="gas">
         <div class="section-head">
-          <div class="section-no">9</div>
+          <div class="section-no">11</div>
           <div>
             <h2>GASで簡単な社内アプリを作る</h2>
             <p class="section-sub">スプレッドシートをデータベースにして、HTMLの社内ポータルを公開する。</p>
@@ -1189,7 +1482,7 @@ function getItems() {
 
       <section id="notebooklm">
         <div class="section-head">
-          <div class="section-no">10</div>
+          <div class="section-no">12</div>
           <div>
             <h2>NotebookLM-pyで資料置き場と連動する</h2>
             <p class="section-sub">重い資料を毎回Codexに貼らず、NotebookLMに置いて呼び出す。</p>
@@ -1208,31 +1501,55 @@ function getItems() {
           <div class="mini"><strong>注意点</strong><span>機密資料は扱いを分ける。非公式ツールなので本番依存しすぎない。</span></div>
         </div>
         <div class="code-block">
-          <div class="code-label">インストールとログイン<button class="copy" data-copy>コピー</button></div>
-          <pre>pip install "notebooklm-py[browser]"
-playwright install chromium
-notebooklm login
-notebooklm auth check --test --json</pre>
+          <div class="code-label">① notebooklm-py をインストール<button class="copy" data-copy>コピー</button></div>
+          <pre>pip install "notebooklm-py[browser]"</pre>
         </div>
         <div class="code-block">
-          <div class="code-label">ノート作成から質問まで<button class="copy" data-copy>コピー</button></div>
-          <pre>notebooklm create "AI合宿 資料置き場"
-notebooklm use &lt;notebook_id&gt;
-notebooklm source add ./AGENTS.md
-notebooklm source add ./outputs/lecture-notes.pdf
-notebooklm ask "この資料群から、受講者が詰まりそうな点を5つ出して"</pre>
+          <div class="code-label">② Chromiumをインストール（ブラウザ操作用）<button class="copy" data-copy>コピー</button></div>
+          <pre>playwright install chromium</pre>
         </div>
         <div class="code-block">
-          <div class="code-label">Codex / Claude Code用Skillとして登録<button class="copy" data-copy>コピー</button></div>
-          <pre>notebooklm skill install
-notebooklm skill status</pre>
+          <div class="code-label">③ Googleアカウントでログイン（ブラウザが開くので認証する）<button class="copy" data-copy>コピー</button></div>
+          <pre>notebooklm login</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">④ 認証状態を確認<button class="copy" data-copy>コピー</button></div>
+          <pre>notebooklm auth check --test --json</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">① ノートブックを作成<button class="copy" data-copy>コピー</button></div>
+          <pre>notebooklm create "AI合宿 資料置き場"</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">② 作成したノートブックを選択（IDは①の出力から確認）<button class="copy" data-copy>コピー</button></div>
+          <pre>notebooklm use &lt;notebook_id&gt;</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">③ ソースを追加（AGENTS.md）<button class="copy" data-copy>コピー</button></div>
+          <pre>notebooklm source add ./AGENTS.md</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">④ ソースを追加（PDF等、繰り返し使用可）<button class="copy" data-copy>コピー</button></div>
+          <pre>notebooklm source add ./outputs/lecture-notes.pdf</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">⑤ 資料群に質問する<button class="copy" data-copy>コピー</button></div>
+          <pre>notebooklm ask "この資料群から、受講者が詰まりそうな点を5つ出して"</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">⑥ Skillとして登録<button class="copy" data-copy>コピー</button></div>
+          <pre>notebooklm skill install</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">⑦ Skill登録状態を確認<button class="copy" data-copy>コピー</button></div>
+          <pre>notebooklm skill status</pre>
         </div>
         <div class="check">この章のゴールは「AIに資料を毎回貼る」から「資料置き場を作って、必要な時に呼ぶ」へ変えることです。</div>
       </section>
 
       <section id="vercel">
         <div class="section-head">
-          <div class="section-no">11</div>
+          <div class="section-no">13</div>
           <div>
             <h2>Vercelアカウント作成からHTMLサイト公開まで</h2>
             <p class="section-sub">GitHubに置いたHTMLを、URLで共有できる状態にする。</p>
@@ -1244,6 +1561,17 @@ notebooklm skill status</pre>
           <div class="box"><strong>全員が同じようにできるか</strong><span>Vercelアカウントなしの人も同じ入口から始める。</span></div>
         </div>
         <div class="resource">公式: <a href="https://vercel.com/docs" target="_blank" rel="noopener">Vercel Docs</a> / <a href="https://vercel.com/new" target="_blank" rel="noopener">New Project</a></div>
+        <div class="diagram">
+          <p class="diagram-title">GitHub push → Vercel 自動デプロイの流れ</p>
+          <div class="mermaid">
+flowchart TB
+    A["ローカルで\nHTML作成"] --> B["git push\nmainブランチ"]
+    B --> C["Vercelが\n自動検知"]
+    C --> D["自動デプロイ\n実行"]
+    D --> E["公開URL\n発行・更新"]
+    E --> F["参加者に\nURLを共有"]
+          </div>
+        </div>
         <div class="timeline">
           <div class="tl"><strong>1. VercelでContinue with GitHub</strong><span>GitHubアカウントでVercelにログイン/登録。</span></div>
           <div class="tl"><strong>2. Add New Project</strong><span>GitHubリポジトリをImport。</span></div>
@@ -1256,17 +1584,88 @@ notebooklm skill status</pre>
           <pre>python3 -m http.server 8000</pre>
         </div>
         <div class="code-block">
-          <div class="code-label">GitHubへ反映<button class="copy" data-copy>コピー</button></div>
-          <pre>git status
-git add .
-git commit -m "Add Codex bunshin OS lecture site"
-git push origin main</pre>
+          <div class="code-label">① 変更ファイルを確認<button class="copy" data-copy>コピー</button></div>
+          <pre>git status</pre>
         </div>
+        <div class="code-block">
+          <div class="code-label">② ステージに追加<button class="copy" data-copy>コピー</button></div>
+          <pre>git add .</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">③ コミット（メッセージは変更してよい）<button class="copy" data-copy>コピー</button></div>
+          <pre>git commit -m "Add Codex bunshin OS lecture site"</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">④ GitHubへ push → Vercelが自動デプロイ<button class="copy" data-copy>コピー</button></div>
+          <pre>git push origin main</pre>
+        </div>
+      </section>
+
+      <section id="ngrok">
+        <div class="section-head">
+          <div class="section-no">14</div>
+          <div>
+            <h2>ngrokで一時公開し、会社方針HTMLを見せる</h2>
+            <p class="section-sub">Vercelに出す前に、手元のHTMLを一時URLで共有して確認する。</p>
+          </div>
+        </div>
+        <div class="meaning">
+          <div class="box"><strong>何ができるようになるか</strong><span>ローカルで作ったHTMLを、その場で講師や他の参加者に見せられる。</span></div>
+          <div class="box"><strong>今やること</strong><span>ngrokを入れ、会社方針HTMLを一時URLで公開する。</span></div>
+          <div class="box"><strong>注意</strong><span>ngrok URLは一時公開用。長期公開はVercelを使う。</span></div>
+        </div>
+        <p>HTMLは、AIが作ったものを人間がすぐ見て直せる形式です。PDFやスライドより修正が軽く、GitHub/Vercel/ngrokにそのままつながる。会社方針、手順書、社内アプリの初版は、まずHTMLで出すと確認が速いです。</p>
+        <div class="resource">参考: <a href="https://dashboard.ngrok.com/get-started/your-authtoken" target="_blank" rel="noopener">ngrok Authtoken</a> / <a href="https://note.com/kudoucraft/n/n69e5650a4302" target="_blank" rel="noopener">kudoucraft: HTMLで渡す考え方</a></div>
+        <div class="diagram">
+          <p class="diagram-title">Vercelとngrokの使い分け</p>
+          <div class="mermaid">
+flowchart TB
+    A["CodexでHTML作成"] --> B["ローカル確認"]
+    B --> C["ngrok\n一時URLで確認"]
+    B --> D["GitHub push"]
+    D --> E["Vercel\n固定URLで公開"]
+    C --> F["すぐ見せて直す"]
+    E --> G["継続公開・共有"]
+          </div>
+        </div>
+        <!-- IMG: ngrok-authtoken.png ここに挿入予定 -->
+        <div class="code-block">
+          <div class="code-label">① ngrokをインストール<button class="copy" data-copy>コピー</button></div>
+          <pre>brew install --cask ngrok</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">② Authtokenを登録<button class="copy" data-copy>コピー</button></div>
+          <pre>ngrok config add-authtoken YOUR_NGROK_TOKEN</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">③ ローカルサーバーを起動<button class="copy" data-copy>コピー</button></div>
+          <pre>python3 -m http.server 8000</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">④ 別ターミナルで一時公開<button class="copy" data-copy>コピー</button></div>
+          <pre>ngrok http 8000</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">会社方針HTMLをCodexに作らせる<button class="copy" data-copy>コピー</button></div>
+          <pre>このフォルダに company-policy.html を作ってください。
+
+目的:
+社内向けに、会社方針・判断軸・やらないことを1ページで確認できるHTMLにする。
+
+条件:
+- 白背景で読みやすくする
+- 見出しは「会社方針」「判断軸」「やらないこと」「今日からの行動」に分ける
+- 私のAGENTS.mdとmemory.mdがあれば読み込む
+- 個人情報やAPIキーは載せない
+
+作成後、python3 -m http.server 8000 で見られる前提で確認手順も出してください。</pre>
+        </div>
+        <div class="check">ngrokは「今ここで見せる」ための道具。Vercelは「あとから何度でも見せる」ための道具。この違いが分かると、公開の心理的ハードルが下がります。</div>
       </section>
 
       <section id="run">
         <div class="section-head">
-          <div class="section-no">12</div>
+          <div class="section-no">15</div>
           <div>
             <h2>Macを起動維持してCodexを走らせる</h2>
             <p class="section-sub">長い作業を任せるときは、Macが寝ない状態を作る。</p>
@@ -1294,7 +1693,7 @@ git push origin main</pre>
 
       <section id="grow">
         <div class="section-head">
-          <div class="section-no">13</div>
+          <div class="section-no">16</div>
           <div>
             <h2>継続アップデート: 失敗ログ、AGENTS追記、Skill化</h2>
             <p class="section-sub">分身OSは作って終わりではなく、使うたびに育てる。</p>
@@ -1305,6 +1704,18 @@ git push origin main</pre>
           <div class="box"><strong>今やること</strong><span>毎回のズレをルール化する。</span></div>
           <div class="box"><strong>全員が同じようにできるか</strong><span>2回ミス、3回繰り返しの基準で迷わない。</span></div>
         </div>
+        <div class="diagram">
+          <p class="diagram-title">分身OSの継続改善サイクル</p>
+          <div class="mermaid">
+flowchart TB
+    A["作業する"] --> B["ズレに気づく"]
+    B --> C["ルール化する"]
+    C --> D["AGENTS.md\n更新"]
+    D --> E["次回の\n精度UP"]
+    E --> A
+          </div>
+        </div>
+        <div class="note"><strong>初日夕方 18:00 — 翌日の発表内容を全体に共有</strong><br>「明日10時に何を発表するか」を声に出す。内容は問わない。方向性だけ出す。翌日10:00に各自5分で成果発表。</div>
         <div class="code-block">
           <div class="code-label">作業後レビュー<button class="copy" data-copy>コピー</button></div>
           <pre>今回の作業を振り返って、次回からCodexがより良く動くようにするには何を更新すべきですか。
@@ -1339,30 +1750,196 @@ git push origin main</pre>
         <h3>合宿完走チェック</h3>
         <div class="complete">
           <label><input type="checkbox"> Codexが作業フォルダを開けている</label>
-          <label><input type="checkbox"> grill-me型プロンプトを単語登録した</label>
+          <label><input type="checkbox"> grill-meで業務を深掘りし、方針を言語化した</label>
           <label><input type="checkbox"> Claude Code資産の移行方針がわかる</label>
           <label><input type="checkbox"> AGENTS / memory / state がある</label>
           <label><input type="checkbox"> Context7/GitHubなどMCPの導線を理解した</label>
+          <label><input type="checkbox"> agmsgでClaude/Codexの役割分担を理解した</label>
           <label><input type="checkbox"> 長いプロンプトをSkill化して使える</label>
+          <label><input type="checkbox"> Asana PATの扱い方を理解した</label>
           <label><input type="checkbox"> gogcliでSheetsを扱う流れを理解した</label>
           <label><input type="checkbox"> GAS社内アプリの公開手順を理解した</label>
           <label><input type="checkbox"> NotebookLM-pyで資料置き場と連動できる</label>
           <label><input type="checkbox"> VercelでHTMLを公開する流れを理解した</label>
+          <label><input type="checkbox"> ngrokで一時公開できる</label>
           <label><input type="checkbox"> 作業後レビューで環境を育てられる</label>
+          <label><input type="checkbox"> エージェントを1つ設計・実行できた</label>
+          <label><input type="checkbox"> 公開URLをagent-browserで読ませられる</label>
+        </div>
+      </section>
+
+      <section id="agents-create">
+        <div class="section-head">
+          <div class="section-no">17</div>
+          <div>
+            <h2>エージェントを作ってみる</h2>
+            <p class="section-sub">grill-meで業務を整理して、そのままエージェント設計につなげる。</p>
+          </div>
+        </div>
+        <div class="meaning">
+          <div class="box"><strong>何が見えるようになるか</strong><span>「エージェントに任せる」が抽象論から具体的な設計になる。</span></div>
+          <div class="box"><strong>今やること</strong><span>grill-meの結果を使い、Sub-agentを1つ動かす。</span></div>
+          <div class="box"><strong>全員が同じようにできるか</strong><span>テンプレートから始めれば誰でも作れる。</span></div>
+        </div>
+        <p>「エージェントを作りたいけど、どんなエージェントを作るか決まらない」「業務棚卸しに時間がかかる」はよくある詰まりです。これ、grill-meでショートカットできます。</p>
+        <p>インタビューで出てきた業務の骨格をそのまま概要.mdにし、それをエージェント設計の入力にする。最初のドミノを正しく置けば、連鎖します。</p>
+
+        <div class="diagram">
+          <p class="diagram-title">grill-me → エージェント設計 の連鎖フロー</p>
+          <div class="mermaid">
+flowchart TB
+    A["grill-me\nインタビュー"] --> B["概要.md\n業務の骨格"]
+    B --> C["エージェント\n設計"]
+    C --> D["AGENTS.md\n作成・更新"]
+    D --> E["Sub-agent\n実行"]
+    E --> F["成果物"]
+    F -.->|"改善ループ"| D
+          </div>
+        </div>
+
+        <h3>Claude Code Sub-agentsで作る</h3>
+        <p>Claude Codeには「Sub-agents（Swarms）」機能があり、タスクを複数のエージェントに並列で分担させられます。</p>
+        <div class="cards">
+          <div class="card">
+            <h4>Sub-agent の特徴</h4>
+            <p>リーダーエージェントが計画を立て、複数の子エージェントに並列で委任。コードを書く・調査する・検証するを同時進行できる。</p>
+          </div>
+          <div class="card">
+            <h4>Swarm の特徴</h4>
+            <p>専門化したエージェントチームを生成。依存関係付きのタスクボードを共有し、並行作業して統合する。</p>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-label">grill-me結果から概要.mdを生成（Section 02の深掘り後に実行）<button class="copy" data-copy>コピー</button></div>
+          <pre>今のインタビュー結果を「概要.md」として保存してください。
+
+含める内容:
+1. 業務の目的と背景
+2. 主要な作業フロー（3〜5ステップ）
+3. よくある詰まりとその原因
+4. AIに任せたい作業トップ3
+5. 判断が必要なポイント
+
+このファイルを次のエージェント設計の入力として使います。</pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-label">概要.mdからSub-agentを設計<button class="copy" data-copy>コピー</button></div>
+          <pre>概要.mdを読んで、私の業務に合ったSub-agentを1つ設計してください。
+
+出力形式:
+1. エージェント名と役割（1行）
+2. このエージェントがやること（3〜5項目）
+3. AGENTS.mdに追記すべきルール
+4. 試す最小タスク（今日10分でできるもの）
+
+まず設計案を出してから、OKなら実装に進んでください。</pre>
+        </div>
+
+        <div class="resource">
+          参考: <a href="https://code.claude.com/docs/ja/sub-agents" target="_blank" rel="noopener">Claude Code カスタムサブエージェント（公式）</a> /
+          <a href="https://zenn.dev/dragon1208/articles/aae3d6ebda2d03" target="_blank" rel="noopener">Claude Code Swarms 機能解説（Zenn）</a>
+        </div>
+        <div class="check">日本でもSwarms / マルチエージェント開発の実例が急増中。grill-meで業務棚卸しを終わらせてから設計に入ると、「何のエージェントか決まらない」詰まりをスキップできます。</div>
+      </section>
+
+      <section id="agent-browser">
+        <div class="section-head">
+          <div class="section-no">18</div>
+          <div>
+            <h2>agent-browserで公開URLをAIに読ませる</h2>
+            <p class="section-sub">作ったHTMLをAI自身に開かせ、現在地と改善点を画面ベースで確認する。</p>
+          </div>
+        </div>
+        <div class="meaning">
+          <div class="box"><strong>何ができるようになるか</strong><span>公開URLをAIが開き、見えている画面を前提に修正できる。</span></div>
+          <div class="box"><strong>今やること</strong><span>agent-browserでサイトを開き、snapshotを取得する。</span></div>
+          <div class="box"><strong>注意</strong><span>公開URLに秘密情報を載せない。ログイン画面や社外秘資料は扱いを分ける。</span></div>
+        </div>
+        <div class="resource">参考: <a href="https://github.com/vercel-labs/agent-browser" target="_blank" rel="noopener">vercel-labs/agent-browser</a></div>
+        <div class="diagram">
+          <p class="diagram-title">公開URLをAIに読ませる流れ</p>
+          <div class="mermaid">
+flowchart TB
+    A["公開URL"] --> B["agent-browser open"]
+    B --> C["snapshot取得"]
+    C --> D["AIが現在地を把握"]
+    D --> E["次の修正を判断"]
+    E --> F["HTMLを更新"]
+          </div>
+        </div>
+        <!-- IMG: agent-browser-snapshot.png ここに挿入予定 -->
+        <div class="code-block">
+          <div class="code-label">npmでインストール<button class="copy" data-copy>コピー</button></div>
+          <pre>npm install -g agent-browser</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">ブラウザ環境をセットアップ<button class="copy" data-copy>コピー</button></div>
+          <pre>agent-browser install</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">Homebrewで入れる場合<button class="copy" data-copy>コピー</button></div>
+          <pre>brew install agent-browser</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">公開URLを開く<button class="copy" data-copy>コピー</button></div>
+          <pre>agent-browser open https://aigassyuku06.vercel.app/</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">画面状態を読む<button class="copy" data-copy>コピー</button></div>
+          <pre>agent-browser snapshot -i</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">要素をクリック<button class="copy" data-copy>コピー</button></div>
+          <pre>agent-browser click @e1</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">JSONで取得<button class="copy" data-copy>コピー</button></div>
+          <pre>agent-browser snapshot -i --json</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">Codexへの依頼例<button class="copy" data-copy>コピー</button></div>
+          <pre>agent-browserで https://aigassyuku06.vercel.app/ を開き、snapshotを取得してください。
+受講者が今どこにいるか分かるか、次に押すものが分かるか、本文が詰まりすぎていないかを確認し、index.htmlの改善案を出してください。
+実装前に変更方針だけ出してください。</pre>
         </div>
       </section>
     </main>
   </div>
 
   <footer>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:12px;">
+      <a href="prep.html">事前準備</a>
+      <a href="schedule.html">合宿スケジュール</a>
+      <a href="repos.html">リポジトリ一覧</a>
+    </div>
     参考リンク:
     <a href="https://developers.openai.com/codex/app/" target="_blank" rel="noopener">OpenAI Codex App</a> /
+    <a href="https://note.com/munakata_souri/n/n4aacfa6d9729" target="_blank" rel="noopener">Codexセットアップ解説（むなかた）</a> /
+    <a href="https://www.aihero.dev/my-grill-me-skill-has-gone-viral" target="_blank" rel="noopener">grill-me（AI Hero）</a> /
     <a href="https://github.com/openclaw/gogcli" target="_blank" rel="noopener">openclaw/gogcli</a> /
-    <a href="https://github.com/teng-lin/notebooklm-py" target="_blank" rel="noopener">notebooklm-py</a> /
-    <a href="https://developers.google.com/apps-script/guides/html" target="_blank" rel="noopener">Google Apps Script HTML Service</a> /
+    <a href="https://code.claude.com/docs/ja/sub-agents" target="_blank" rel="noopener">Claude Code Sub-agents</a> /
     <a href="https://vercel.com/docs" target="_blank" rel="noopener">Vercel Docs</a>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'base',
+      themeVariables: {
+        primaryColor: '#e6f5f2',
+        primaryTextColor: '#0b5d56',
+        primaryBorderColor: '#b6ded7',
+        lineColor: '#0f766e',
+        secondaryColor: '#f1f5f3',
+        tertiaryColor: '#ffffff',
+        fontFamily: '"Hiragino Sans", "Noto Sans JP", system-ui, sans-serif',
+        fontSize: '15px'
+      }
+    });
+  </script>
   <script>
     const copyButtons = document.querySelectorAll('[data-copy]');
     copyButtons.forEach((button) => {

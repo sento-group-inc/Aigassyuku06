@@ -5,7 +5,12 @@
 ## 構成
 
 - `index.html` — 講義サイト本体
+- `prep.html` — 事前準備とAGENTS.md / CLAUDE.md用語プライマー
+- `schedule.html` — 合宿2日間のスケジュール
+- `repos.html` — 便利なGitHubリポジトリ一覧
+- `IMAGES-TODO.md` — 追加スクリーンショット撮影メモ
 - `assets/images/20260528-codex-setup/` — Codexセットアップ用スクリーンショット
+- `assets/images/20260312gogcli/` — gogcli / Google Sheets連携用スクリーンショット
 - `vercel.json` — Vercel静的配信用の最小設定
 
 ## ローカル確認
@@ -47,12 +52,27 @@ Serving HTTP on :: port 8000
 ### 手順
 変更をGitHubにpushします。
 
-### コマンド（このブロックをそのまま貼る）
+### 1. 変更確認
 
 ```bash
 git status
+```
+
+### 2. ステージに追加
+
+```bash
 git add .
-git commit -m "Add Codex bunshin OS lecture site"
+```
+
+### 3. コミット
+
+```bash
+git commit -m "Update AI camp lecture site"
+```
+
+### 4. push
+
+```bash
 git push origin main
 ```
 
@@ -65,4 +85,3 @@ git push origin main
 [main xxxxxxx] Add Codex bunshin OS lecture site
  16 files changed
 ```
-

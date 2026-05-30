@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>便利なリポジトリ一覧 | Codex分身OS合宿</title>
+  <style>
+    :root {
+      --bg: #f7f8f7;
+      --surface: #ffffff;
+      --surface-soft: #f1f5f3;
+      --ink: #17211d;
+      --muted: #66736e;
+      --line: #dce4df;
+      --accent: #0f766e;
+      --accent-soft: #e6f5f2;
+      --accent-strong: #0b5d56;
+      --blue-soft: #eff6ff;
+      --gold-soft: #fff7e6;
+      --shadow: 0 10px 28px rgba(23,33,29,.08);
+      --radius: 8px;
+      --max: 1480px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",system-ui,-apple-system,sans-serif;
+      font-size: 15px;
+      line-height: 1.78;
+    }
+    a { color: var(--accent-strong); text-underline-offset: 3px; }
+
+    .page-header {
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      padding: 32px clamp(16px,4vw,40px) 24px;
+    }
+    .page-header-inner { max-width: var(--max); margin: 0 auto; }
+    .breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+    .breadcrumb a { color: var(--accent-strong); }
+    h1 { margin: 0 0 8px; font-size: clamp(28px,5vw,44px); line-height: 1.1; }
+    .lead { color: var(--muted); font-size: 16px; margin: 0 0 16px; }
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .filter-btn {
+      padding: 5px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface-soft);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--accent-soft);
+      border-color: #b6ded7;
+      color: var(--accent-strong);
+    }
+
+    .content {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px clamp(16px,4vw,40px) 70px;
+      display: grid;
+      gap: 28px;
+    }
+
+    .category-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .cat-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .cat-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .cat-badge.setup  { background: #e0f2fe; color: #0369a1; }
+    .cat-badge.mcp    { background: var(--accent-soft); color: var(--accent-strong); }
+    .cat-badge.agent  { background: #f3e8ff; color: #6b21a8; }
+    .cat-badge.auto   { background: var(--gold-soft); color: #7a4d0b; }
+    .cat-badge.deploy { background: #f0fdf4; color: #166534; }
+    .cat-badge.skill  { background: #fff1f0; color: #b42318; }
+    h2 { margin: 0; font-size: 20px; }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px;
+      background: #fff;
+    }
+    th, td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: var(--surface-soft);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--surface-soft); }
+    .diff {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .diff-easy   { background: #dcfce7; color: #166534; }
+    .diff-medium { background: #fef9c3; color: #854d0e; }
+    .diff-hard   { background: #fee2e2; color: #991b1b; }
+    .repo-name {
+      font-family: "SFMono-Regular","Menlo","Consolas",monospace;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    td p { margin: 0; font-size: 13px; color: var(--muted); }
+
+    .note {
+      background: var(--blue-soft);
+      border: 1px solid #c7d8ff;
+      border-radius: var(--radius);
+      padding: 12px 15px;
+      color: #193f8f;
+      font-size: 13px;
+      margin-top: 14px;
+    }
+
+    footer {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 20px clamp(16px,4vw,40px) 46px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <p class="breadcrumb"><a href="index.html">合宿サイト TOP</a> / <a href="prep.html">事前準備</a> / リポジトリ一覧</p>
+      <h1>便利なリポジトリ一覧</h1>
+      <p class="lead">合宿で参考になるGitHubリポジトリを用途別に整理。気になるものを選んで、Codexの「repo-intake」Skillで導入判断してみてください。</p>
+      <div class="note">使い方: リポジトリURLをコピーして、Codexに「repo-intakeスキルを使ってこのリポジトリを導入判断してください。URL: [URL]」と依頼する。</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- セットアップ -->
+    <div class="category-section" id="setup">
+      <div class="cat-header">
+        <span class="cat-badge setup">セットアップ</span>
+        <h2>Codex本体・環境</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>リポジトリ</th>
+              <th>用途</th>
+              <th>難易度</th>
+              <th>リンク</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="repo-name">openai/codex</span><p>OpenAI Codex CLI本体</p></td>
+              <td>Codex CLIのインストール元。CLIベースで使う場合はここから。</td>
+              <td><span class="diff diff-easy">易</span></td>
+              <td><a href="https://github.com/openai/codex" target="_blank" rel="noopener">GitHub</a></td>
+            </tr>
+            <tr>
+              <td><span class="repo-name">openclaw/gogcli</span><p>Google Sheets / Drive CLI</p></td>
+              <td>Codexからスプレッドシートを作成・読み書きする。Section 10で使用。</td>
+              <td><span class="diff diff-medium">中</span></td>
+              <td><a href="https://github.com/openclaw/gogcli" target="_blank" rel="noopener">GitHub</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- MCP -->
+    <div class="category-section" id="mcp">
+      <div class="cat-header">
+        <span class="cat-badge mcp">MCP</span>
+        <h2>MCPサーバー（目と手を増やす）</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>リポジトリ</th>
+              <th>用途</th>
+              <th>難易度</th>
+              <th>リンク</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="repo-name">upstash/context7-mcp</span><p>Context7 MCP</p></td>
+              <td>最新ライブラリのドキュメントをリアルタイム参照。GAS・Vercel・React等の調査に。</td>
+              <td><span class="diff diff-easy">易</span></td>
+              <td><a href="https://github.com/upstash/context7" target="_blank" rel="noopener">GitHub</a></td>
+            </tr>
+            <tr>
+              <td><span class="repo-name">exa-labs/exa-mcp-server</span><p>Exa Web検索MCP</p></td>
+              <td>Web・X投稿・コードを高精度検索。裏取りや競合調査に。</td>
+              <td><span class="diff diff-easy">易</span></td>
+              <td><a href="https://github.com/exa-labs/exa-mcp-server" target="_blank" rel="noopener">GitHub</a></td>
+            </tr>
+            <tr>
+              <td><span class="repo-name">github/github-mcp-server</span><p>GitHub MCP</p></td>
+              <td>Issue / PR / リポジトリ情報をCodexから参照。便利リポジトリの取り込みに。</td>
+              <td><span class="diff diff-medium">中</span></td>
+              <td><a href="https://github.com/github/github-mcp-server" target="_blank" rel="noopener">GitHub</a></td>
+            </tr>
+            <tr>
+              <td><span class="repo-name">chrome-devtools-mcp</span><p>Chrome DevTools MCP</p></td>
+              <td>CodexからブラウザのDOM・コンソール・ネットワークを確認。HTMLアプリの検証に。</td>
+              <td><span class="diff diff-medium">中</span></td>
+              <td><a href="https://www.npmjs.com/package/chrome-devtools-mcp" target="_blank" rel="noopener">npm</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- エージェント / Skill -->
+    <div class="category-section" id="agent">
+      <div class="cat-header">
+        <span class="cat-badge agent">Agent / Skill</span>
+        <h2>エージェント・スキル関連</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>リポジトリ</th>
+              <th>用途</th>
+              <th>難易度</th>
+              <th>リンク</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="repo-name">satya-janghu/agent-skills</span><p>grill-me等スキル集</p></td>
+              <td>Matt Pocockのgrill-meを含むスキル集。SKILL.mdをそのまま流用できる。GitHub 10万スター超え（2026年5月）。</td>
+              <td><span class="diff diff-easy">易</span></td>
+              <td><a href="https://github.com/satya-janghu/agent-skills" target="_blank" rel="noopener">GitHub</a></td>
+            </tr>
+            <tr>
+              <td><span class="repo-name">desplega-ai/agent-swarm</span><p>Agent Swarm フレームワーク</p></td>
+              <td>複数エージェントを協調させるSwarmフレームワーク。Section 17のエージェント作成で参考に。</td>
+              <td><span class="diff diff-hard">難</span></td>
+              <td><a href="https://github.com/desplega-ai/agent-swarm" target="_blank" rel="noopener">GitHub</a></td>
+            </tr>
+            <tr>
+              <td><span class="repo-name">win4r/ClawTeam-OpenClaw</span><p>ClawTeam マルチエージェント</p></td>
+              <td>OpenClawをデフォルトエージェントとしたマルチエージェント協調。Swarms実験に。</td>
+              <td><span class="diff diff-hard">難</span></td>
+              <td><a href="https://github.com/win4r/ClawTeam-OpenClaw" target="_blank" rel="noopener">GitHub</a></td>
+            </tr>
+            <tr>
+              <td><span class="repo-name">vercel-labs/agent-browser</span><p>ブラウザ操作CLI</p></td>
+              <td>公開URLをAIに読ませ、snapshotを見ながら改善する。Section 18で使用。</td>
+              <td><span class="diff diff-medium">中</span></td>
+              <td><a href="https://github.com/vercel-labs/agent-browser" target="_blank" rel="noopener">GitHub</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 自動化 -->
+    <div class="category-section" id="auto">
+      <div class="cat-header">
+        <span class="cat-badge auto">自動化・連携</span>
+        <h2>データ連携・自動化</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>リポジトリ</th>
+              <th>用途</th>
+              <th>難易度</th>
+              <th>リンク</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="repo-name">teng-lin/notebooklm-py</span><p>NotebookLM非公式ライブラリ</p></td>
+              <td>PDFや記事をNotebookLMに置き、Codexから呼び出す。資料の横断検索に。非公式なので本番依存注意。</td>
+              <td><span class="diff diff-medium">中</span></td>
+              <td><a href="https://github.com/teng-lin/notebooklm-py" target="_blank" rel="noopener">GitHub</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- デプロイ -->
+    <div class="category-section" id="deploy">
+      <div class="cat-header">
+        <span class="cat-badge deploy">公開・デプロイ</span>
+        <h2>成果物の公開</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>リポジトリ / サービス</th>
+              <th>用途</th>
+              <th>難易度</th>
+              <th>リンク</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="repo-name">vercel/vercel</span><p>Vercel CLI</p></td>
+              <td>GitHubにpushするだけで静的HTMLを自動デプロイ。Section 13で使用。</td>
+              <td><span class="diff diff-easy">易</span></td>
+              <td><a href="https://github.com/vercel/vercel" target="_blank" rel="noopener">GitHub</a></td>
+            </tr>
+            <tr>
+              <td><span class="repo-name">ngrok</span><p>一時公開URL</p></td>
+              <td>ローカルHTMLを一時URLで共有する。Section 14で使用。</td>
+              <td><span class="diff diff-easy">易</span></td>
+              <td><a href="https://ngrok.com/docs" target="_blank" rel="noopener">Docs</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 後で追記用 -->
+    <div class="category-section" id="tba">
+      <div class="cat-header">
+        <span class="cat-badge skill">追記予定</span>
+        <h2>後で追記するリポジトリ</h2>
+      </div>
+      <p style="color:var(--muted);font-size:14px;">合宿中・合宿後に見つけた便利リポジトリをここに追記してください。<br>
+      フォーマット: <code>リポジトリ名 / 用途 / 難易度 / GitHubリンク</code></p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>リポジトリ</th>
+              <th>用途</th>
+              <th>難易度</th>
+              <th>リンク</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="4" style="color:var(--muted);font-style:italic;text-align:center;padding:20px;">ここに追記 — Codexに「repos.htmlのtbaセクションに〇〇を追加して」と依頼するのが最速</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <a href="index.html">合宿サイト TOP</a> /
+    <a href="prep.html">事前準備</a> /
+    <a href="schedule.html">合宿スケジュール</a>
+  </footer>
+
+</body>
+</html>
