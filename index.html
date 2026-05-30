@@ -728,8 +728,8 @@
     <div class="flow" id="flow">
       <a href="#overview"><span class="num">00</span><span class="label">全体像</span></a>
       <a href="#why"><span class="num">01</span><span class="label">なぜ作る</span></a>
-      <a href="#ipoa"><span class="num">02</span><span class="label">IPOA</span></a>
-      <a href="#grill"><span class="num">03</span><span class="label">深掘り</span></a>
+      <a href="#grill"><span class="num">02</span><span class="label">深掘り</span></a>
+      <a href="#ipoa"><span class="num">03</span><span class="label">IPOA</span></a>
       <a href="#claude-migrate"><span class="num">04</span><span class="label">引っ越し</span></a>
       <a href="#agents"><span class="num">05</span><span class="label">AGENTS</span></a>
       <a href="#mcp"><span class="num">06</span><span class="label">MCP</span></a>
@@ -753,8 +753,8 @@
       <p class="toc-title">目次</p>
       <a href="#overview">00 合宿の全体像</a>
       <a href="#why">01 なぜ分身OSを作るのか</a>
-      <a href="#ipoa">02 IPOAフレームワーク</a>
-      <a href="#grill">03 grill-me型プロンプト</a>
+      <a href="#grill">02 grill-me型プロンプト</a>
+      <a href="#ipoa">03 IPOAフレームワーク</a>
       <a href="#claude-migrate">04 Claude Codeから引っ越す</a>
       <a href="#agents">05 AGENTS / memory / state</a>
       <a href="#mcp">06 MCPを取り込む</a>
@@ -791,7 +791,7 @@
         <div class="check">目的は「AI使える人」ではなく<strong>「業務をAIで前に進める型を持つ人」</strong>になること。最終アウトカムは、自分の業務改善HTMLを見せて、次のActionを説明できる状態です。</div>
         <div class="intro-punch">
           <div><strong>あるある</strong><span>ツールが多すぎると、いま自分が何をしているのか見失う。</span></div>
-          <div><strong>だから</strong><span>最初に全体地図を見て、IPOAから公開までの因果をつなぐ。</span></div>
+          <div><strong>だから</strong><span>最初に全体地図を見て、深掘り、IPOA、公開までの因果をつなぐ。</span></div>
           <div><strong>終わると</strong><span>次の章で何を押すか、何を貼るか、何のためかが迷子にならない。</span></div>
         </div>
 
@@ -800,8 +800,8 @@
           <p class="diagram-title">この合宿で作る「分身OS」の構成</p>
           <div class="mermaid">
 flowchart TB
-    A["事前準備\nCodexセットアップ"] --> B["IPOA\nActionから逆算"]
-    B --> C["grill-me\n足りないInputを深掘り"]
+    A["事前準備\nCodexセットアップ"] --> B["grill-me\n深掘りの型を知る"]
+    B --> C["IPOA\nActionから逆算"]
     C --> D["AGENTS.md\nmemory / state"]
     D --> E["MCP\nContext7 / Exa / GitHub"]
     E --> F["Skill化\n長い依頼を保存"]
@@ -818,7 +818,7 @@ flowchart TB
 flowchart TB
     subgraph D1["Day 1 (6/9)"]
         direction TB
-        A["9:00\nスタート"] --> B["〜13:00\nIPOA・深掘り・環境作り\n(Section 00-06)"]
+        A["9:00\nスタート"] --> B["〜13:00\n深掘り・IPOA・環境作り\n(Section 00-06)"]
         B --> C["13:00〜\n各自作業"]
         C --> D["18:00\n翌日目標を\n全体発表"]
     end
@@ -886,52 +886,9 @@ flowchart TB
         <div class="note">10社の社長が集まる合宿なので、最初からチーム標準にはしません。まず各自の個人OSを作る。その先で、組織では改善を個人メモに閉じず共有標準へ戻します。詳しくは <a href="shared-standard.html">個人OSからチーム標準へ</a>。</div>
       </section>
 
-      <section id="ipoa">
-        <div class="section-head">
-          <div class="section-no">2</div>
-          <div>
-            <h2>IPOAで「なにをやりたい」の手前を定義する</h2>
-            <p class="section-sub">Outputから始めず、Actionから逆算して必要なInputを決める。</p>
-          </div>
-        </div>
-        <div class="intro-punch">
-          <div><strong>あるある</strong><span>「BIを作りたい」と言うけど、見た後に誰が何を決めるかは曖昧なまま。</span></div>
-          <div><strong>だから</strong><span>Actionから逆算して、Output、Input、Processを決める。</span></div>
-          <div><strong>終わると</strong><span>AIに頼むものが「それっぽい資料」ではなく、行動につながる成果物になる。</span></div>
-        </div>
-        <div class="diagram">
-          <p class="diagram-title">IPOAは Action から逆算する</p>
-          <div class="mermaid">
-flowchart TB
-    A["Action\n誰が何を決めるか"] --> O["Output\n何が見えれば動けるか"]
-    O --> I["Input\n判断材料は何か"]
-    I --> P["Process\nどう変換・分析するか"]
-    P --> O
-          </div>
-        </div>
-        <div class="cards">
-          <div class="card"><h4>弱い入口</h4><p>「BIを作りたい」「ダッシュボードがほしい」。これはOutput名だけで、行動が決まっていない。</p></div>
-          <div class="card"><h4>強い入口</h4><p>「毎週月曜に赤字見込み案件を3件選び、担当者に次の一手を決めさせたい」。Actionがあるので必要なOutputが決まる。</p></div>
-        </div>
-        <div class="code-block">
-          <div class="code-label">IPOAをgrill-meで深掘りする<button class="copy" data-copy>コピー</button></div>
-          <pre>この業務について、IPOAで深掘りしてください。
-
-順番:
-1. Action: 誰が、いつ、何を決める・動くべきか
-2. Output: そのActionに必要な見える成果物は何か
-3. Input: 判断材料として何の情報が必要か
-4. Process: Inputをどう整理・分析・変換すればOutputになるか
-
-各質問に対して、私が答えやすい推奨回答も提示してください。
-最後に ipoa.md と work-improvement.html に変換できる形で整理してください。</pre>
-        </div>
-        <div class="resource">詳細ページ: <a href="ipoa.html">IPOAフレームワーク</a></div>
-      </section>
-
       <section id="grill">
         <div class="section-head">
-          <div class="section-no">3</div>
+          <div class="section-no">2</div>
           <div>
             <h2>grill-me型プロンプトで業務を深掘りする</h2>
             <p class="section-sub">方針が未定でも大丈夫。AIに執拗にインタビューさせて、深層心理から言語化する。</p>
@@ -1006,6 +963,49 @@ flowchart TD
 
 そのうえで、初回の実務タスクとして一番筋が良いものを1つ選んでください。</pre>
         </div>
+      </section>
+
+      <section id="ipoa">
+        <div class="section-head">
+          <div class="section-no">3</div>
+          <div>
+            <h2>IPOAで「なにをやりたい」の手前を定義する</h2>
+            <p class="section-sub">Outputから始めず、Actionから逆算して必要なInputを決める。</p>
+          </div>
+        </div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>「BIを作りたい」と言うけど、見た後に誰が何を決めるかは曖昧なまま。</span></div>
+          <div><strong>だから</strong><span>Actionから逆算して、Output、Input、Processを決める。</span></div>
+          <div><strong>終わると</strong><span>AIに頼むものが「それっぽい資料」ではなく、行動につながる成果物になる。</span></div>
+        </div>
+        <div class="diagram">
+          <p class="diagram-title">IPOAは Action から逆算する</p>
+          <div class="mermaid">
+flowchart TB
+    A["Action\n誰が何を決めるか"] --> O["Output\n何が見えれば動けるか"]
+    O --> I["Input\n判断材料は何か"]
+    I --> P["Process\nどう変換・分析するか"]
+    P --> O
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card"><h4>弱い入口</h4><p>「BIを作りたい」「ダッシュボードがほしい」。これはOutput名だけで、行動が決まっていない。</p></div>
+          <div class="card"><h4>強い入口</h4><p>「毎週月曜に赤字見込み案件を3件選び、担当者に次の一手を決めさせたい」。Actionがあるので必要なOutputが決まる。</p></div>
+        </div>
+        <div class="code-block">
+          <div class="code-label">さっき覚えたgrill-meの型でIPOAを深掘りする<button class="copy" data-copy>コピー</button></div>
+          <pre>この業務について、IPOAで深掘りしてください。
+
+順番:
+1. Action: 誰が、いつ、何を決める・動くべきか
+2. Output: そのActionに必要な見える成果物は何か
+3. Input: 判断材料として何の情報が必要か
+4. Process: Inputをどう整理・分析・変換すればOutputになるか
+
+各質問に対して、私が答えやすい推奨回答も提示してください。
+最後に ipoa.md と work-improvement.html に変換できる形で整理してください。</pre>
+        </div>
+        <div class="resource">詳細ページ: <a href="ipoa.html">IPOAフレームワーク</a></div>
       </section>
 
       <section id="claude-migrate">
@@ -1962,7 +1962,7 @@ flowchart TB
         </div>
 
         <div class="code-block">
-          <div class="code-label">grill-me結果から概要.mdを生成（Section 03の深掘り後に実行）<button class="copy" data-copy>コピー</button></div>
+          <div class="code-label">grill-me結果から概要.mdを生成（Section 02の深掘り後に実行）<button class="copy" data-copy>コピー</button></div>
           <pre>今のインタビュー結果を「概要.md」として保存してください。
 
 含める内容:
