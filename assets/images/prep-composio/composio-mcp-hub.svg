@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Composio as an MCP hub</title>
+  <desc id="desc">A diagram comparing individual MCP setup with using Composio Connect as a single hub for multiple apps.</desc>
+  <rect width="1200" height="560" fill="#f7f8f7"/>
+  <style>
+    .label{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;fill:#17211d}
+    .muted{fill:#66736e}
+    .box{fill:#fff;stroke:#dce4df;stroke-width:2;rx:16}
+    .hub{fill:#e6f5f2;stroke:#0f766e;stroke-width:3;rx:22}
+    .line{stroke:#0f766e;stroke-width:3;fill:none;marker-end:url(#arrow)}
+    .weak{stroke:#c5d0ca;stroke-width:3;fill:none;marker-end:url(#arrow2)}
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f766e"/>
+    </marker>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#c5d0ca"/>
+    </marker>
+  </defs>
+  <text x="60" y="56" class="label" font-size="34" font-weight="800">Composio = MCPのまとめ管理レイヤー</text>
+  <text x="60" y="92" class="label muted" font-size="19">個別MCP設定で疲れる人は、Composio Connectを1本つなぐ選択肢がある</text>
+
+  <text x="95" y="145" class="label" font-size="22" font-weight="800">個別に入れる場合</text>
+  <rect class="box" x="90" y="175" width="220" height="72"/>
+  <text x="128" y="219" class="label" font-size="20" font-weight="800">Codex / Claude</text>
+  <path class="weak" d="M310 210 L405 160"/>
+  <path class="weak" d="M310 210 L405 220"/>
+  <path class="weak" d="M310 210 L405 280"/>
+  <path class="weak" d="M310 210 L405 340"/>
+  <rect class="box" x="420" y="122" width="190" height="58"/><text x="455" y="157" class="label" font-size="17" font-weight="700">GitHub Token</text>
+  <rect class="box" x="420" y="190" width="190" height="58"/><text x="464" y="225" class="label" font-size="17" font-weight="700">Asana PAT</text>
+  <rect class="box" x="420" y="258" width="190" height="58"/><text x="461" y="293" class="label" font-size="17" font-weight="700">Slack OAuth</text>
+  <rect class="box" x="420" y="326" width="190" height="58"/><text x="464" y="361" class="label" font-size="17" font-weight="700">Notion OAuth</text>
+  <text x="95" y="430" class="label muted" font-size="17">ツールごとに設定・認証・更新を見る必要がある</text>
+
+  <line x1="660" y1="125" x2="660" y2="450" stroke="#dce4df" stroke-width="2"/>
+
+  <text x="715" y="145" class="label" font-size="22" font-weight="800">Composioを使う場合</text>
+  <rect class="box" x="710" y="178" width="205" height="72"/>
+  <text x="746" y="222" class="label" font-size="20" font-weight="800">Codex / Claude</text>
+  <path class="line" d="M915 214 L995 214"/>
+  <rect class="hub" x="1000" y="158" width="145" height="112"/>
+  <text x="1027" y="207" class="label" font-size="22" font-weight="900">Composio</text>
+  <text x="1024" y="235" class="label muted" font-size="14">Connect MCP</text>
+  <path class="line" d="M1070 270 L930 345"/>
+  <path class="line" d="M1070 270 L1030 350"/>
+  <path class="line" d="M1070 270 L1135 345"/>
+  <rect class="box" x="800" y="350" width="135" height="56"/><text x="830" y="384" class="label" font-size="17" font-weight="700">GitHub</text>
+  <rect class="box" x="950" y="365" width="135" height="56"/><text x="996" y="399" class="label" font-size="17" font-weight="700">Asana</text>
+  <rect class="box" x="1100" y="350" width="80" height="56"/><text x="1119" y="384" class="label" font-size="17" font-weight="700">Slack</text>
+  <text x="715" y="466" class="label muted" font-size="17">AIが必要なツールを探し、OAuth接続をブラウザで承認する</text>
+</svg>

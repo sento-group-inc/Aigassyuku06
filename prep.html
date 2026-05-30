@@ -104,6 +104,18 @@
       </div>
       <div class="note">目安時間: 慣れていない人でも1〜2時間で終わります。詰まったら <strong>AIに質問しながら進めてOK</strong> です。</div>
       <div class="ai-tip"><strong>わからなければAIに聞こう！</strong><br>ChatGPT、Claude、どちらでも使えます。「Macで〇〇のインストール方法を教えて」と話しかけるだけ。コマンドが意味不明なときも、そのままコピペして「これは何をするコマンド？」と聞けば教えてくれます。</div>
+      <div class="code-block">
+        <div class="code-label">詰まったときにAIへ貼るテンプレート<button class="copy" data-copy>コピー</button></div>
+        <pre>MacでAI合宿の事前準備をしています。
+Goal: Codex App / Homebrew / Node.js / Git を使える状態にしたいです。
+
+今やったこと:
+- 実行したコマンド: [ここに貼る]
+- 出たエラー: [ここに貼る]
+- Macの種類: [Apple Silicon / Intel / わからない]
+
+初心者にもわかるように、次に何を確認して、どのコマンドを1つずつ実行すればいいか教えてください。</pre>
+      </div>
     </section>
 
     <!-- ====== 用語プライマー ====== -->
@@ -161,16 +173,10 @@
       </div>
 
       <div class="image-grid">
-        <!-- IMG: homebrew-terminal-open.png  ターミナルを開く様子 — インターン挿入予定 -->
-        <figure>
-          <div class="placeholder-fig">ターミナルの開き方スクリーンショット<br><small>（インターン挿入予定: homebrew-terminal-open.png）</small></div>
-          <figcaption>Spotlight で「terminal」と検索</figcaption>
-        </figure>
-        <!-- IMG: homebrew-site.png  brew.sh の公式サイト — インターン挿入予定 -->
-        <figure>
-          <div class="placeholder-fig">Homebrew公式サイト（brew.sh）<br><small>（インターン挿入予定: homebrew-site.png）</small></div>
-          <figcaption>brew.sh のコピーボタン位置</figcaption>
-        </figure>
+        <figure><img src="assets/images/prep-homebrew/open-finder.png" alt="Finderからアプリケーションを開く" loading="lazy"><figcaption>Finderからアプリケーションを開く</figcaption></figure>
+        <figure><img src="assets/images/prep-homebrew/open-utility.png" alt="ユーティリティフォルダを開く" loading="lazy"><figcaption>アプリケーション → ユーティリティ</figcaption></figure>
+        <figure><img src="assets/images/prep-homebrew/open-terminal.png" alt="ターミナルアプリを開く" loading="lazy"><figcaption>ターミナル.app を開く</figcaption></figure>
+        <figure><img src="assets/images/prep-homebrew/homebrew-site.png" alt="Homebrew公式サイト" loading="lazy"><figcaption>brew.sh のインストールコマンドをコピー</figcaption></figure>
       </div>
 
       <h3>インストールコマンド</h3>
@@ -182,6 +188,13 @@
 
       <h3>PATH を通す（Apple Silicon Macの場合）</h3>
       <p>M1/M2/M3/M4 Mac を使っている場合、インストール後にターミナルの指示に従って PATH を通します。インストール完了時に <strong>「Run these two commands...」</strong> と表示されるので、その2行をコピーして実行してください。</p>
+      <div class="image-grid">
+        <figure><img src="assets/images/prep-homebrew/brew-path.png" alt="Homebrewインストール後のPATH設定" loading="lazy"><figcaption>インストール後に表示される「次に実行する2行」をそのまま使う</figcaption></figure>
+        <figure>
+          <div class="placeholder-fig">ここで迷ったら<br><strong>「この画面で次に何を打てばいい？」</strong><br>とAIに聞く</div>
+          <figcaption>エラー文と画面の文言を貼ればAIが読める</figcaption>
+        </figure>
+      </div>
       <div class="code-block">
         <div class="code-label">② PATH の設定（表示された内容をそのまま実行。以下は例）<button class="copy" data-copy>コピー</button></div>
         <pre>echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile</pre>
@@ -198,6 +211,20 @@
       </div>
       <div class="note">「Homebrew 4.x.x」のような表示が出ればインストール成功です。</div>
       <div class="ai-tip"><strong>わからなければAIに聞こう！</strong><br>エラーが出たら、赤いメッセージをそのままコピーして ChatGPT か Claude に「このエラーの直し方を教えて」と貼り付けてください。ほとんどのエラーは解決できます。</div>
+      <h3>よく使う brew コマンド</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>コマンド</th><th>意味</th><th>使う場面</th></tr></thead>
+          <tbody>
+            <tr><td><code>brew search 名前</code></td><td>インストールできるものを探す</td><td>ZoomやChromeなど、名前が合っているか確認したい時</td></tr>
+            <tr><td><code>brew install 名前</code></td><td>CLIや開発ツールを入れる</td><td>Node.js、Git、gogcliなど</td></tr>
+            <tr><td><code>brew install --cask 名前</code></td><td>Macアプリを入れる</td><td>Chrome、VS Code、ngrokなど</td></tr>
+            <tr><td><code>brew list</code></td><td>入っているものを見る</td><td>「もう入ってる？」を確認したい時</td></tr>
+            <tr><td><code>brew update</code></td><td>Homebrewの情報を更新する</td><td>インストール前に情報を最新にする</td></tr>
+            <tr><td><code>brew upgrade</code></td><td>入っているものを更新する</td><td>古いツールをまとめて更新する</td></tr>
+          </tbody>
+        </table>
+      </div>
       <div class="resource">参考（常設）: <a href="https://www.kikagaku.co.jp/personal/blog/homebrew-install-howto" target="_blank" rel="noopener">Homebrew インストール方法 — 株式会社キカガク</a> / <a href="https://brew.sh/" target="_blank" rel="noopener">Homebrew 公式</a></div>
     </section>
 
@@ -282,9 +309,62 @@
       <div class="resource">参考（常設）: <a href="https://developers.openai.com/codex/app/" target="_blank" rel="noopener">OpenAI Codex App</a> / <a href="https://note.com/munakata_souri/n/n4aacfa6d9729" target="_blank" rel="noopener">Codexセットアップ解説（むなかた note 2026年4月）</a></div>
     </section>
 
+    <!-- ====== STEP 4: ChatGPT Mobile ====== -->
+    <section id="codex-mobile">
+      <h2><span class="section-no">4</span>ChatGPTアプリでCodexをスマホから見る</h2>
+      <p>Codexは長い作業を任せることがあります。Macの前にずっと座っていなくても、ChatGPTモバイルアプリから進捗確認、承認、方向修正ができます。</p>
+      <div class="note"><strong>ここで大事な前提</strong><br>Codex Mobileはスマホ単体でMac内のファイルを編集するものではありません。Mac側のCodex Appが動いていて、その作業状態をスマホのChatGPTアプリから見る・動かす、という理解です。</div>
+
+      <figure>
+        <img src="assets/images/prep-mobile/codex-mobile-flow.svg" alt="Codexをスマホから見守る仕組み" loading="lazy">
+        <figcaption>ファイルや認証はMac側に残し、スマホは確認・承認・指示のリモコンになる</figcaption>
+      </figure>
+
+      <div class="image-grid">
+        <figure><img src="assets/images/prep-mobile/x-codex-mobile-04.jpg" alt="Codex Mobileの仕組み" loading="lazy"><figcaption>スマホ単体ではなくMacのCodex Appにつながる</figcaption></figure>
+        <figure><img src="assets/images/prep-mobile/x-codex-mobile-06.jpg" alt="Codex Desktop Appの有無で分岐" loading="lazy"><figcaption>まずMac側にCodex Appがあるか確認</figcaption></figure>
+      </div>
+
+      <h3>事前にやること</h3>
+      <div class="step-flow">
+        <div class="step">
+          <div class="step-no">1</div>
+          <div><strong>Mac側のCodex Appを最新版にする</strong><br>Codex Appを開き、右上などに更新表示が出ていたら更新する。古いままだとスマホ側が「デスクトップアプリを待っています」から進まないことがあります。</div>
+        </div>
+        <div class="step">
+          <div class="step-no">2</div>
+          <div><strong>スマホにChatGPTアプリを入れる</strong><br>App Store / Google Play から公式ChatGPTアプリを入れ、Mac側と同じChatGPTアカウントでログインする。</div>
+        </div>
+        <div class="step">
+          <div class="step-no">3</div>
+          <div><strong>スマホ側でCodexを開く</strong><br>ChatGPTアプリ内のCodexを開く。表示されない場合は、アプリ更新、同じアカウントか、ロールアウト状況を確認する。</div>
+        </div>
+        <div class="step">
+          <div class="step-no done">4</div>
+          <div><strong>Mac側の「Codex mobileを設定」を押す</strong><br>スマホが待機画面になったら、Mac側のCodex Appに戻り、左メニューや案内に出る「Codex mobileを設定」を押して接続する。</div>
+        </div>
+      </div>
+
+      <div class="image-grid">
+        <figure><img src="assets/images/prep-mobile/x-codex-mobile-07.jpg" alt="スマホ側の接続手順" loading="lazy"><figcaption>スマホ側: ChatGPTアプリ更新 → Codexを開く → 接続</figcaption></figure>
+        <figure><img src="assets/images/prep-mobile/x-codex-mobile-09.jpg" alt="Mac側でCodex mobileをセットアップ" loading="lazy"><figcaption>Mac側: Codex mobileをセットアップ</figcaption></figure>
+        <figure><img src="assets/images/prep-mobile/x-codex-mobile-12.jpg" alt="QRコードでCodex Mobileを接続" loading="lazy"><figcaption>QRコードが出たらスマホで読み取る</figcaption></figure>
+        <figure><img src="assets/images/prep-mobile/x-codex-mobile-15.jpg" alt="接続完了画面" loading="lazy"><figcaption>接続後、スマホからCodex作業を見られる</figcaption></figure>
+      </div>
+
+      <h3>合宿での使いどころ</h3>
+      <div class="grid">
+        <div class="card accent"><strong>長い作業を見守る</strong><span>調査、画像整理、HTML生成、テスト実行など、Mac側で進む作業をスマホから確認できる。</span></div>
+        <div class="card"><strong>承認待ちを止めない</strong><span>Codexが「このコマンドを実行していい？」と聞いたとき、席を外していても気づける。</span></div>
+        <div class="card"><strong>移動中に方向修正</strong><span>出力を見て「この方針で」「そこは違う」と短く返せる。</span></div>
+        <div class="card"><strong>ただしMacは必要</strong><span>Mac側のCodex App、作業フォルダ、認証、起動状態が土台。スマホはリモコン。</span></div>
+      </div>
+      <div class="resource">参考（常設）: <a href="https://chatgpt.com/codex/mobile/" target="_blank" rel="noopener">Codex for mobile（OpenAI）</a> / <a href="https://openai.com/index/work-with-codex-from-anywhere/" target="_blank" rel="noopener">Work with Codex from anywhere（OpenAI）</a> / <a href="https://x.com/Codestudiopjbk/status/2055041039313035454" target="_blank" rel="noopener">Codex Studioさんの解説ポスト</a></div>
+    </section>
+
     <!-- ====== STEP 4: Claude Code（任意） ====== -->
     <section id="claude-code">
-      <h2><span class="section-no">4</span>Claude Code のセットアップ（任意）</h2>
+      <h2><span class="section-no">5</span>Claude Code のセットアップ（任意）</h2>
       <p>合宿では Codex メインですが、Claude Code も使える状態にしておくと、agmsg でのデュアル運用ができます（本編 agmsg セクション参照）。</p>
       <div class="code-block">
         <div class="code-label">① Claude Code をインストール<button class="copy" data-copy>コピー</button></div>
@@ -299,7 +379,7 @@
 
     <!-- ====== STEP 5: ngrok ====== -->
     <section id="ngrok">
-      <h2><span class="section-no">5</span>ngrok のインストール</h2>
+      <h2><span class="section-no">6</span>ngrok のインストール</h2>
       <p>ngrok はローカルで動かしているサーバーを、インターネット経由で一時的に公開するツール。「自社の方針HTMLを作って今すぐURLで共有したい」ときに便利。</p>
       <div class="grid">
         <div class="card"><strong>Vercel との違い</strong><span>Vercel = GitHubに push するたびに自動デプロイ。恒久公開。<br>ngrok = コマンド1行で今すぐ外部公開。一時的な共有向け。</span></div>
@@ -319,7 +399,7 @@
 
     <!-- ====== STEP 6: agent-browser ====== -->
     <section id="agent-browser">
-      <h2><span class="section-no">6</span>agent-browser のインストール</h2>
+      <h2><span class="section-no">7</span>agent-browser のインストール</h2>
       <p>公開した URL を AI に読ませながら進めるためのツール（Rust製 CLI）。「この合宿サイトを Codex に読ませて、次にやることを聞く」ような使い方ができます。</p>
       <div class="code-block">
         <div class="code-label">① agent-browser をインストール<button class="copy" data-copy>コピー</button></div>
@@ -334,20 +414,24 @@
 
     <!-- ====== STEP 7: Composio ====== -->
     <section id="composio">
-      <h2><span class="section-no">7</span>Composio — MCP をまとめて管理する</h2>
-      <p>MCP を1つずつ手で設定するのが面倒な人向け。Composio を使うと <strong>GitHub / Asana / Slack / Notion など 1000以上のツール</strong> を、ダッシュボードから一元管理できます。</p>
+      <h2><span class="section-no">8</span>Composio — MCP をまとめて管理する</h2>
+      <p>MCP を1つずつ手で設定するのが面倒な人向け。Composio Connect を使うと <strong>GitHub / Asana / Slack / Notion など 1000以上のツール</strong> を、1つのMCP接続から扱えるようになります。</p>
 
       <h3>Composio とは</h3>
       <div class="grid">
         <div class="card accent">
           <strong>MCPのハブ</strong>
-          <span>Composio の API キー1つで、1000以上の外部ツールに Codex / Claude から接続できます。ツールごとのAPIキーやOAuth設定を Composio が代わりに管理してくれます。</span>
+          <span><code>https://connect.composio.dev/mcp</code> を1本つなぐと、Composio側でGitHub、Asana、Slackなどの接続を管理できます。</span>
         </div>
         <div class="card">
           <strong>なにが便利か</strong>
-          <span>通常は Context7・GitHub・Exa それぞれのAPIキーを config.toml に書く必要があります。Composio を使うと Composio の API キー1つで複数ツールに繋がります。</span>
+          <span>通常はツールごとにAPIキーやOAuthを管理します。Composioを使うと、AIが必要なアプリを探し、ブラウザで認証し、接続状態をダッシュボードで見られます。</span>
         </div>
       </div>
+      <figure>
+        <img src="assets/images/prep-composio/composio-mcp-hub.svg" alt="ComposioがMCPのまとめ管理レイヤーになる図" loading="lazy">
+        <figcaption>個別MCP設定で疲れる人は、Composioを1本の入口にする選択肢がある</figcaption>
+      </figure>
 
       <h3>仕組みのイメージ（Composio なし vs あり）</h3>
       <div class="grid">
@@ -365,7 +449,7 @@ flowchart TB
           <p style="font-weight:800;margin-bottom:8px;">Composio あり</p>
           <div class="mermaid">
 flowchart TB
-    Codex["Codex / Claude"] --> CP["Composio Hub\n1つのAPIキーで管理"]
+    Codex["Codex / Claude"] --> CP["Composio Connect\nMCP URL 1本で管理"]
     CP --> C7["Context7"]
     CP --> GH["GitHub"]
     CP --> AS["Asana"]
@@ -379,45 +463,47 @@ flowchart TB
         <div class="step">
           <div class="step-no">1</div>
           <div>
-            <strong>アカウント作成（無料）</strong><br>
-            <a href="https://dashboard.composio.dev/" target="_blank" rel="noopener">dashboard.composio.dev</a> でアカウントを作成。
+            <strong>アカウント作成</strong><br>
+            <a href="https://dashboard.composio.dev/" target="_blank" rel="noopener">dashboard.composio.dev</a> でアカウントを作成し、ダッシュボードを開く。
             <!-- IMG: composio-dashboard.png  ダッシュボードの画面 — インターン挿入予定 -->
           </div>
         </div>
         <div class="step">
           <div class="step-no">2</div>
           <div>
-            <strong>APIキーを取得</strong><br>
-            ダッシュボード右上の API Keys セクションから <code>YOUR_COMPOSIO_API_KEY</code> をコピー。
-            <!-- IMG: composio-apikey.png  APIキー画面 — インターン挿入予定 -->
+            <strong>Connect Apps を開く</strong><br>
+            GitHub、Asana、Slackなど、使いたいアプリを選んでブラウザでOAuth認証する。
+            <!-- IMG: composio-tools.png  接続ツール一覧 — インターン挿入予定 -->
           </div>
         </div>
         <div class="step">
           <div class="step-no">3</div>
           <div>
-            <strong>Composio MCP を config.toml に追加</strong><br>
-            Codex の設定ファイル（<code>~/.codex/config.toml</code>）に追記する。
+            <strong>Composio MCP をCodexに追加</strong><br>
+            Codexのチャットに下の依頼を貼る。手でconfigを書くより、Codexに設定してもらう方が当日再現しやすい。
           </div>
         </div>
         <div class="step">
           <div class="step-no">4</div>
           <div>
-            <strong>ブラウザで認証</strong><br>
-            Codex から Composio にアクセスすると認証ウィンドウが開く。ダッシュボードで各ツールを接続すれば完了。
+            <strong>動作確認</strong><br>
+            Codexに「Composioで使えるツールを探して」と聞く。接続済みアプリが出ればOK。
           </div>
         </div>
       </div>
 
       <div class="code-block">
-        <div class="code-label">config.toml に追加（YOUR_COMPOSIO_API_KEY は自分のキーに置き換え）<button class="copy" data-copy>コピー</button></div>
-        <pre>[mcp_servers.composio]
-command = "npx"
-args = ["-y", "@composio/mcp@latest", "--api-key", "YOUR_COMPOSIO_API_KEY"]</pre>
+        <div class="code-label">Codexに貼る設定依頼<button class="copy" data-copy>コピー</button></div>
+        <pre>ComposioをCodexで使えるように設定してください。
+
+公式ページ https://composio.dev/codex を確認し、MCPサーバー名を composio、transport type を HTTP、URL を https://connect.composio.dev/mcp として追加してください。
+認証が必要な場合は、ブラウザで私が承認します。
+設定後、Composioで接続できるアプリ候補を検索して、GitHub / Asana / Slack / Notion のうち今回の合宿で使う価値が高いものを提案してください。</pre>
       </div>
 
       <div class="note"><strong>Composio は任意です</strong><br>合宿では各MCPを個別設定する方法（Section 06）をメインで説明します。Composio は「もっと楽にまとめて管理したい人向け」の選択肢として紹介します。</div>
       <div class="ai-tip"><strong>わからなければAIに聞こう！</strong><br>「Composio のセットアップ方法を教えて」と Claude か Codex に聞くと、ダッシュボードの操作手順も含めて答えてくれます。</div>
-      <div class="resource">参考（常設）: <a href="https://composio.dev/toolkits/composio/framework/codex" target="_blank" rel="noopener">Composio × Codex セットアップ（公式）</a> / <a href="https://dashboard.composio.dev/" target="_blank" rel="noopener">Composio ダッシュボード</a></div>
+      <div class="resource">参考（常設）: <a href="https://composio.dev/codex" target="_blank" rel="noopener">Composio × Codex セットアップ（公式）</a> / <a href="https://docs.composio.dev/docs/composio-connect" target="_blank" rel="noopener">Composio Connect Docs</a> / <a href="https://dashboard.composio.dev/" target="_blank" rel="noopener">Composio ダッシュボード</a></div>
     </section>
 
     <!-- ====== アカウント作成 ====== -->
@@ -426,6 +512,7 @@ args = ["-y", "@composio/mcp@latest", "--api-key", "YOUR_COMPOSIO_API_KEY"]</pre
       <p>アカウント作成・APIキー取得・パスワード入力は<strong>本人が行ってください</strong>。AIに代行入力させないでください。</p>
       <div class="grid">
         <div class="card"><strong>ChatGPT / Codex</strong><span><a href="https://chatgpt.com/" target="_blank" rel="noopener">chatgpt.com</a> でアカウント作成。Plus（月額$20）以上推奨。</span></div>
+        <div class="card"><strong>ChatGPTモバイルアプリ</strong><span><a href="https://chatgpt.com/codex/mobile/" target="_blank" rel="noopener">Codex for mobile</a> からiOS / Android版を入れる。Mac側と同じアカウントでログイン。</span></div>
         <div class="card"><strong>GitHub</strong><span><a href="https://github.com/" target="_blank" rel="noopener">github.com</a> でアカウント作成。Vercel連携で使う。</span></div>
         <div class="card"><strong>Vercel</strong><span><a href="https://vercel.com/new" target="_blank" rel="noopener">vercel.com</a> にGitHubでログイン。HTMLサイトを自動デプロイ。</span></div>
         <div class="card"><strong>Asana</strong><span><a href="https://asana.com/" target="_blank" rel="noopener">asana.com</a> でアカウント作成。タスク管理の自動化演習で使う。</span></div>
@@ -446,6 +533,7 @@ args = ["-y", "@composio/mcp@latest", "--api-key", "YOUR_COMPOSIO_API_KEY"]</pre
         <label><input type="checkbox"> <span>Git が入っている（<code>git --version</code> が通る）</span></label>
         <label><input type="checkbox"> <span>Codex App を開けて、フォルダを追加できる</span></label>
         <label><input type="checkbox"> <span>ChatGPT（OpenAI）アカウントにログインできる</span></label>
+        <label><input type="checkbox"> <span>スマホにChatGPTアプリを入れ、Codexを開ける</span></label>
         <label><input type="checkbox"> <span>GitHub アカウントにログインできる</span></label>
         <label><input type="checkbox"> <span>Vercel に GitHub でログインできる</span></label>
         <label><input type="checkbox"> <span>Asana アカウントを作った</span></label>

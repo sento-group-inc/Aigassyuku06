@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">ChatGPT mobile app controls Codex running on a Mac</title>
+  <desc id="desc">A diagram showing Codex running on a Mac, synced through OpenAI's secure relay to the ChatGPT mobile app.</desc>
+  <rect width="1200" height="520" fill="#f7f8f7"/>
+  <style>
+    .label{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;fill:#17211d}
+    .muted{fill:#66736e}
+    .box{fill:#fff;stroke:#dce4df;stroke-width:2;rx:18}
+    .accent{fill:#e6f5f2;stroke:#0f766e;stroke-width:2;rx:18}
+    .line{stroke:#0f766e;stroke-width:4;fill:none;marker-end:url(#arrow)}
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f766e"/>
+    </marker>
+  </defs>
+  <text x="60" y="60" class="label" font-size="34" font-weight="800">Codexをスマホから見守る</text>
+  <text x="60" y="96" class="label muted" font-size="19">Mac側で動く作業を、ChatGPTモバイルアプリから確認・承認・方向修正する</text>
+
+  <rect class="box" x="70" y="150" width="275" height="230"/>
+  <rect x="110" y="185" width="195" height="120" rx="10" fill="#17211d"/>
+  <rect x="130" y="207" width="155" height="18" rx="4" fill="#e7f1ed"/>
+  <rect x="130" y="238" width="120" height="14" rx="4" fill="#9fb4ad"/>
+  <rect x="130" y="265" width="140" height="14" rx="4" fill="#9fb4ad"/>
+  <text x="96" y="345" class="label" font-size="22" font-weight="800">Mac / Codex App</text>
+  <text x="96" y="373" class="label muted" font-size="16">ファイル・認証・作業状態はMac側</text>
+
+  <path class="line" d="M365 265 C455 190, 535 190, 625 265"/>
+  <rect class="accent" x="450" y="185" width="265" height="160"/>
+  <text x="482" y="242" class="label" font-size="25" font-weight="800">Secure relay</text>
+  <text x="482" y="275" class="label muted" font-size="16">PCを外部公開せず同期</text>
+  <text x="482" y="304" class="label muted" font-size="16">出力・承認・差分が届く</text>
+  <path class="line" d="M735 265 C825 190, 900 190, 990 265"/>
+
+  <rect class="box" x="850" y="125" width="265" height="285"/>
+  <rect x="930" y="150" width="110" height="230" rx="24" fill="#17211d"/>
+  <rect x="944" y="180" width="82" height="155" rx="8" fill="#fff"/>
+  <rect x="955" y="195" width="60" height="12" rx="4" fill="#0f766e"/>
+  <rect x="955" y="222" width="48" height="10" rx="4" fill="#dce4df"/>
+  <rect x="955" y="246" width="62" height="10" rx="4" fill="#dce4df"/>
+  <rect x="955" y="285" width="46" height="18" rx="9" fill="#e6f5f2" stroke="#0f766e"/>
+  <text x="880" y="345" class="label" font-size="22" font-weight="800">ChatGPT mobile</text>
+  <text x="880" y="373" class="label muted" font-size="16">移動中に確認・承認・指示</text>
+
+  <rect x="70" y="430" width="1045" height="54" rx="14" fill="#fff7e6" stroke="#f2d7a5"/>
+  <text x="100" y="464" class="label" font-size="18" font-weight="700">合宿での使いどころ: Macを動かしたまま席を外しても、スマホで進捗・承認待ち・結果を見られる</text>
+</svg>
