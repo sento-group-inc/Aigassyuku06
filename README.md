@@ -6,6 +6,8 @@
 
 - `index.html` — 講義サイト本体
 - `prep.html` — 事前準備とAGENTS.md / CLAUDE.md用語プライマー
+- `ipoa.html` — IPOAフレームワーク解説
+- `shared-standard.html` — 個人OSからチーム標準への橋渡し
 - `schedule.html` — 合宿2日間のスケジュール
 - `repos.html` — 便利なGitHubリポジトリ一覧
 - `IMAGES-TODO.md` — 追加スクリーンショット撮影メモ

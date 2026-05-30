@@ -190,7 +190,7 @@
 
   <div class="page-header">
     <div class="page-header-inner">
-      <p class="breadcrumb"><a href="index.html">合宿サイト TOP</a> / <a href="prep.html">事前準備</a> / 合宿スケジュール</p>
+      <p class="breadcrumb"><a href="index.html">合宿サイト TOP</a> / <a href="prep.html">事前準備</a> / <a href="ipoa.html">IPOA</a> / 合宿スケジュール</p>
       <h1>合宿スケジュール</h1>
       <p class="lead">2026年6月9日(火)〜10日(水) — 千葉・古民家</p>
     </div>
@@ -204,15 +204,15 @@
 flowchart TB
     subgraph D1["Day 1 — 6/9(火)"]
         direction TB
-        A["9:00\nスタート・開会"] --> B["9:30〜13:00\nSection 00-06\nセットアップ"]
+        A["9:00\nスタート・開会"] --> B["9:30〜13:00\nSection 00-06\nIPOA・深掘り・環境作り"]
         B --> C["13:00〜18:00\n各自作業\n(Section 07-18)"]
         C --> D["18:00\n翌日目標を\n全体発表"]
         D --> E["18:30〜\n夜の作業\n自由時間"]
     end
     subgraph D2["Day 2 — 6/10(水)"]
         direction TB
-        F["9:00\n朝作業"] --> G["10:00\n成果発表\n(各自5分)"]
-        G --> H["11:00〜\n振り返り\n閉会"]
+        F["9:00\n朝作業"] --> G["10:00\n業務改善HTML発表\n(各自10分)"]
+        G --> H["11:45〜\n振り返り\n閉会"]
     end
     E --> F
       </div>
@@ -232,8 +232,8 @@ flowchart TB
         </div>
         <div class="tl">
           <span class="time">09:30</span>
-          <strong>セットアップ開始（Section 01-06）</strong>
-          <span>grill-me登録 → Codexインストール → AGENTS.md作成 → MCP設定まで。13:00を目安に完了させる。</span>
+          <strong>IPOA・深掘り・環境作り（Section 01-06）</strong>
+          <span>IPOA → grill-me登録 → AGENTS.md作成 → MCP設定まで。Codexインストールは事前準備ページに寄せる。</span>
         </div>
         <div class="tl highlight">
           <span class="time">11:00 ごろ</span>
@@ -252,8 +252,8 @@ flowchart TB
         </div>
         <div class="tl goal">
           <span class="time">18:00</span>
-          <strong>翌朝の発表内容を全体に共有</strong>
-          <span>「明日10時に何を発表するか」を声に出す。内容の完成度は問わない。方向性だけ出せればOK。</span>
+          <strong>翌朝の発表HTMLを全体に共有</strong>
+          <span>「明日10時にどの業務改善HTMLを見せるか」を声に出す。完成度より、Actionが定義されていることを優先。</span>
         </div>
         <div class="tl">
           <span class="time">18:30〜</span>
@@ -293,45 +293,45 @@ flowchart TB
         <div class="tl">
           <span class="time">09:00</span>
           <strong>朝作業・最終調整</strong>
-          <span>発表内容の仕上げ。Vercel公開・AGENTS.md更新・Skill整理など。</span>
+          <span>業務改善HTMLの仕上げ。IPOA、現状の詰まり、次の2週間の方針を入れる。</span>
         </div>
         <div class="tl highlight">
           <span class="time">10:00</span>
-          <strong>成果発表（各自5分）</strong>
-          <span>「何を作ったか」ではなく「AGENTS.mdに何を書いたか、どのSkillを作ったか、合宿後も続くか」を中心に発表。</span>
+          <strong>業務改善HTML発表（各自10分）</strong>
+          <span>自分の業務改善HTMLをURLまたはローカル画面で見せる。Action、Output、次の2週間の方針まで話す。</span>
         </div>
         <div class="tl">
           <span class="time">11:00</span>
           <strong>振り返り・全体ディスカッション</strong>
-          <span>詰まりのパターン共有、AGENTS.md改善ポイント、今後の運用について。</span>
+          <span>詰まりのパターン共有、個人OSからチーム標準へ進める時の論点、今後の運用について。</span>
         </div>
         <div class="tl">
-          <span class="time">11:30</span>
+          <span class="time">12:00</span>
           <strong>閉会・撤収</strong>
         </div>
       </div>
 
-      <h3>成果発表のフォーマット（各自5分）</h3>
+      <h3>成果発表のフォーマット（各自10分）</h3>
       <div class="milestone-grid">
         <div class="milestone">
-          <strong>① 業務の深掘り結果</strong>
-          <span>grill-meで何が出てきたか。気づいた詰まりや前提は何か。</span>
+          <strong>① IPOA</strong>
+          <span>Input / Process / Output / Action。特にActionを最初に話す。</span>
         </div>
         <div class="milestone">
-          <strong>② AGENTS.mdに何を書いたか</strong>
-          <span>判断軸・安全ルール・継続改善のルールで追記したもの。</span>
+          <strong>② 現状の詰まり</strong>
+          <span>何が止まっているのか。判断、情報、作業、共有のどこが詰まりか。</span>
         </div>
         <div class="milestone">
-          <strong>③ 作ったSkill / エージェント</strong>
-          <span>何を自動化したか。どんなエージェントを設計したか。</span>
+          <strong>③ 作ったOutput</strong>
+          <span>業務改善HTML、シート、GASアプリ、Vercel公開URLなど。</span>
         </div>
         <div class="milestone done">
-          <strong>④ 合宿後も続くか</strong>
-          <span>次の一手を動詞で1つ言える状態。「来週〇〇する」。</span>
+          <strong>④ 次の2週間の方針</strong>
+          <span>誰が何をするか。AIに任せる作業、人間が決める作業を分ける。</span>
         </div>
       </div>
 
-      <div class="warn">発表は「完成した成果物」を見せる場ではありません。「運用が続くかどうか」の証拠を出す場です。AGENTS.mdが空のままだと合宿後に止まります。</div>
+      <div class="warn">発表はAGENTS.mdの読み上げではありません。自分の業務改善HTMLを見せて、どのActionが起きるのかを話す場です。</div>
     </section>
 
     <section>
@@ -352,6 +352,8 @@ flowchart TD
   <footer>
     <a href="index.html">合宿サイト TOP</a> /
     <a href="prep.html">事前準備</a> /
+    <a href="ipoa.html">IPOA</a> /
+    <a href="shared-standard.html">個人OSからチーム標準へ</a> /
     <a href="repos.html">リポジトリ一覧</a>
   </footer>
 

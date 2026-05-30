@@ -451,6 +451,21 @@
       font-size: 12px;
       font-weight: 700;
     }
+    .code-help {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      padding: 10px 14px;
+      border-bottom: 1px solid #26332f;
+      color: #b8cbc5;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .code-help span {
+      display: block;
+      color: #7f9890;
+      font-weight: 800;
+    }
     button.copy {
       border: 1px solid #3b4b45;
       border-radius: 6px;
@@ -609,6 +624,27 @@
       font-size: 13px;
       line-height: 1.6;
     }
+    .intro-punch {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .intro-punch div {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface-soft);
+      padding: 13px 15px;
+    }
+    .intro-punch strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--ink);
+    }
+    .intro-punch span {
+      color: var(--muted);
+      font-size: 13px;
+    }
     .mermaid {
       margin: 14px 0;
       overflow-x: auto;
@@ -641,7 +677,7 @@
     }
     .page-nav a:hover { background: #d0ede8; }
     @media (max-width: 920px) {
-      .hero-grid, .layout, .meaning, .cards, .image-grid, .complete, .section-purpose, .mini-grid, .benefit-cards {
+      .hero-grid, .layout, .meaning, .cards, .image-grid, .complete, .section-purpose, .mini-grid, .benefit-cards, .intro-punch, .code-help {
         grid-template-columns: 1fr;
       }
       .toc { position: static; }
@@ -657,29 +693,31 @@
       <div class="eyebrow">
         <span class="pill primary">2026.06.09-10</span>
         <span class="pill">千葉・古民家</span>
-        <span class="pill">Codex / AGENTS.md / MCP / GAS / Vercel</span>
+        <span class="pill">IPOA / Codex / AGENTS.md / MCP / GAS / Vercel</span>
       </div>
       <h1>Codex分身OS<br />合宿サイト</h1>
-      <p class="lead">AIに毎回説明する状態を終わらせる。自分の会社・判断軸・業務の型を読んだCodex環境を作り、調査、実装、社内アプリ、公開まで一気に進める。</p>
+      <p class="lead">「なにをやりたい？」の手前から始める。IPOAで業務の因果を定義し、自分の会社・判断軸・業務の型を読んだCodex環境で、業務改善HTMLまで一気に作る。</p>
 
       <div class="hero-grid">
         <div class="outcome-panel">
           <h2>持ち帰るもの</h2>
           <ul class="outcomes">
+            <li><strong>IPOA</strong>Actionから逆算した業務改善の設計図</li>
             <li><strong>分身OS</strong>AGENTS / memory / state / logs がある作業環境</li>
-            <li><strong>深掘り導線</strong>grill-meで方針を言語化し、そのままAGENTS.mdへ変換</li>
+            <li><strong>業務改善HTML</strong>現状、詰まり、次の一手が見える成果物</li>
             <li><strong>外部取り込み</strong>GitHub / X / MCP / NotebookLMをCodexに接続</li>
-            <li><strong>運用証拠</strong>成果物ではなく、AGENTS.md改善履歴・Skill追加記録</li>
           </ul>
         </div>
         <div class="status-panel">
           <h2>合宿の目的</h2>
-          <div class="big">「AI環境を育てる人」になる</div>
-          <p>「AI使える人」ではない。合宿後もAGENTS追記・Skill改善が続くこと、その運用証拠を持ち帰ること。</p>
+          <div class="big">「自分の業務をAIで進める型」を持ち帰る</div>
+          <p>まず個人でできる状態を作る。そのうえで、組織では共有標準に外部化していく、という次の射程まで見えるようにする。</p>
         </div>
       </div>
       <div class="page-nav">
         <a href="prep.html">事前準備</a>
+        <a href="ipoa.html">IPOAフレームワーク</a>
+        <a href="shared-standard.html">個人OSからチーム標準へ</a>
         <a href="schedule.html">合宿スケジュール</a>
         <a href="repos.html">便利なリポジトリ一覧</a>
       </div>
@@ -690,8 +728,8 @@
     <div class="flow" id="flow">
       <a href="#overview"><span class="num">00</span><span class="label">全体像</span></a>
       <a href="#why"><span class="num">01</span><span class="label">なぜ作る</span></a>
-      <a href="#grill"><span class="num">02</span><span class="label">深掘り</span></a>
-      <a href="#codex"><span class="num">03</span><span class="label">Codex</span></a>
+      <a href="#ipoa"><span class="num">02</span><span class="label">IPOA</span></a>
+      <a href="#grill"><span class="num">03</span><span class="label">深掘り</span></a>
       <a href="#claude-migrate"><span class="num">04</span><span class="label">引っ越し</span></a>
       <a href="#agents"><span class="num">05</span><span class="label">AGENTS</span></a>
       <a href="#mcp"><span class="num">06</span><span class="label">MCP</span></a>
@@ -715,8 +753,8 @@
       <p class="toc-title">目次</p>
       <a href="#overview">00 合宿の全体像</a>
       <a href="#why">01 なぜ分身OSを作るのか</a>
-      <a href="#grill">02 grill-me型プロンプト</a>
-      <a href="#codex">03 Codexセットアップ</a>
+      <a href="#ipoa">02 IPOAフレームワーク</a>
+      <a href="#grill">03 grill-me型プロンプト</a>
       <a href="#claude-migrate">04 Claude Codeから引っ越す</a>
       <a href="#agents">05 AGENTS / memory / state</a>
       <a href="#mcp">06 MCPを取り込む</a>
@@ -734,6 +772,8 @@
       <a href="#agent-browser">18 agent-browser</a>
       <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--line)">
         <a href="prep.html" style="color:var(--accent-strong)">事前準備</a>
+        <a href="ipoa.html" style="color:var(--accent-strong)">IPOAフレームワーク</a>
+        <a href="shared-standard.html" style="color:var(--accent-strong)">個人OSからチーム標準へ</a>
         <a href="schedule.html" style="color:var(--accent-strong)">合宿スケジュール</a>
         <a href="repos.html" style="color:var(--accent-strong)">リポジトリ一覧</a>
       </div>
@@ -748,20 +788,26 @@
             <p class="section-sub">最初に全体を把握する。どのツールが・なぜ・どの順でつながるか。</p>
           </div>
         </div>
-        <div class="check">目的は「AI使える人」ではなく<strong>「AI環境を育てる人」</strong>になること。成果物ではなく、AGENTS.md改善履歴・Skill追加記録という運用証拠を持ち帰ることがゴール。合宿後も更新が続くかどうかが判定基準。</div>
+        <div class="check">目的は「AI使える人」ではなく<strong>「業務をAIで前に進める型を持つ人」</strong>になること。最終アウトカムは、自分の業務改善HTMLを見せて、次のActionを説明できる状態です。</div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>ツールが多すぎると、いま自分が何をしているのか見失う。</span></div>
+          <div><strong>だから</strong><span>最初に全体地図を見て、IPOAから公開までの因果をつなぐ。</span></div>
+          <div><strong>終わると</strong><span>次の章で何を押すか、何を貼るか、何のためかが迷子にならない。</span></div>
+        </div>
 
         <h3>ツール連携の全体像</h3>
         <div class="diagram">
           <p class="diagram-title">この合宿で作る「分身OS」の構成</p>
           <div class="mermaid">
 flowchart TB
-    A["Claude Code\n既存環境"] -->|"04 引越し"| B["Codex\nDesktop"]
-    B -->|"05 設定"| C["AGENTS.md\nmemory / state"]
-    C -->|"06 外部接続"| D["MCP\nContext7 / Exa / GitHub"]
-    D -->|"08 再利用化"| E["Skill化"]
-    E -->|"10-11 連携"| F["gogcli\nSheets / GAS"]
-    F -->|"13 公開"| G["Vercel"]
-    G -.->|"16 継続改善"| C
+    A["事前準備\nCodexセットアップ"] --> B["IPOA\nActionから逆算"]
+    B --> C["grill-me\n足りないInputを深掘り"]
+    C --> D["AGENTS.md\nmemory / state"]
+    D --> E["MCP\nContext7 / Exa / GitHub"]
+    E --> F["Skill化\n長い依頼を保存"]
+    F --> G["gogcli / GAS\nデータと社内アプリ"]
+    G --> H["業務改善HTML\nVercel / ngrokで共有"]
+    H -.-> I["継続改善\n個人OSからチーム標準へ"]
           </div>
         </div>
 
@@ -772,13 +818,13 @@ flowchart TB
 flowchart TB
     subgraph D1["Day 1 (6/9)"]
         direction TB
-        A["9:00\nスタート"] --> B["〜13:00\nセットアップ\n(Section 00-06)"]
+        A["9:00\nスタート"] --> B["〜13:00\nIPOA・深掘り・環境作り\n(Section 00-06)"]
         B --> C["13:00〜\n各自作業"]
         C --> D["18:00\n翌日目標を\n全体発表"]
     end
     subgraph D2["Day 2 (6/10)"]
         direction TB
-        E["9:00\n朝作業"] --> F["10:00\n成果発表\n(各自5分)"]
+        E["9:00\n朝作業"] --> F["10:00\n業務改善HTML発表\n(各自10分)"]
         F --> G["11:00\n振り返り\n閉会"]
     end
     D1 --> D2
@@ -788,7 +834,11 @@ flowchart TB
         <div class="cards">
           <div class="card">
             <h4><a href="schedule.html">合宿スケジュール詳細 →</a></h4>
-            <p>何時に何をするか、発表のフォーマットまで確認できます。</p>
+            <p>何時に何をするか、10分発表のフォーマットまで確認できます。</p>
+          </div>
+          <div class="card">
+            <h4><a href="ipoa.html">IPOAフレームワーク →</a></h4>
+            <p>「なにを作るか」の前に、どのActionを起こしたいかを定義します。</p>
           </div>
           <div class="card">
             <h4><a href="repos.html">便利なリポジトリ一覧 →</a></h4>
@@ -810,6 +860,11 @@ flowchart TB
           <div class="box"><strong>今やること</strong><span>毎回の説明をAGENTS.mdへ移し、次回から省略できる。</span></div>
           <div class="box"><strong>全員が同じようにできるか</strong><span>10人全員が同じフォルダ構成で再現できる。</span></div>
         </div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>AIに毎回「うちの会社は…」から説明して、作業前に疲れる。</span></div>
+          <div><strong>だから</strong><span>まず個人OSとして、自分の会社・判断軸・仕事の型を外に出す。</span></div>
+          <div><strong>終わると</strong><span>AIへの説明が減り、業務改善HTMLのような見える成果に時間を使える。</span></div>
+        </div>
         <p>あのね、みなさんAIを使ってるじゃないですか。ChatGPTに聞く。Claudeに聞く。資料を作らせる。メール文を直させる。それ自体はもう珍しくないんですよ。</p>
         <p>でも、たぶん同時にこういう感覚もあると思ってて。毎回、説明してませんか。「うちの会社はこうで」「このお客さんはこうで」「僕はこういう判断をしたくて」「この表現はうちっぽくないからやめて」。</p>
         <p>社員を雇ったとして、毎朝その人に「うちの会社は何をしている会社です」から説明し直してたら、仕事にならない。でもAIにはそれをやっている。今日と明日でやるのは、ここを終わらせることです。</p>
@@ -828,15 +883,64 @@ flowchart TB
           <div class="card"><h4>After</h4><p>Codexが会社・判断軸・失敗パターンを読み、作業単位で任せられる。</p></div>
         </div>
         <div class="check">今日作るのは「全自動で放置する仕組み」ではなく、引き継ぎ書を渡し、仕事を任せ、レビューして育てる環境です。</div>
+        <div class="note">10社の社長が集まる合宿なので、最初からチーム標準にはしません。まず各自の個人OSを作る。その先で、組織では改善を個人メモに閉じず共有標準へ戻します。詳しくは <a href="shared-standard.html">個人OSからチーム標準へ</a>。</div>
+      </section>
+
+      <section id="ipoa">
+        <div class="section-head">
+          <div class="section-no">2</div>
+          <div>
+            <h2>IPOAで「なにをやりたい」の手前を定義する</h2>
+            <p class="section-sub">Outputから始めず、Actionから逆算して必要なInputを決める。</p>
+          </div>
+        </div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>「BIを作りたい」と言うけど、見た後に誰が何を決めるかは曖昧なまま。</span></div>
+          <div><strong>だから</strong><span>Actionから逆算して、Output、Input、Processを決める。</span></div>
+          <div><strong>終わると</strong><span>AIに頼むものが「それっぽい資料」ではなく、行動につながる成果物になる。</span></div>
+        </div>
+        <div class="diagram">
+          <p class="diagram-title">IPOAは Action から逆算する</p>
+          <div class="mermaid">
+flowchart TB
+    A["Action\n誰が何を決めるか"] --> O["Output\n何が見えれば動けるか"]
+    O --> I["Input\n判断材料は何か"]
+    I --> P["Process\nどう変換・分析するか"]
+    P --> O
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card"><h4>弱い入口</h4><p>「BIを作りたい」「ダッシュボードがほしい」。これはOutput名だけで、行動が決まっていない。</p></div>
+          <div class="card"><h4>強い入口</h4><p>「毎週月曜に赤字見込み案件を3件選び、担当者に次の一手を決めさせたい」。Actionがあるので必要なOutputが決まる。</p></div>
+        </div>
+        <div class="code-block">
+          <div class="code-label">IPOAをgrill-meで深掘りする<button class="copy" data-copy>コピー</button></div>
+          <pre>この業務について、IPOAで深掘りしてください。
+
+順番:
+1. Action: 誰が、いつ、何を決める・動くべきか
+2. Output: そのActionに必要な見える成果物は何か
+3. Input: 判断材料として何の情報が必要か
+4. Process: Inputをどう整理・分析・変換すればOutputになるか
+
+各質問に対して、私が答えやすい推奨回答も提示してください。
+最後に ipoa.md と work-improvement.html に変換できる形で整理してください。</pre>
+        </div>
+        <div class="resource">詳細ページ: <a href="ipoa.html">IPOAフレームワーク</a></div>
       </section>
 
       <section id="grill">
         <div class="section-head">
-          <div class="section-no">2</div>
+          <div class="section-no">3</div>
           <div>
             <h2>grill-me型プロンプトで業務を深掘りする</h2>
             <p class="section-sub">方針が未定でも大丈夫。AIに執拗にインタビューさせて、深層心理から言語化する。</p>
           </div>
+        </div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>「やりたいことは？」と聞かれても、頭の中ではまだ屏風の虎みたいにぼんやりしている。</span></div>
+          <div><strong>だから</strong><span>AIにしつこく質問させて、足りないInputと判断軸を外に出す。</span></div>
+          <div><strong>終わると</strong><span>「なんとなく」ではなく、Codexに渡せる業務の骨格ができる。</span></div>
         </div>
 
         <div class="benefit-cards">
@@ -904,58 +1008,6 @@ flowchart TD
         </div>
       </section>
 
-      <section id="codex">
-        <div class="section-head">
-          <div class="section-no">3</div>
-          <div>
-            <h2>Codex Desktop / CLI セットアップ</h2>
-            <p class="section-sub">作業フォルダを限定して、Codexが触れる範囲を安全にする。</p>
-          </div>
-        </div>
-        <div class="meaning">
-          <div class="box"><strong>何が見えるようになるか</strong><span>どのフォルダをAIが読めるか明確になる。</span></div>
-          <div class="box"><strong>今やること</strong><span>作業フォルダを開き、実際にHTMLを1枚作る。</span></div>
-          <div class="box"><strong>全員が同じようにできるか</strong><span>画像付き手順で全員が同じ画面を確認できる。</span></div>
-        </div>
-        <div class="warn">ホームフォルダや書類フォルダ全体を開かない。Codexは開いた作業フォルダ以下を読んだり編集したりできます。</div>
-        <div class="timeline">
-          <div class="tl"><strong>1. 公式ページからCodex Appを取得</strong><span><a href="https://developers.openai.com/codex/app/" target="_blank" rel="noopener">developers.openai.com/codex/app/</a> を開く。</span></div>
-          <div class="tl"><strong>2. ChatGPTでサインイン</strong><span>GitHubアカウントは後で使う。ここはChatGPTアカウント。</span></div>
-          <div class="tl"><strong>3. 作業フォルダを作る</strong><span>例: デスクトップに <code>codex-bunshin-os</code> を作成。</span></div>
-          <div class="tl"><strong>4. フォルダをCodexで開く</strong><span>左下のフォルダ表示が変わればOK。</span></div>
-        </div>
-        <div class="image-grid">
-          <figure><img src="assets/images/20260528-codex-setup/00_codex_app_page.png" alt="Codex公式ページ" loading="lazy"><figcaption>公式ページからCodex Appへ</figcaption></figure>
-          <figure><img src="assets/images/20260528-codex-setup/02_signin.png" alt="ChatGPTでサインイン" loading="lazy"><figcaption>ChatGPTでサインイン</figcaption></figure>
-          <figure><img src="assets/images/20260528-codex-setup/04_add_project.png" alt="新しいプロジェクトを追加" loading="lazy"><figcaption>作業フォルダを追加</figcaption></figure>
-          <figure><img src="assets/images/20260528-codex-setup/06_folder_opened.png" alt="フォルダが開かれた状態" loading="lazy"><figcaption>フォルダ名が見えればOK</figcaption></figure>
-        </div>
-        <div class="diagram">
-          <p class="diagram-title">Codex Desktop セットアップの流れ</p>
-          <div class="mermaid">
-flowchart TB
-    A["公式ページから\nCodex App取得"] --> B["ChatGPTで\nサインイン"]
-    B --> C["作業フォルダを\n新規作成"]
-    C --> D["フォルダを\nCodexで開く"]
-    D --> E["動作確認\nHTMLを1枚作る"]
-          </div>
-        </div>
-        <h3>CLIで作業フォルダを作る場合</h3>
-        <div class="code-block">
-          <div class="code-label">① 作業フォルダを作成<button class="copy" data-copy>コピー</button></div>
-          <pre>mkdir -p ~/codex-bunshin-os/logs ~/codex-bunshin-os/outputs</pre>
-        </div>
-        <div class="code-block">
-          <div class="code-label">② 作業フォルダへ移動<button class="copy" data-copy>コピー</button></div>
-          <pre>cd ~/codex-bunshin-os</pre>
-        </div>
-        <div class="code-block">
-          <div class="code-label">③ Codex CLI を起動<button class="copy" data-copy>コピー</button></div>
-          <pre>codex</pre>
-        </div>
-        <div class="resource">参考: <a href="https://note.com/munakata_souri/n/n4aacfa6d9729" target="_blank" rel="noopener">むなかた — Codexのセットアップ方法（2026年4月）</a></div>
-      </section>
-
       <section id="claude-migrate">
         <div class="section-head">
           <div class="section-no">4</div>
@@ -963,6 +1015,11 @@ flowchart TB
             <h2>Claude CodeからCodexへ引っ越す</h2>
             <p class="section-sub">すでにClaude Codeを使っている人は、育てた資産を捨てずに移す。</p>
           </div>
+        </div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>Claude Codeで育てたルールがあるのに、Codexでまたゼロから説明するのはもったいない。</span></div>
+          <div><strong>だから</strong><span>既存のCLAUDE.mdやSkillを棚卸しし、Codex用に移す。</span></div>
+          <div><strong>終わると</strong><span>道具を変えても、自分の判断軸と作業ログは引き継げる。</span></div>
         </div>
         <div class="section-purpose">
           <div class="purpose-card"><strong>この章の目的</strong><span>Claude Codeで作ったルール、Skill、作業ログをCodexでも使える材料に変える。</span></div>
@@ -1007,6 +1064,11 @@ Codexへ引っ越す前提で、次を実行してください。
             <p class="section-sub">Codexに毎回読ませる業務引き継ぎ書を作る。</p>
           </div>
         </div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>毎回「うちの会社は…」から説明していると、AIが毎朝新入社員になる。</span></div>
+          <div><strong>だから</strong><span>前提、判断軸、今の状態をファイルに逃がす。</span></div>
+          <div><strong>終わると</strong><span>説明が減って、AIとの会話がいきなり仕事から始まる。</span></div>
+        </div>
         <div class="meaning">
           <div class="box"><strong>何が見えるようになるか</strong><span>Codexが何を前提に回答するか固定される。</span></div>
           <div class="box"><strong>今やること</strong><span>深掘り結果をファイル化し、次回から読ませる。</span></div>
@@ -1047,8 +1109,9 @@ graph TB
 
 まず空欄付きテンプレートとして作ってください。</pre>
         </div>
+        <div class="note">下の「読む例」は、そのままターミナルで実行するものではありません。どんな粒度でAGENTS.mdに書くかを見る見本です。実際に作る時は、次の「Codexに貼る依頼」を使います。</div>
         <div class="code-block">
-          <div class="code-label">AGENTS.mdの核<button class="copy" data-copy>コピー</button></div>
+          <div class="code-label">読む例: AGENTS.mdの核<button class="copy" data-copy>コピー</button></div>
           <pre># AGENTS.md — 私のCodex運用ルール
 
 ## 基本方針
@@ -1079,6 +1142,18 @@ graph TB
 同じ作業を3回やったらテンプレート化またはSkill化を検討する。</pre>
         </div>
         <div class="code-block">
+          <div class="code-label">Codexに貼る依頼: 自分用に書き換える<button class="copy" data-copy>コピー</button></div>
+          <pre>上のAGENTS.md例を参考に、このフォルダの私用AGENTS.mdを作ってください。
+
+必ずやること:
+1. 私のIPOA、業務の目的、判断軸、安全ルールを空欄付きで入れる
+2. 「毎回説明しなくてよい前提」と「今だけの状態」を分ける
+3. APIキーや個人情報を入れない
+4. 作成後、どこが仮置きで、どこを私が埋めるべきかを教える
+
+まだ勝手に外部サービスへ送信しないでください。</pre>
+        </div>
+        <div class="code-block">
           <div class="code-label">動作確認<button class="copy" data-copy>コピー</button></div>
           <pre>このフォルダのAGENTS.md、memory.md、state.mdを読んでください。
 私の会社・役割・判断軸・あなたが手伝える仕事を要約してください。
@@ -1093,6 +1168,11 @@ graph TB
             <h2>Context7 / GitHub / Exa をMCPで取り込む</h2>
             <p class="section-sub">Codexのチャットから、外部の手と目を増やす。</p>
           </div>
+        </div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>AIが古い書き方でコードを書いて、あとで公式を見たら違う、という事故が起きる。</span></div>
+          <div><strong>だから</strong><span>Context7、GitHub、ExaでCodexに最新情報を見る目を足す。</span></div>
+          <div><strong>終わると</strong><span>勘や古い記憶ではなく、今の仕様と実リポジトリを見て進められる。</span></div>
         </div>
         <div class="meaning">
           <div class="box"><strong>何が見えるようになるか</strong><span>最新ドキュメント、GitHub、Web検索を参照できる。</span></div>
@@ -1149,13 +1229,28 @@ args = ["-y", "mcp-remote", "https://mcp.exa.ai/mcp?exaApiKey=YOUR_EXA_API_KEY"]
 command = "npx"
 args = ["chrome-devtools-mcp@latest"]</pre>
         </div>
+        <div class="timeline">
+          <div class="tl"><strong>1. Context7キーを取得</strong><span><a href="https://context7.com/docs/howto/api-keys" target="_blank" rel="noopener">Context7 API Keys</a> を開き、キーを作る。</span></div>
+          <div class="tl"><strong>2. Exaキーを取得</strong><span><a href="https://dashboard.exa.ai/api-keys" target="_blank" rel="noopener">Exa Dashboard</a> を開き、API Keyを作る。</span></div>
+          <div class="tl"><strong>3. GitHub Tokenを取得</strong><span><a href="https://github.com/settings/tokens" target="_blank" rel="noopener">GitHub Tokens</a> を開き、必要な権限だけで作る。</span></div>
+          <div class="tl"><strong>4. Codexに置換を依頼</strong><span>下の依頼文をCodexに貼り、<code>~/.codex/config.toml</code> のプレースホルダを置き換える。</span></div>
+          <div class="tl"><strong>5. /mcpで確認</strong><span>Codexのチャットで <code>/mcp</code> を実行し、接続状態を見る。</span></div>
+        </div>
         <div class="code-block">
-          <div class="code-label">キー取得後の置換<button class="copy" data-copy>コピー</button></div>
-          <pre>YOUR_CONTEXT7_API_KEY を ctx7sk-... に
-YOUR_EXA_API_KEY を Exaのキーに
-YOUR_GITHUB_TOKEN を GitHubのトークンに
-置き換えて config.toml を更新してください。
-更新後、/mcp で確認する手順も出してください。</pre>
+          <div class="code-label">Codexに貼る依頼: キー取得後の置換<button class="copy" data-copy>コピー</button></div>
+          <pre>~/.codex/config.toml のMCP設定を更新してください。
+
+置き換える値:
+- YOUR_CONTEXT7_API_KEY → 私が今貼るContext7キー
+- YOUR_EXA_API_KEY → 私が今貼るExaキー
+- YOUR_GITHUB_TOKEN → 私が今貼るGitHub Token
+
+条件:
+- キーを画面や公開ファイルに表示しない
+- 既存設定を壊さずマージする
+- 更新後に /mcp で確認する手順を教える
+
+まず、貼り付けるキーを1つずつ聞いてください。</pre>
         </div>
         <div class="table-wrap">
           <table>
@@ -1177,6 +1272,11 @@ YOUR_GITHUB_TOKEN を GitHubのトークンに
             <h2>agmsgでClaude CodeとCodexをつなぐ</h2>
             <p class="section-sub">Claudeで計画し、Codexで実装する往復を、口頭説明なしで渡せるようにする。</p>
           </div>
+        </div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>Claudeで考えた計画を、Codexにまた説明し直すのが地味にだるい。</span></div>
+          <div><strong>だから</strong><span>エージェント同士の伝言板を作り、計画と実装を分ける。</span></div>
+          <div><strong>終わると</strong><span>Claudeは設計、Codexは実装、という分担でも文脈が切れない。</span></div>
         </div>
         <div class="meaning">
           <div class="box"><strong>何ができるようになるか</strong><span>同じteamにClaude CodeとCodexをjoinし、相互にタスクを渡せる。</span></div>
@@ -1223,6 +1323,11 @@ flowchart TB
             <h2>長いプロンプトをSkill化して使う</h2>
             <p class="section-sub">毎回コピペする依頼を、短い呼び出しに変える。</p>
           </div>
+        </div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>良いプロンプトほど長くなって、結局コピペが面倒で使わなくなる。</span></div>
+          <div><strong>だから</strong><span>長い判断手順をSkillにして、短い名前で呼べるようにする。</span></div>
+          <div><strong>終わると</strong><span>URLを渡すだけで、導入判断や記事取り込みが同じ品質で回る。</span></div>
         </div>
         <div class="section-purpose">
           <div class="purpose-card"><strong>この章の目的</strong><span>GitHub repo導入判断、X投稿の取り込み、grill-me深掘りをSkillとして保存する。</span></div>
@@ -1310,6 +1415,11 @@ URL: https://github.com/openclaw/gogcli
             <p class="section-sub">CodexからAsana APIへ接続し、タスク作成を依頼できる入口を作る。</p>
           </div>
         </div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>AIにタスクを整理させても、最後に人間がAsanaへ手入力している。</span></div>
+          <div><strong>だから</strong><span>PATを用意して、CodexがAPI経由でタスク登録できる入口を作る。</span></div>
+          <div><strong>終わると</strong><span>議事録や深掘り結果から、次のタスク化まで一気に進められる。</span></div>
+        </div>
         <div class="meaning">
           <div class="box"><strong>何ができるようになるか</strong><span>タスク作成・一覧取得・更新をCodexに依頼できる。</span></div>
           <div class="box"><strong>今やること</strong><span>Asanaアカウントを作り、Personal Access Tokenを取得する。</span></div>
@@ -1339,6 +1449,11 @@ URL: https://github.com/openclaw/gogcli
             <h2>gogcliでGoogle Sheetsを作成・操作する</h2>
             <p class="section-sub">Codexに「スプレッドシートを作って」と頼めるようにする。</p>
           </div>
+        </div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>表にしたい情報はあるのに、AIの出力がチャット内で止まって使い回せない。</span></div>
+          <div><strong>だから</strong><span>gogcliでGoogle SheetsをAIの作業場所にする。</span></div>
+          <div><strong>終わると</strong><span>データ作成、更新、読み出しをCodexに頼めるようになる。</span></div>
         </div>
         <div class="meaning">
           <div class="box"><strong>何が見えるようになるか</strong><span>表データをAIの作業対象にできる。</span></div>
@@ -1414,6 +1529,11 @@ URL: https://github.com/openclaw/gogcli
             <p class="section-sub">スプレッドシートをデータベースにして、HTMLの社内ポータルを公開する。</p>
           </div>
         </div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>スプレッドシートは便利だけど、社内の人に見せるには画面が散らかる。</span></div>
+          <div><strong>だから</strong><span>GASでシートを読み、見やすいHTMLの社内アプリにする。</span></div>
+          <div><strong>終わると</strong><span>表データが、URLで見せられる小さな業務アプリになる。</span></div>
+        </div>
         <div class="meaning">
           <div class="box"><strong>何が見えるようになるか</strong><span>表がWebアプリになる流れが分かる。</span></div>
           <div class="box"><strong>今やること</strong><span>Code.gsとindex.htmlを貼ってデプロイする。</span></div>
@@ -1488,6 +1608,11 @@ function getItems() {
             <p class="section-sub">重い資料を毎回Codexに貼らず、NotebookLMに置いて呼び出す。</p>
           </div>
         </div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>PDFや記事を毎回AIに貼っていると、重いし、どれが正本か分からなくなる。</span></div>
+          <div><strong>だから</strong><span>NotebookLMを資料置き場にして、Codexから必要な時に参照する。</span></div>
+          <div><strong>終わると</strong><span>資料を貼り直す作業が減り、調査と要約が安定する。</span></div>
+        </div>
         <div class="section-purpose">
           <div class="purpose-card"><strong>この章の目的</strong><span>PDF、Web記事、議事録をNotebookLMに集め、Codexから参照する運用を作る。</span></div>
           <div class="purpose-card action"><strong>ここでやること</strong><span>notebooklm-pyを入れ、ログイン、ノート作成、Skill登録まで試す。</span></div>
@@ -1555,6 +1680,11 @@ function getItems() {
             <p class="section-sub">GitHubに置いたHTMLを、URLで共有できる状態にする。</p>
           </div>
         </div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>良いHTMLを作っても、自分のPCの中にあるだけだと誰にも伝わらない。</span></div>
+          <div><strong>だから</strong><span>GitHubとVercelをつなぎ、pushしたら自動で公開される状態にする。</span></div>
+          <div><strong>終わると</strong><span>業務改善HTMLをURLで見せ、発表や社内共有に使える。</span></div>
+        </div>
         <div class="meaning">
           <div class="box"><strong>何が見えるようになるか</strong><span>自分の成果物がURLで見える。</span></div>
           <div class="box"><strong>今やること</strong><span>GitHub pushから自動デプロイまで確認する。</span></div>
@@ -1608,6 +1738,11 @@ flowchart TB
             <h2>ngrokで一時公開し、会社方針HTMLを見せる</h2>
             <p class="section-sub">Vercelに出す前に、手元のHTMLを一時URLで共有して確認する。</p>
           </div>
+        </div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>まだ本公開するほどではないけど、今すぐ誰かに画面を見せたい時がある。</span></div>
+          <div><strong>だから</strong><span>ngrokでローカルHTMLを一時URLにして共有する。</span></div>
+          <div><strong>終わると</strong><span>作りながら見せて直す、という速度が上がる。</span></div>
         </div>
         <div class="meaning">
           <div class="box"><strong>何ができるようになるか</strong><span>ローカルで作ったHTMLを、その場で講師や他の参加者に見せられる。</span></div>
@@ -1671,6 +1806,11 @@ flowchart TB
             <p class="section-sub">長い作業を任せるときは、Macが寝ない状態を作る。</p>
           </div>
         </div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>Codexに長い作業を任せたのに、Macが寝て途中で止まる。</span></div>
+          <div><strong>だから</strong><span>作業時間だけスリープを止める。</span></div>
+          <div><strong>終わると</strong><span>調査、生成、検証の長めの作業を安心して任せられる。</span></div>
+        </div>
         <div class="meaning">
           <div class="box"><strong>何が見えるようになるか</strong><span>途中停止の原因がMacのスリープか切り分けられる。</span></div>
           <div class="box"><strong>今やること</strong><span>6時間だけ起動維持して作業させる。</span></div>
@@ -1699,6 +1839,11 @@ flowchart TB
             <p class="section-sub">分身OSは作って終わりではなく、使うたびに育てる。</p>
           </div>
         </div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>AIの出力がズレたのに、その場で直して終わると次回も同じズレが出る。</span></div>
+          <div><strong>だから</strong><span>失敗ログ、AGENTS追記、Skill化でズレを資産に変える。</span></div>
+          <div><strong>終わると</strong><span>使うほど自分の環境が育ち、説明コストが下がる。</span></div>
+        </div>
         <div class="meaning">
           <div class="box"><strong>何が見えるようになるか</strong><span>次回の出力がなぜ良くなるか説明できる。</span></div>
           <div class="box"><strong>今やること</strong><span>毎回のズレをルール化する。</span></div>
@@ -1715,7 +1860,7 @@ flowchart TB
     E --> A
           </div>
         </div>
-        <div class="note"><strong>初日夕方 18:00 — 翌日の発表内容を全体に共有</strong><br>「明日10時に何を発表するか」を声に出す。内容は問わない。方向性だけ出す。翌日10:00に各自5分で成果発表。</div>
+        <div class="note"><strong>初日夕方 18:00 — 翌日の業務改善HTMLを全体に共有</strong><br>「明日10時にどの業務改善HTMLを見せるか」を声に出す。内容は問わない。Actionが定義されていることを優先。翌日10:00に各自10分で発表。</div>
         <div class="code-block">
           <div class="code-label">作業後レビュー<button class="copy" data-copy>コピー</button></div>
           <pre>今回の作業を振り返って、次回からCodexがより良く動くようにするには何を更新すべきですか。
@@ -1762,6 +1907,7 @@ flowchart TB
           <label><input type="checkbox"> NotebookLM-pyで資料置き場と連動できる</label>
           <label><input type="checkbox"> VercelでHTMLを公開する流れを理解した</label>
           <label><input type="checkbox"> ngrokで一時公開できる</label>
+          <label><input type="checkbox"> 業務改善HTMLにIPOAと次の2週間の方針を入れた</label>
           <label><input type="checkbox"> 作業後レビューで環境を育てられる</label>
           <label><input type="checkbox"> エージェントを1つ設計・実行できた</label>
           <label><input type="checkbox"> 公開URLをagent-browserで読ませられる</label>
@@ -1775,6 +1921,11 @@ flowchart TB
             <h2>エージェントを作ってみる</h2>
             <p class="section-sub">grill-meで業務を整理して、そのままエージェント設計につなげる。</p>
           </div>
+        </div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>「エージェント作りたい」と思っても、任せる仕事が曖昧で止まる。</span></div>
+          <div><strong>だから</strong><span>IPOAとgrill-meの結果から、最初の1体だけ設計する。</span></div>
+          <div><strong>終わると</strong><span>抽象的なAI活用ではなく、自分の業務に刺さる担当者が1つできる。</span></div>
         </div>
         <div class="meaning">
           <div class="box"><strong>何が見えるようになるか</strong><span>「エージェントに任せる」が抽象論から具体的な設計になる。</span></div>
@@ -1811,7 +1962,7 @@ flowchart TB
         </div>
 
         <div class="code-block">
-          <div class="code-label">grill-me結果から概要.mdを生成（Section 02の深掘り後に実行）<button class="copy" data-copy>コピー</button></div>
+          <div class="code-label">grill-me結果から概要.mdを生成（Section 03の深掘り後に実行）<button class="copy" data-copy>コピー</button></div>
           <pre>今のインタビュー結果を「概要.md」として保存してください。
 
 含める内容:
@@ -1851,6 +2002,11 @@ flowchart TB
             <h2>agent-browserで公開URLをAIに読ませる</h2>
             <p class="section-sub">作ったHTMLをAI自身に開かせ、現在地と改善点を画面ベースで確認する。</p>
           </div>
+        </div>
+        <div class="intro-punch">
+          <div><strong>あるある</strong><span>HTMLを直したつもりでも、実際の画面では文字が詰まったり導線が分かりにくい。</span></div>
+          <div><strong>だから</strong><span>公開URLをagent-browserでAIに読ませ、画面ベースで確認する。</span></div>
+          <div><strong>終わると</strong><span>コードだけでなく、受講者が見る画面を前提に改善できる。</span></div>
         </div>
         <div class="meaning">
           <div class="box"><strong>何ができるようになるか</strong><span>公開URLをAIが開き、見えている画面を前提に修正できる。</span></div>
@@ -1911,6 +2067,8 @@ flowchart TB
   <footer>
     <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:12px;">
       <a href="prep.html">事前準備</a>
+      <a href="ipoa.html">IPOA</a>
+      <a href="shared-standard.html">個人OSからチーム標準へ</a>
       <a href="schedule.html">合宿スケジュール</a>
       <a href="repos.html">リポジトリ一覧</a>
     </div>
@@ -1941,6 +2099,26 @@ flowchart TB
     });
   </script>
   <script>
+    const codeBlocks = document.querySelectorAll('.code-block');
+    codeBlocks.forEach((block) => {
+      if (block.querySelector('.code-help')) return;
+      const label = block.querySelector('.code-label')?.innerText || '';
+      const pre = block.querySelector('pre')?.innerText.trim() || '';
+      const looksLikeCommand = /^(brew|git|cd |mkdir|python3|ngrok|npm|pip |playwright|notebooklm|gog|caffeinate|codex|agent-browser|~\/)/.test(pre);
+      const looksLikeExample = label.includes('読む例') || pre.startsWith('# ');
+      const helper = document.createElement('div');
+      helper.className = 'code-help';
+      if (looksLikeExample) {
+        helper.innerHTML = '<div><span>これは何か</span>読むための見本です</div><div><span>どこで使うか</span>自分用に書き換える材料</div><div><span>OKの状態</span>次の依頼文で実ファイル化する</div>';
+      } else if (looksLikeCommand) {
+        helper.innerHTML = '<div><span>これは何か</span>ターミナルで実行するコマンド</div><div><span>どこで使うか</span>作業フォルダを開いたターミナル</div><div><span>OKの状態</span>エラーなく次の手順へ進める</div>';
+      } else {
+        helper.innerHTML = '<div><span>これは何か</span>Codexに貼る依頼文</div><div><span>どこで使うか</span>Codexのチャット欄</div><div><span>OKの状態</span>Codexが手順・ファイル・次の確認を返す</div>';
+      }
+      const preEl = block.querySelector('pre');
+      if (preEl) block.insertBefore(helper, preEl);
+    });
+
     const copyButtons = document.querySelectorAll('[data-copy]');
     copyButtons.forEach((button) => {
       button.addEventListener('click', async () => {

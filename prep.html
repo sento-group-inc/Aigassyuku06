@@ -36,6 +36,10 @@
     .card { border:1px solid var(--line); border-radius:var(--radius); background:var(--surface-soft); padding:14px; }
     .card strong { display:block; margin-bottom:4px; }
     .card span { color:var(--muted); font-size:13px; }
+    .image-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:16px 0; }
+    figure { margin:0; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--surface-soft); }
+    figure img { display:block; width:100%; height:auto; }
+    figcaption { padding:8px 10px; color:var(--muted); font-size:12px; border-top:1px solid var(--line); }
     .code-block { margin:14px 0 18px; border-radius:var(--radius); overflow:hidden; border:1px solid #26332f; background:#101513; }
     .code-label { min-height:38px; padding:8px 14px; color:#9fb4ad; border-bottom:1px solid #26332f; font-size:12px; font-weight:800; }
     pre { margin:0; padding:16px; overflow-x:auto; white-space:pre-wrap; color:#e7f1ed; font-family:"SFMono-Regular","Menlo",monospace; font-size:13px; line-height:1.62; }
@@ -46,7 +50,7 @@
     th, td { padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
     th { background:var(--surface-soft); color:var(--muted); font-size:12px; }
     footer { padding:20px clamp(16px,4vw,40px) 46px; color:var(--muted); font-size:13px; }
-    @media (max-width:920px) { .grid, .checklist { grid-template-columns:1fr; } section { padding:22px 18px; } }
+    @media (max-width:920px) { .grid, .checklist, .image-grid { grid-template-columns:1fr; } section { padding:22px 18px; } }
   </style>
 </head>
 <body>
@@ -57,6 +61,8 @@
       <p class="lead">午前をセットアップで溶かさないための準備ページ。アカウント作成、CLI、AGENTS.md / CLAUDE.md の用語を先に揃えます。</p>
       <div class="page-nav">
         <a href="index.html">講義本編</a>
+        <a href="ipoa.html">IPOA</a>
+        <a href="shared-standard.html">個人OSからチーム標準へ</a>
         <a href="schedule.html">合宿スケジュール</a>
         <a href="repos.html">リポジトリ一覧</a>
       </div>
@@ -111,6 +117,34 @@
     </section>
 
     <section>
+      <h2>Codex Desktop / CLI セットアップ</h2>
+      <p>ここまで当日前に終わっていると、合宿当日はIPOAと業務改善HTMLに時間を使えます。ホームフォルダ全体ではなく、合宿用の作業フォルダだけをCodexに開かせます。</p>
+      <div class="warn">ホームフォルダや書類フォルダ全体を開かない。Codexは開いた作業フォルダ以下を読んだり編集したりできます。</div>
+      <div class="grid">
+        <div class="card"><strong>Desktopでやる人</strong><span>Codex Appを開き、合宿用フォルダを追加する。画面で確認しながら進めたい人向け。</span></div>
+        <div class="card"><strong>CLIでやる人</strong><span>ターミナルで作業フォルダを作り、<code>codex</code> を起動する。CLIに慣れている人向け。</span></div>
+      </div>
+      <div class="image-grid">
+        <figure><img src="assets/images/20260528-codex-setup/00_codex_app_page.png" alt="Codex公式ページ" loading="lazy"><figcaption>公式ページからCodex Appへ</figcaption></figure>
+        <figure><img src="assets/images/20260528-codex-setup/02_signin.png" alt="ChatGPTでサインイン" loading="lazy"><figcaption>ChatGPTでサインイン</figcaption></figure>
+        <figure><img src="assets/images/20260528-codex-setup/04_add_project.png" alt="新しいプロジェクトを追加" loading="lazy"><figcaption>作業フォルダを追加</figcaption></figure>
+        <figure><img src="assets/images/20260528-codex-setup/06_folder_opened.png" alt="フォルダが開かれた状態" loading="lazy"><figcaption>フォルダ名が見えればOK</figcaption></figure>
+      </div>
+      <h3>Desktopでの確認</h3>
+      <ol>
+        <li><a href="https://developers.openai.com/codex/app/" target="_blank" rel="noopener">OpenAI Codex App</a> からアプリを入手する。</li>
+        <li>ChatGPTアカウントでサインインする。</li>
+        <li>デスクトップ等に <code>codex-bunshin-os</code> フォルダを作る。</li>
+        <li>Codexでそのフォルダを開く。左下にフォルダ名が見えればOK。</li>
+      </ol>
+      <h3>CLIで作業フォルダを作る場合</h3>
+      <div class="code-block"><div class="code-label">① 作業フォルダを作成</div><pre>mkdir -p ~/codex-bunshin-os/logs ~/codex-bunshin-os/outputs</pre></div>
+      <div class="code-block"><div class="code-label">② 作業フォルダへ移動</div><pre>cd ~/codex-bunshin-os</pre></div>
+      <div class="code-block"><div class="code-label">③ Codex CLI を起動</div><pre>codex</pre></div>
+      <div class="note">ここまで終わっていれば、本編Section 02のIPOAから始められます。</div>
+    </section>
+
+    <section>
       <h2>アカウント作成</h2>
       <p>アカウント作成、APIキー、PAT入力は本人が行います。AIに代行入力させないでください。</p>
       <ul>
@@ -140,6 +174,8 @@
 
   <footer>
     <a href="index.html">講義本編</a> /
+    <a href="ipoa.html">IPOA</a> /
+    <a href="shared-standard.html">個人OSからチーム標準へ</a> /
     <a href="schedule.html">合宿スケジュール</a> /
     <a href="repos.html">リポジトリ一覧</a>
   </footer>

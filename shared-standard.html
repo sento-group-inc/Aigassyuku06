@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>個人OSからチーム標準へ | Codex分身OS合宿</title>
+  <style>
+    :root { --bg:#f7f8f7; --surface:#fff; --surface-soft:#f1f5f3; --ink:#17211d; --muted:#66736e; --line:#dce4df; --accent:#0f766e; --accent-soft:#e6f5f2; --accent-strong:#0b5d56; --gold-soft:#fff7e6; --blue-soft:#eff6ff; --radius:8px; --shadow:0 10px 28px rgba(23,33,29,.08); --max:1480px; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",system-ui,-apple-system,sans-serif; font-size:15px; line-height:1.78; }
+    a { color:var(--accent-strong); text-underline-offset:3px; }
+    code { background:var(--surface-soft); border:1px solid var(--line); border-radius:5px; padding:1px 5px; font-family:"SFMono-Regular","Menlo",monospace; font-size:.88em; }
+    .page-header { background:#fff; border-bottom:1px solid var(--line); padding:34px clamp(16px,4vw,40px) 24px; }
+    .page-header-inner, .content, footer { max-width:var(--max); margin:0 auto; }
+    .breadcrumb { margin:0 0 12px; color:var(--muted); font-size:13px; }
+    h1 { margin:0 0 10px; font-size:clamp(34px,6vw,58px); line-height:1.08; }
+    .lead { margin:0; max-width:920px; color:var(--muted); font-size:17px; }
+    .page-nav { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+    .page-nav a { border:1px solid #b6ded7; border-radius:999px; background:var(--accent-soft); padding:7px 13px; font-weight:800; font-size:13px; text-decoration:none; }
+    .content { padding:28px clamp(16px,4vw,40px) 70px; display:grid; gap:22px; }
+    section { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:28px; box-shadow:var(--shadow); }
+    h2 { margin:0 0 14px; font-size:clamp(22px,3vw,32px); line-height:1.22; }
+    h3 { margin:22px 0 10px; font-size:18px; }
+    p { margin:0 0 12px; }
+    .intro-punch, .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:16px 0; }
+    .intro-punch div, .card { border:1px solid var(--line); border-radius:var(--radius); background:var(--surface-soft); padding:14px; }
+    .intro-punch strong, .card strong { display:block; margin-bottom:4px; color:var(--ink); }
+    .intro-punch span, .card span { color:var(--muted); font-size:13px; }
+    .note, .resource { border-radius:var(--radius); padding:13px 15px; border:1px solid var(--line); margin:14px 0; }
+    .note { background:var(--blue-soft); color:#193f8f; border-color:#c7d8ff; }
+    .resource { background:var(--gold-soft); color:#7a4d0b; border-color:#f2d7a5; }
+    .mermaid { margin:14px 0; overflow-x:auto; background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:20px; }
+    .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); margin:16px 0; }
+    table { width:100%; border-collapse:collapse; min-width:760px; background:#fff; }
+    th, td { padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { background:var(--surface-soft); color:var(--muted); font-size:12px; }
+    tr:last-child td { border-bottom:none; }
+    footer { padding:20px clamp(16px,4vw,40px) 46px; color:var(--muted); font-size:13px; }
+    @media (max-width:920px) { .intro-punch, .grid { grid-template-columns:1fr; } section { padding:22px 18px; } }
+  </style>
+</head>
+<body>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <p class="breadcrumb"><a href="index.html">合宿サイト TOP</a> / 個人OSからチーム標準へ</p>
+      <h1>個人OSからチーム標準へ</h1>
+      <p class="lead">今回は違う会社の社長10人が集まるので、まずは個人OSを作る。ただし組織で使うなら、改善は個人メモに閉じず共有標準へ戻します。</p>
+      <div class="page-nav">
+        <a href="index.html">講義本編</a>
+        <a href="ipoa.html">IPOA</a>
+        <a href="schedule.html">合宿スケジュール</a>
+        <a href="prep.html">事前準備</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <section>
+      <h2>今日は個人OS、次に組織OS</h2>
+      <div class="intro-punch">
+        <div><strong>あるある</strong><span>チーム標準を最初から作ろうとすると、各社の文脈が違いすぎて話がぼやける。</span></div>
+        <div><strong>だから</strong><span>この合宿では、まず自分の判断軸と業務の型を個人OSとして外部化する。</span></div>
+        <div><strong>終わると</strong><span>次に社員やチームへ渡す時、何を標準化すべきかが見える。</span></div>
+      </div>
+      <div class="note">個人OSはゴールではなく、共有標準へ進むための最初のたたき台です。</div>
+    </section>
+
+    <section>
+      <h2>成功した知識OSは、だいたい共有されている</h2>
+      <div class="grid">
+        <div class="card"><strong>トヨタ生産方式の標準作業</strong><span>改善は個人の頭の中で終わらせず、標準作業へ戻して全員の基準にする。</span></div>
+        <div class="card"><strong>GitLab Handbook</strong><span>handbook-firstで、会社の知識を公開・編集可能な状態に置く。</span></div>
+        <div class="card"><strong>Wikipedia</strong><span>個人知識ではなく、履歴と編集ルールを持つ共有知識基盤として育つ。</span></div>
+      </div>
+      <div class="resource">参考: <a href="https://global.toyota/en/company/vision-and-philosophy/production-system/" target="_blank" rel="noopener">Toyota Production System</a> / <a href="https://handbook.gitlab.com/" target="_blank" rel="noopener">GitLab Handbook</a> / <a href="https://handbook.gitlab.com/handbook/about/" target="_blank" rel="noopener">About the GitLab Handbook</a> / <a href="https://en.wikipedia.org/wiki/Wikipedia:About" target="_blank" rel="noopener">Wikipedia: About</a></div>
+    </section>
+
+    <section>
+      <h2>個人OSで止まるリスク</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>状態</th><th>起きること</th><th>次にやること</th></tr></thead>
+          <tbody>
+            <tr><td>個人OSだけ</td><td>本人のAI環境は強くなるが、社員が再現できない。</td><td>よく使う判断軸とプロンプトを共有テンプレートにする。</td></tr>
+            <tr><td>共有Skillあり</td><td>同じ作業を同じ品質で頼める。</td><td>失敗ログを集め、Skillを全員で直せる状態にする。</td></tr>
+            <tr><td>チームAGENTSあり</td><td>会社全体の判断軸と安全ルールが揃う。</td><td>誰でも編集できる標準にし、履歴を残す。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>進化の順番</h2>
+      <div class="mermaid">
+flowchart TB
+    A["個人AGENTS\n自分の判断軸"] --> B["業務別テンプレート\nよく使う依頼"]
+    B --> C["共有Skill\n同じ作業を同じ品質で"]
+    C --> D["チームAGENTS\n会社の判断軸"]
+    D --> E["組織OS\n全員で編集・改善"]
+      </div>
+      <p>今回の合宿でやるのはAです。余裕があればBまで。C以降は、会社ごとに別途やると筋が良いです。</p>
+    </section>
+  </div>
+
+  <footer>
+    <a href="index.html">講義本編</a> /
+    <a href="ipoa.html">IPOA</a> /
+    <a href="schedule.html">合宿スケジュール</a> /
+    <a href="prep.html">事前準備</a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad:true, theme:'base', themeVariables:{ primaryColor:'#e6f5f2', primaryTextColor:'#0b5d56', primaryBorderColor:'#b6ded7', lineColor:'#0f766e', secondaryColor:'#f1f5f3', tertiaryColor:'#ffffff', fontFamily:'"Hiragino Sans","Noto Sans JP",system-ui,sans-serif', fontSize:'15px' } });
+  </script>
+</body>
+</html>

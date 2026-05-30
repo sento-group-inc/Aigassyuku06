@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IPOAフレームワーク | Codex分身OS合宿</title>
+  <style>
+    :root { --bg:#f7f8f7; --surface:#fff; --surface-soft:#f1f5f3; --ink:#17211d; --muted:#66736e; --line:#dce4df; --accent:#0f766e; --accent-soft:#e6f5f2; --accent-strong:#0b5d56; --gold-soft:#fff7e6; --blue-soft:#eff6ff; --red-soft:#fff1f0; --radius:8px; --shadow:0 10px 28px rgba(23,33,29,.08); --max:1480px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",system-ui,-apple-system,sans-serif; font-size:15px; line-height:1.78; }
+    a { color:var(--accent-strong); text-underline-offset:3px; }
+    code { background:var(--surface-soft); border:1px solid var(--line); border-radius:5px; padding:1px 5px; font-family:"SFMono-Regular","Menlo",monospace; font-size:.88em; }
+    .page-header { background:#fff; border-bottom:1px solid var(--line); padding:34px clamp(16px,4vw,40px) 24px; }
+    .page-header-inner, .content, footer { max-width:var(--max); margin:0 auto; }
+    .breadcrumb { margin:0 0 12px; color:var(--muted); font-size:13px; }
+    h1 { margin:0 0 10px; font-size:clamp(34px,6vw,58px); line-height:1.08; }
+    .lead { margin:0; max-width:920px; color:var(--muted); font-size:17px; }
+    .page-nav { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+    .page-nav a { border:1px solid #b6ded7; border-radius:999px; background:var(--accent-soft); padding:7px 13px; font-weight:800; font-size:13px; text-decoration:none; }
+    .content { padding:28px clamp(16px,4vw,40px) 70px; display:grid; gap:22px; }
+    section { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:28px; box-shadow:var(--shadow); }
+    h2 { margin:0 0 14px; font-size:clamp(22px,3vw,32px); line-height:1.22; }
+    h3 { margin:22px 0 10px; font-size:18px; }
+    p { margin:0 0 12px; }
+    ul, ol { margin:0 0 14px 22px; padding:0; }
+    .intro-punch, .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:16px 0; }
+    .intro-punch div, .card { border:1px solid var(--line); border-radius:var(--radius); background:var(--surface-soft); padding:14px; }
+    .intro-punch strong, .card strong { display:block; margin-bottom:4px; color:var(--ink); }
+    .intro-punch span, .card span { color:var(--muted); font-size:13px; }
+    .card.action { background:var(--accent-soft); border-color:#b6ded7; }
+    .note, .warn, .resource { border-radius:var(--radius); padding:13px 15px; border:1px solid var(--line); margin:14px 0; }
+    .note { background:var(--blue-soft); color:#193f8f; border-color:#c7d8ff; }
+    .warn { background:var(--red-soft); color:#8e1d13; border-color:#ffd2cc; }
+    .resource { background:var(--gold-soft); color:#7a4d0b; border-color:#f2d7a5; }
+    .mermaid { margin:14px 0; overflow-x:auto; background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:20px; }
+    .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); margin:16px 0; }
+    table { width:100%; border-collapse:collapse; min-width:760px; background:#fff; }
+    th, td { padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { background:var(--surface-soft); color:var(--muted); font-size:12px; }
+    tr:last-child td { border-bottom:none; }
+    .code-block { margin:14px 0 18px; border-radius:var(--radius); overflow:hidden; border:1px solid #26332f; background:#101513; }
+    .code-label { display:flex; justify-content:space-between; gap:12px; min-height:40px; padding:8px 10px 8px 14px; color:#9fb4ad; border-bottom:1px solid #26332f; font-size:12px; font-weight:800; }
+    button.copy { border:1px solid #3b4b45; border-radius:6px; background:#1a2420; color:#e7f1ed; padding:6px 10px; font:inherit; font-size:12px; cursor:pointer; }
+    .code-help { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; padding:10px 14px; border-bottom:1px solid #26332f; color:#b8cbc5; font-size:12px; line-height:1.5; }
+    .code-help span { display:block; color:#7f9890; font-weight:800; }
+    pre { margin:0; padding:16px; overflow-x:auto; white-space:pre-wrap; color:#e7f1ed; font-family:"SFMono-Regular","Menlo",monospace; font-size:13px; line-height:1.62; }
+    footer { padding:20px clamp(16px,4vw,40px) 46px; color:var(--muted); font-size:13px; }
+    @media (max-width:920px) { .intro-punch, .grid, .code-help { grid-template-columns:1fr; } section { padding:22px 18px; } }
+  </style>
+</head>
+<body>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <p class="breadcrumb"><a href="index.html">合宿サイト TOP</a> / IPOAフレームワーク</p>
+      <h1>IPOAフレームワーク</h1>
+      <p class="lead">「なにをやりたい？」はOutputを聞いているだけになりがち。まずActionから逆算して、必要なInput、Process、Outputを決めます。</p>
+      <div class="page-nav">
+        <a href="index.html">講義本編</a>
+        <a href="shared-standard.html">個人OSからチーム標準へ</a>
+        <a href="schedule.html">合宿スケジュール</a>
+        <a href="prep.html">事前準備</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <section>
+      <h2>なぜOutputから始めると浅くなるのか</h2>
+      <div class="intro-punch">
+        <div><strong>あるある</strong><span>「BI作りたい」「ダッシュボード欲しい」と言うけど、見た後に何を決めるかは曖昧。</span></div>
+        <div><strong>だから</strong><span>作るものではなく、起こしたい行動から考える。</span></div>
+        <div><strong>終わると</strong><span>AIに頼む成果物が、見栄えではなく意思決定につながる。</span></div>
+      </div>
+      <div class="warn">「なにをやりたい」はOutputの話になりがちです。Outputの前に、どのActionを起こしたいのかを決めます。</div>
+    </section>
+
+    <section>
+      <h2>IPOAの4要素</h2>
+      <div class="grid">
+        <div class="card"><strong>Input</strong><span>判断に必要な材料。事実、制約、顧客情報、既存データ、会議メモ。</span></div>
+        <div class="card"><strong>Process</strong><span>AIや人間が行う変換。分析、整理、比較、要約、分類、生成。</span></div>
+        <div class="card"><strong>Output</strong><span>見える成果物。BI、HTML、レポート、一覧、提案書、社内ポータル。</span></div>
+        <div class="card action"><strong>Action</strong><span>誰が、いつ、何を決めるか。IPOAはここから逆算する。</span></div>
+      </div>
+      <div class="mermaid">
+flowchart TB
+    A["Action\n誰が・いつ・何を決めるか"] --> O["Output\n何が見えれば動けるか"]
+    O --> I["Input\n判断材料は何か"]
+    I --> P["Process\nどう変換するか"]
+    P --> O
+      </div>
+    </section>
+
+    <section>
+      <h2>BIの例: 作りたいものではなく、起こしたい行動から始める</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>入口</th><th>一見よさそうなOutput</th><th>足りないもの</th><th>IPOAで直すと</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>BIを作りたい</td>
+              <td>売上ダッシュボード、グラフ、KPI一覧</td>
+              <td>誰が何を決めるかがないので、見て終わる</td>
+              <td>毎週月曜に赤字見込み案件を3件選び、担当者に次の一手を決めさせたい</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>IPOA</th><th>BI例での定義</th></tr></thead>
+          <tbody>
+            <tr><td>Action</td><td>月曜朝、経営者が赤字見込み案件を3件選び、担当者へ打ち手を確認する。</td></tr>
+            <tr><td>Output</td><td>赤字見込み案件ランキング、粗利率、担当者、直近の動き、推奨アクション。</td></tr>
+            <tr><td>Input</td><td>売上、原価、案件ステータス、担当者、期限、過去対応、顧客メモ。</td></tr>
+            <tr><td>Process</td><td>粗利率計算、リスク分類、優先順位付け、次の一手の推奨生成。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>grill-meと連動する</h2>
+      <p>自分だけでIPOAを埋めようとすると、無自覚な前提が抜けます。そこで、AIに執拗にインタビューさせます。</p>
+      <div class="code-block">
+        <div class="code-label">Codexに貼る依頼: IPOAを深掘りする<button class="copy" data-copy>コピー</button></div>
+        <div class="code-help"><div><span>これは何か</span>Codexに貼る依頼文</div><div><span>どこで使うか</span>Codexのチャット欄</div><div><span>OKの状態</span>ipoa.mdとHTML化の材料が出る</div></div>
+        <pre>この業務について、IPOAで執拗にインタビューしてください。
+
+目的:
+Outputから始めず、Actionから逆算して必要なInputとProcessを決める。
+
+進め方:
+1. Action: 誰が、いつ、何を決める・動くべきか
+2. Output: そのActionに必要な見える成果物は何か
+3. Input: 判断材料として何の情報が必要か
+4. Process: Inputをどう整理・分析・変換すればOutputになるか
+
+各質問に対して、私が答えやすい推奨回答も提示してください。
+曖昧なまま進めず、依存関係を1つずつ解決してください。
+
+最後に以下を作ってください。
+- ipoa.md
+- work-improvement.html の構成案</pre>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <a href="index.html">講義本編</a> /
+    <a href="shared-standard.html">個人OSからチーム標準へ</a> /
+    <a href="schedule.html">合宿スケジュール</a> /
+    <a href="prep.html">事前準備</a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad:true, theme:'base', themeVariables:{ primaryColor:'#e6f5f2', primaryTextColor:'#0b5d56', primaryBorderColor:'#b6ded7', lineColor:'#0f766e', secondaryColor:'#f1f5f3', tertiaryColor:'#ffffff', fontFamily:'"Hiragino Sans","Noto Sans JP",system-ui,sans-serif', fontSize:'15px' } });
+    document.querySelectorAll('[data-copy]').forEach((button) => button.addEventListener('click', async () => {
+      const text = button.closest('.code-block')?.querySelector('pre')?.innerText || '';
+      await navigator.clipboard.writeText(text);
+      const old = button.textContent;
+      button.textContent = 'コピー済み';
+      setTimeout(() => button.textContent = old, 1300);
+    }));
+  </script>
+</body>
+</html>
