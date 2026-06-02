@@ -506,6 +506,22 @@ flowchart TB
       <div class="resource">参考（常設）: <a href="https://composio.dev/codex" target="_blank" rel="noopener">Composio × Codex セットアップ（公式）</a> / <a href="https://docs.composio.dev/docs/composio-connect" target="_blank" rel="noopener">Composio Connect Docs</a> / <a href="https://dashboard.composio.dev/" target="_blank" rel="noopener">Composio ダッシュボード</a></div>
     </section>
 
+    <!-- ====== Obsidian（任意） ====== -->
+    <section id="obsidian">
+      <h2><span class="section-no" style="background:var(--muted);">+</span>Obsidian（任意） — Markdownファイルをビジュアルで管理する</h2>
+      <p>AGENTS.md / memory.md / brand-voice.md などのファイルを、GUIで管理・検索したい人向けのオプションツールです。<strong>必須ではありません</strong>。Finderやエディタで管理しても同じ効果があります。</p>
+      <div class="grid">
+        <div class="card"><strong>Obsidian が便利な場面</strong><span>ファイルが増えてきて「あの情報どのファイルだっけ」と探す時間が増えてきたとき。全文検索・タグ・リンクでファイル間を行き来できる。</span></div>
+        <div class="card"><strong>Obsidian なしでOKな場面</strong><span>まだファイルが5〜10個程度の初期段階。Codexがファイルを直接読み書きするので、GUI管理はあくまで人間側の便宜。</span></div>
+      </div>
+      <div class="code-block">
+        <div class="code-label">インストール（任意）<button class="copy" data-copy>コピー</button></div>
+        <pre>brew install --cask obsidian</pre>
+      </div>
+      <p>インストール後は <strong>作業フォルダ（codex-bunshin-os/）をVaultとして開く</strong>だけでOKです。Codexが作ったmarkdownファイルをそのまま表示・編集できます。</p>
+      <div class="warn">Obsidian の「Sync」機能（有料）は使わなくてOK。ファイルはローカルに置いてGitで管理します。</div>
+    </section>
+
     <!-- ====== アカウント作成 ====== -->
     <section id="accounts">
       <h2>アカウント作成</h2>

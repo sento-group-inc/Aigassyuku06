@@ -867,22 +867,34 @@ flowchart TB
         </div>
         <p>あのね、みなさんAIを使ってるじゃないですか。ChatGPTに聞く。Claudeに聞く。資料を作らせる。メール文を直させる。それ自体はもう珍しくないんですよ。</p>
         <p>でも、たぶん同時にこういう感覚もあると思ってて。毎回、説明してませんか。「うちの会社はこうで」「このお客さんはこうで」「僕はこういう判断をしたくて」「この表現はうちっぽくないからやめて」。</p>
-        <p>社員を雇ったとして、毎朝その人に「うちの会社は何をしている会社です」から説明し直してたら、仕事にならない。でもAIにはそれをやっている。今日と明日でやるのは、ここを終わらせることです。</p>
+        <p>社員を雇ったとして、毎朝その人に「うちの会社は何をしている会社です」から説明し直してたら、仕事にならない。でもAIにはそれをやっている。<strong>この「再説明コスト」をゼロにする。</strong>それが今日と明日でやることです。</p>
+        <p>さらに一歩先の話をすると、1人のAIに全部やらせるより、役割分担したAIチームに任せる方が質が上がります。文章を書くAI、それをレビューするAI、タスクを割り振るAI——それぞれが専門領域を持ったチームとして動く。この合宿の最終地点は、<strong>あなたがそのAI組織のCEO</strong>になることです。</p>
         <div class="diagram">
-          <p class="diagram-title">今日の学習は、この順番でつながります</p>
-          <div class="chain">
-            <div class="stepbox"><strong>業務を深掘り</strong><span>任せたい作業ではなく、詰まりと判断軸を出す。</span></div>
-            <div class="stepbox"><strong>AGENTSに保存</strong><span>毎回の説明をファイルに移す。</span></div>
-            <div class="stepbox"><strong>Codexで実行</strong><span>調査、実装、検証を作業単位で任せる。</span></div>
-            <div class="stepbox"><strong>Skill化</strong><span>長い依頼を短い呼び出しに変える。</span></div>
-            <div class="stepbox"><strong>ログで育てる</strong><span>ズレを次回のルールに変える。</span></div>
+          <p class="diagram-title">目指す状態：単体AI vs AI社員チーム</p>
+          <div class="mermaid">
+flowchart TB
+    subgraph BAD["今の状態（再説明コストあり）"]
+        direction LR
+        X["あなた"] --> X1["AI\n（毎回説明から）"]
+        X --> X2["AI\n（また一から）"]
+        X --> X3["AI\n（文脈リセット）"]
+    end
+    subgraph GOOD["目指す状態（AI社員チーム）"]
+        direction LR
+        Y["あなた\n（CEO）"] --> D["ディレクター\nAgent"]
+        D --> W["作業担当\nAgent"]
+        D --> R["レビュー担当\nAgent"]
+        D --> IN["インフラ担当\nAgent"]
+    end
+    BAD -.->|"合宿で変わる"| GOOD
           </div>
         </div>
         <div class="cards">
-          <div class="card"><h4>Before</h4><p>AIに毎回背景を説明し、出てきたものを場当たり的に直す。</p></div>
-          <div class="card"><h4>After</h4><p>Codexが会社・判断軸・失敗パターンを読み、作業単位で任せられる。</p></div>
+          <div class="card"><h4>Before</h4><p>AIに毎回背景を説明し、出てきたものを場当たり的に直す。再説明コストが積み上がる。</p></div>
+          <div class="card"><h4>After</h4><p>引き継ぎ書（AGENTS.md群）を渡したAIチームが、業務の文脈を読んで自律で動く。あなたはCEOとしてレビューと判断だけをする。</p></div>
         </div>
         <div class="check">今日作るのは「全自動で放置する仕組み」ではなく、引き継ぎ書を渡し、仕事を任せ、レビューして育てる環境です。</div>
+        <div class="note"><strong>合宿での対話型ガイドについて</strong><br>講義HTMLを見ながら、Claude/Codexと対話してAI組織を構築するガイドファイルが <code>journey/</code> フォルダにあります。「journey/README.md を読んで始めてください」と言えばCEOへの道が始まります。</div>
         <div class="note">10社の社長が集まる合宿なので、最初からチーム標準にはしません。まず各自の個人OSを作る。その先で、組織では改善を個人メモに閉じず共有標準へ戻します。詳しくは <a href="shared-standard.html">個人OSからチーム標準へ</a>。</div>
       </section>
 
@@ -1089,23 +1101,41 @@ graph TB
     A --- H
           </div>
         </div>
+        <h3>文脈エンジンとして設計する</h3>
+        <p>AGENTS.mdは「AIが最初に読む<strong>目次ファイル</strong>」として設計します。全部を詰め込まず、詳細情報は別ファイルに置いて必要な時だけ呼ぶ。これが <strong>Progressive Disclosure</strong>（段階的開示）の実践です。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>ファイル</th><th>内容</th><th>なぜ分けるか</th><th>読むタイミング</th></tr></thead>
+            <tbody>
+              <tr><td><code>AGENTS.md</code></td><td>目次・基本方針・安全ルール</td><td>毎回読む定数。短くキープ</td><td>常時</td></tr>
+              <tr><td><code>memory.md</code></td><td>会社情報・顧客情報・長期知識</td><td>業務依存で変わりにくい</td><td>業務開始時</td></tr>
+              <tr><td><code>state.md</code></td><td>今の重点テーマ・ブロッカー</td><td>週次で変わる変数</td><td>タスク開始前</td></tr>
+              <tr><td><code>contexts/brand-voice.md</code></td><td>口調・文体・NGワード</td><td>ライティング時だけ読む</td><td>文章生成時</td></tr>
+              <tr><td><code>contexts/philosophy.md</code></td><td>価値観・判断軸・MVV</td><td>重要判断時だけ読む</td><td>意思決定時</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">「全部をAGENTS.mdに入れる」は禁物。インストラクション・バジェット（AIが安定して守れる指示量）は150〜200指示が限界。肥大化させず、目次から展開する設計にする。</div>
+        <div class="resource" style="background:var(--surface-soft);color:var(--muted);border-color:var(--line);">
+          <strong>Obsidian（任意）</strong> — これらのmarkdownファイルをGUIで管理・検索したい人向け。必須ではなく、Finderやエディタで管理しても同じ効果があります。使いたい場合は <a href="prep.html#obsidian">事前準備ページ</a> を参照。
+        </div>
         <div class="code-block">
           <div class="code-label">Codexに初期ファイルを作らせる<button class="copy" data-copy>コピー</button></div>
           <pre>このフォルダに、私専用のCodex分身OSの最小構成を作ってください。
 
 作るファイル:
-1. AGENTS.md
-2. memory.md
-3. state.md
-4. logs/YYYY-MM-DD.md
-5. outputs/README.md
+1. AGENTS.md（目次 + 基本方針 + 安全ルール）
+2. memory.md（会社情報 + 長期知識）
+3. state.md（今の重点テーマ）
+4. contexts/brand-voice.md（口調・文体・NGワード）
+5. contexts/philosophy.md（価値観・判断軸）
+6. logs/YYYY-MM-DD.md
 
 前提:
 - 日本語で使う
-- 会社情報、役割、判断軸、安全ルールをAGENTS.mdに入れる
-- 長期的に覚えることはmemory.md
-- 今の重点テーマと詰まりはstate.md
-- 作業の最後にlogsへ追記する
+- AGENTS.mdは目次として短くキープ。詳細は各ファイルに分散
+- brand-voice.mdは文章を書く時だけ読む
+- philosophy.mdは重要判断の時だけ読む
 
 まず空欄付きテンプレートとして作ってください。</pre>
         </div>
@@ -1861,6 +1891,52 @@ flowchart TB
           </div>
         </div>
         <div class="note"><strong>初日夕方 18:00 — 翌日の業務改善HTMLを全体に共有</strong><br>「明日10時にどの業務改善HTMLを見せるか」を声に出す。内容は問わない。Actionが定義されていることを優先。翌日10:00に各自10分で発表。</div>
+
+        <h3>運用ルール：AIに与える権限の境界</h3>
+        <p>AIには「常識」が通じません。「ファイルを勝手に消してはいけない」ことも、明文化されていなければ判断できません。AGENTS.mdに「やっていいこと / 要確認 / 絶対禁止」を書く。これが自律運用の前提です。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>自律実行OK（確認不要）</th><th>要確認（実行前に聞く）</th><th>絶対禁止</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>ファイルの作成・編集<br>コードの生成・修正<br>テストの実行<br>Asanaのステータス更新</td>
+                <td>ファイルの削除<br>外部サービスへのPOST<br>GitHubへのpush<br>メール・Slack送信</td>
+                <td>[自分で決める]<br>例：本番DBへの書き込み<br>例：お客さんへの直接連絡<br>例：金銭に関わる操作</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="code-block">
+          <div class="code-label">AGENTS.mdに権限境界を追記<button class="copy" data-copy>コピー</button></div>
+          <pre>AGENTS.mdに「権限境界テーブル」を追記してください。
+
+私の回答：
+- 自律実行OKにしたいもの: [ここに書く]
+- 要確認にしたいもの: [ここに書く]
+- 絶対禁止にしたいもの: [ここに書く]
+
+表形式でAGENTS.mdに追記してください。追記前に提案を出してから実行してください。</pre>
+        </div>
+
+        <h3>週次メンテナンス：AI組織の定期整備</h3>
+        <p>使うほど AGENTS.md に情報が増え、重複や古い情報が溜まります。週に1回、強力なモデルに「大掃除」を依頼する習慣が、AI組織を崩壊させずに育てるコツです。</p>
+        <div class="code-block">
+          <div class="code-label">週次クリーンアッププロンプト（毎週コピペして使う）<button class="copy" data-copy>コピー</button></div>
+          <pre>週次メンテナンスをお願いします。
+
+AGENTS.md / memory.md / state.md / contexts/ / skills/ を全部読んでください。
+
+以下を提案してください（実行前に確認します）：
+1. AGENTS.mdの重複ルールを統合する
+2. memory.mdから古くなった情報を外す
+3. state.mdを今週の状況に更新する
+4. 使っていないSkillがあれば棚卸しを提案する
+
+最後に、「次回からAGENTS.mdに追記すべきルール」を1〜3つ提案してください。
+変更前に必ず提案を出してから、OKをもらって実行してください。</pre>
+        </div>
+        <div class="resource">対話型ガイドで自律運用まで進みたい場合: <a href="journey/Session04-operations.md">journey/Session04-operations.md</a>（Codex/Claudeに渡すだけ）</div>
+
         <div class="code-block">
           <div class="code-label">作業後レビュー<button class="copy" data-copy>コピー</button></div>
           <pre>今回の作業を振り返って、次回からCodexがより良く動くようにするには何を更新すべきですか。
@@ -1911,7 +1987,10 @@ flowchart TB
           <label><input type="checkbox"> 作業後レビューで環境を育てられる</label>
           <label><input type="checkbox"> エージェントを1つ設計・実行できた</label>
           <label><input type="checkbox"> 公開URLをagent-browserで読ませられる</label>
+          <label><input type="checkbox"> AGENTS.mdに権限境界（自律OK/要確認/禁止）を書いた</label>
+          <label><input type="checkbox"> journey/Session01〜04 を通じてAI組織のCEOになった</label>
         </div>
+        <div class="note"><strong>対話型ガイド（journey/ フォルダ）</strong><br>このHTMLで操作方法を見ながら、Claude/Codexに <code>journey/README.md を読んで始めてください</code> と言うと対話型でAI組織が構築できます。Session01〜04 を通じて「AI組織のCEO」になるまでを段階的に導きます。</div>
       </section>
 
       <section id="agents-create">
