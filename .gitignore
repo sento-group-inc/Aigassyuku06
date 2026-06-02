@@ -1,0 +1,11 @@
+# 参加者が各自作るAI組織ファイル（個人の会社情報を含むためGitHubに上げない）
+codex-bunshin-os/
+
+# OS / エディタ
+.DS_Store
+*.log
+
+# 秘密情報（絶対にコミットしない）
+.env
+*.pem
+auth.json

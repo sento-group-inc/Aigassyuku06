@@ -362,9 +362,51 @@ Goal: Codex App / Homebrew / Node.js / Git を使える状態にしたいです�
       <div class="resource">参考（常設）: <a href="https://chatgpt.com/codex/mobile/" target="_blank" rel="noopener">Codex for mobile（OpenAI）</a> / <a href="https://openai.com/index/work-with-codex-from-anywhere/" target="_blank" rel="noopener">Work with Codex from anywhere（OpenAI）</a> / <a href="https://x.com/Codestudiopjbk/status/2055041039313035454" target="_blank" rel="noopener">Codex Studioさんの解説ポスト</a></div>
     </section>
 
+    <!-- ====== STEP: リポジトリ同期 ====== -->
+    <section id="sync">
+      <h2><span class="section-no">5</span>合宿リポジトリを同期する（重要）</h2>
+      <p>この合宿サイトと対話型ガイド（<code>journey/</code>）は GitHub リポジトリ <strong><code>sento-group-inc/Aigassyuku06</code></strong> に入っています。各自のMacに同期（clone）して、そのフォルダをCodex/Claudeで開きます。<strong>当日の対話はこのフォルダの中で行います。</strong></p>
+      <div class="step-flow">
+        <div class="step">
+          <div class="step-no">1</div>
+          <div><strong>cloneする場所へ移動</strong><br>例：デスクトップ。</div>
+        </div>
+        <div class="step">
+          <div class="step-no">2</div>
+          <div><strong>リポジトリを同期（clone）</strong></div>
+        </div>
+        <div class="step">
+          <div class="step-no">3</div>
+          <div><strong>そのフォルダをCodex / Claude Codeで開く</strong><br>Codex Appなら「フォルダを追加」で <code>Aigassyuku06</code> を選ぶ。</div>
+        </div>
+        <div class="step">
+          <div class="step-no done">4</div>
+          <div><strong>あとは合言葉</strong><br>「<code>このリポジトリの journey/README.md を開いて読んで、その手順で私を導いて</code>」と打つだけ。</div>
+        </div>
+      </div>
+      <div class="code-block">
+        <div class="code-label">① cloneする場所へ移動（例：デスクトップ）<button class="copy" data-copy>コピー</button></div>
+        <pre>cd ~/Desktop</pre>
+      </div>
+      <div class="code-block">
+        <div class="code-label">② リポジトリを同期<button class="copy" data-copy>コピー</button></div>
+        <pre>git clone https://github.com/sento-group-inc/Aigassyuku06.git</pre>
+      </div>
+      <div class="code-block">
+        <div class="code-label">③ フォルダへ移動<button class="copy" data-copy>コピー</button></div>
+        <pre>cd Aigassyuku06</pre>
+      </div>
+      <div class="code-block">
+        <div class="code-label">④ 当日の朝など、最新に更新したいとき<button class="copy" data-copy>コピー</button></div>
+        <pre>git pull</pre>
+      </div>
+      <div class="note">あなたが作るAI組織ファイルは、このフォルダ内の <code>codex-bunshin-os/</code> サブフォルダに生成されます。ここは <code>.gitignore</code> 済みなので、あなたの会社情報がGitHubに上がることはありません。</div>
+      <div class="ai-tip"><strong>わからなければAIに聞こう！</strong><br>「git clone って何をするの？」「このフォルダどこにできたの？」など、そのままCodexやChatGPTに聞けば教えてくれます。</div>
+    </section>
+
     <!-- ====== STEP 4: Claude Code（任意） ====== -->
     <section id="claude-code">
-      <h2><span class="section-no">5</span>Claude Code のセットアップ（任意）</h2>
+      <h2><span class="section-no">6</span>Claude Code のセットアップ（任意）</h2>
       <p>合宿では Codex メインですが、Claude Code も使える状態にしておくと、agmsg でのデュアル運用ができます（本編 agmsg セクション参照）。</p>
       <div class="code-block">
         <div class="code-label">① Claude Code をインストール<button class="copy" data-copy>コピー</button></div>
@@ -379,7 +421,7 @@ Goal: Codex App / Homebrew / Node.js / Git を使える状態にしたいです�
 
     <!-- ====== STEP 5: ngrok ====== -->
     <section id="ngrok">
-      <h2><span class="section-no">6</span>ngrok のインストール</h2>
+      <h2><span class="section-no">7</span>ngrok のインストール</h2>
       <p>ngrok はローカルで動かしているサーバーを、インターネット経由で一時的に公開するツール。「自社の方針HTMLを作って今すぐURLで共有したい」ときに便利。</p>
       <div class="grid">
         <div class="card"><strong>Vercel との違い</strong><span>Vercel = GitHubに push するたびに自動デプロイ。恒久公開。<br>ngrok = コマンド1行で今すぐ外部公開。一時的な共有向け。</span></div>
@@ -399,7 +441,7 @@ Goal: Codex App / Homebrew / Node.js / Git を使える状態にしたいです�
 
     <!-- ====== STEP 6: agent-browser ====== -->
     <section id="agent-browser">
-      <h2><span class="section-no">7</span>agent-browser のインストール</h2>
+      <h2><span class="section-no">8</span>agent-browser のインストール</h2>
       <p>公開した URL を AI に読ませながら進めるためのツール（Rust製 CLI）。「この合宿サイトを Codex に読ませて、次にやることを聞く」ような使い方ができます。</p>
       <div class="code-block">
         <div class="code-label">① agent-browser をインストール<button class="copy" data-copy>コピー</button></div>
@@ -414,7 +456,7 @@ Goal: Codex App / Homebrew / Node.js / Git を使える状態にしたいです�
 
     <!-- ====== STEP 7: Composio ====== -->
     <section id="composio">
-      <h2><span class="section-no">8</span>Composio — MCP をまとめて管理する</h2>
+      <h2><span class="section-no">9</span>Composio — MCP をまとめて管理する</h2>
       <p>MCP を1つずつ手で設定するのが面倒な人向け。Composio Connect を使うと <strong>GitHub / Asana / Slack / Notion など 1000以上のツール</strong> を、1つのMCP接続から扱えるようになります。</p>
 
       <h3>Composio とは</h3>
@@ -548,6 +590,7 @@ flowchart TB
         <label><input type="checkbox"> <span>Node.js が入っている（<code>node --version</code> が通る）</span></label>
         <label><input type="checkbox"> <span>Git が入っている（<code>git --version</code> が通る）</span></label>
         <label><input type="checkbox"> <span>Codex App を開けて、フォルダを追加できる</span></label>
+        <label><input type="checkbox"> <span>合宿リポジトリを <code>git clone</code> して、そのフォルダをCodexで開ける</span></label>
         <label><input type="checkbox"> <span>ChatGPT（OpenAI）アカウントにログインできる</span></label>
         <label><input type="checkbox"> <span>スマホにChatGPTアプリを入れ、Codexを開ける</span></label>
         <label><input type="checkbox"> <span>GitHub アカウントにログインできる</span></label>

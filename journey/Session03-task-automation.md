@@ -37,7 +37,7 @@ Asana PATがない場合は先に取得してください：
 
 AIはまずファイルを読む：
 
-> 「AGENTS.md / contexts/org-chart.md を読んで現状を把握します。」
+> 「codex-bunshin-os/ の AGENTS.md / contexts/org-chart.md を読んで現状を把握します。」
 
 （ファイルを読んで把握）
 

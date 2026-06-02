@@ -30,6 +30,39 @@
 
 ---
 
+## セットアップ：このリポジトリを同期する（最初に1回だけ）
+
+このガイド（`journey/`）は GitHub リポジトリ **`sento-group-inc/Aigassyuku06`** に入っています。
+まず手元のMacにリポジトリを同期（clone）して、その中のファイルをAIに読ませます。
+
+### Step 1: リポジトリをcloneする
+
+ターミナルで、作業したい場所（例：デスクトップ）へ移動してから実行：
+
+```
+cd ~/Desktop
+git clone https://github.com/sento-group-inc/Aigassyuku06.git
+cd Aigassyuku06
+```
+
+### Step 2: このフォルダをCodex / Claude Codeで開く
+
+- **Codex App**: 「フォルダを追加」から、今cloneした `Aigassyuku06` フォルダを開く
+- **Claude Code**: ターミナルで `Aigassyuku06` フォルダに入って `claude` を起動
+- **Cursor等のエディタ**: `Aigassyuku06` フォルダを開く
+
+### Step 3: 最新に保つ（合宿当日の朝など）
+
+講師がガイドを更新することがあります。最新版に揃えるには：
+
+```
+git pull
+```
+
+> Gitに不慣れでも大丈夫。上のコマンドをそのままコピペして、わからなければAIに「このコマンドは何をするの？」と聞いてください。
+
+---
+
 ## 合宿での使い方
 
 ### Day 1 午前（9:30〜13:00）
@@ -48,22 +81,34 @@
 
 ## セッションの始め方
 
-Codex または Claude Code を開いて、以下の一文を入力するだけです：
+同期した `Aigassyuku06` フォルダをCodex / Claude Codeで開いた状態で、以下の一文を入力するだけです：
 
 ```
-journey/Session01-context-engine.md を読んで、ここから始めてください。
+このリポジトリの journey/Session01-context-engine.md を開いて読んで、その手順に沿って私を導いてください。
 ```
 
-AIがファイルを読んで、あなたへの質問から始めてくれます。
+AIが同期したGitHubリポジトリ内のファイルを読んで、あなたへの質問から始めてくれます。
+
+以降のセッションも同じ形式で始められます：
+
+```
+このリポジトリの journey/Session02-ai-org-design.md を開いて、前回作ったファイルを読んでから続けてください。
+```
+
+> ポイント: ガイド本体（journey/）は同期したリポジトリ、あなたが**作るファイル**（AGENTS.md等）は自分の作業フォルダ（codex-bunshin-os/）。読む場所と作る場所が分かれています。下の図を参照。
 
 ---
 
 ## ファイルが生成される場所
 
-各セッションが作るファイルは、あなたの **作業フォルダ（codex-bunshin-os/）** 内に保存されます。
+同期した `Aigassyuku06` フォルダの中に、あなた専用の **`codex-bunshin-os/`** サブフォルダを作り、そこに生成します。
+（このフォルダは `.gitignore` 済みなので、あなたの会社情報がGitHubに上がることはありません。安心して書けます）
 
 ```
-codex-bunshin-os/
+Aigassyuku06/                  ← 同期したリポジトリ（読む側）
+├── journey/                   ← このガイド（講師が用意）
+├── index.html / prep.html ...
+└── codex-bunshin-os/          ← あなたが作る側（gitignore済み・GitHubに上がらない）
 ├── AGENTS.md              ← Session 01（AI組織の憲法・目次）
 ├── memory.md              ← Session 01（会社の長期記憶）
 ├── state.md               ← Session 01（今週の重点）
@@ -74,12 +119,14 @@ codex-bunshin-os/
 │   ├── director-agent/    ← Session 02
 │   ├── brand-voice-reviewer/ ← Session 02
 │   └── [業務名]/          ← Session 02
-├── contexts/
-│   └── org-chart.md       ← Session 02（AI組織図）
-└── handoffs/
-    ├── template-task.md   ← Session 03
-    └── template-review.md ← Session 03
+    ├── contexts/
+    │   └── org-chart.md   ← Session 02（AI組織図）
+    └── handoffs/
+        ├── template-task.md   ← Session 03
+        └── template-review.md ← Session 03
 ```
+
+> セッション開始時に「`codex-bunshin-os/` フォルダを作って、その中にファイルを生成して」とAIに伝えればOK。各Sessionの手順にも書いてあります。
 
 ---
 

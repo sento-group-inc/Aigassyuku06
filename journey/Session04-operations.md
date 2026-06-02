@@ -24,7 +24,7 @@
 
 AIはすべてのファイルを読む：
 
-> 「AGENTS.md / memory.md / state.md / contexts/ / skills/ / handoffs/ を読んで、AI組織の現状を把握します。」
+> 「codex-bunshin-os/ の AGENTS.md / memory.md / state.md / contexts/ / skills/ / handoffs/ を読んで、AI組織の現状を把握します。」
 
 （読んで把握）
 

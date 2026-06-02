@@ -25,7 +25,7 @@
 
 AIはまずファイルを読む：
 
-> 「AGENTS.md / memory.md / state.md / contexts/brand-voice.md / contexts/philosophy.md を読んで、現状を把握します。少し待ってください。」
+> 「codex-bunshin-os/ の AGENTS.md / memory.md / state.md / contexts/brand-voice.md / contexts/philosophy.md を読んで、現状を把握します。少し待ってください。」（前回のファイルが見つからない場合は、Session 01 を先に実施してください）
 
 （ファイルを読んで内容を把握）
 
