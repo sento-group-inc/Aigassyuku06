@@ -118,6 +118,120 @@ Goal: Codex App / Homebrew / Node.js / Git を使える状態にしたいです�
       </div>
     </section>
 
+    <!-- ====== 全体像まとめ ====== -->
+    <section id="overview">
+      <h2>全体像 — 入れるものとスキル一覧</h2>
+      <p>詳細セクションを読む前に、まず全体を把握してください。必須から順に進め、任意はあとで判断でOKです。</p>
+
+      <h3>インストールするもの</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>ツール</th><th>種別</th><th>用途の一言</th><th>詳細</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Homebrew</strong></td>
+              <td><span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">必須</span></td>
+              <td>Macのパッケージマネージャ。これが入れば他は全部1行で入る</td>
+              <td><a href="#homebrew">→ Section 1</a></td>
+            </tr>
+            <tr>
+              <td><strong>Node.js / Git</strong></td>
+              <td><span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">必須</span></td>
+              <td>CLIツールの実行環境。agent-browser や Codex CLI の前提</td>
+              <td><a href="#node-git">→ Section 2</a></td>
+            </tr>
+            <tr>
+              <td><strong>Codex App</strong></td>
+              <td><span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">必須</span></td>
+              <td>合宿のメインAIエージェント。AGENTS.mdを読んで自律作業する</td>
+              <td><a href="#codex-setup">→ Section 3</a></td>
+            </tr>
+            <tr>
+              <td><strong>ChatGPTアプリ（スマホ）</strong></td>
+              <td><span style="background:#fef9c3;color:#854d0e;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">推奨</span></td>
+              <td>Codexをスマホからリモート操作。MacのCodexが動いていれば外出中でも指示できる</td>
+              <td><a href="#codex-mobile">→ Section 4A</a></td>
+            </tr>
+            <tr>
+              <td><strong>Claude Code</strong></td>
+              <td><span style="background:#fef9c3;color:#854d0e;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">推奨</span></td>
+              <td><code>claude rc</code> でスマホリモコン化できる。デュアル運用にも</td>
+              <td><a href="#claude-remote">→ Section 4B</a></td>
+            </tr>
+            <tr>
+              <td><strong>ngrok</strong></td>
+              <td><span style="background:#fef9c3;color:#854d0e;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">推奨</span></td>
+              <td>作ったHTMLを即URLで共有できる一時公開ツール</td>
+              <td><a href="#ngrok">→ Section 7</a></td>
+            </tr>
+            <tr>
+              <td><strong>agent-browser</strong></td>
+              <td><span style="background:#fef9c3;color:#854d0e;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">推奨</span></td>
+              <td>公開URLをAIに自律的に読ませる</td>
+              <td><a href="#agent-browser">→ Section 8</a></td>
+            </tr>
+            <tr>
+              <td><strong>Composio</strong></td>
+              <td><span style="background:#f1f5f3;color:#66736e;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">任意</span></td>
+              <td>GitHub / Asana / Slack など1000以上のMCPを一元管理</td>
+              <td><a href="#composio">→ Section 9</a></td>
+            </tr>
+            <tr>
+              <td><strong>Obsidian</strong></td>
+              <td><span style="background:#f1f5f3;color:#66736e;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">任意</span></td>
+              <td>MarkdownファイルをGUIで管理・検索する</td>
+              <td><a href="#obsidian">→ Section +</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>使うスキル・リポジトリ</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>リポジトリ</th><th>用途</th><th>難易度</th><th>リンク</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><code>satya-janghu/agent-skills</code><br><span style="color:var(--muted);font-size:12px;">grill-me スキル</span></td>
+              <td>業務の前提・詰まり・判断軸を深掘りするスキル。合宿Section 02で使用</td>
+              <td><span class="diff diff-easy">易</span></td>
+              <td><a href="https://github.com/satya-janghu/agent-skills/tree/main/skills/grill-me" target="_blank" rel="noopener">GitHub</a></td>
+            </tr>
+            <tr>
+              <td><code>upstash/context7</code><br><span style="color:var(--muted);font-size:12px;">最新ドキュメント参照MCP</span></td>
+              <td>古い書き方で詰まらないよう、ライブラリの公式ドキュメントをリアルタイム参照する</td>
+              <td><span class="diff diff-easy">易</span></td>
+              <td><a href="https://github.com/upstash/context7" target="_blank" rel="noopener">GitHub</a></td>
+            </tr>
+            <tr>
+              <td><code>openclaw/gogcli</code><br><span style="color:var(--muted);font-size:12px;">Google Sheets/Drive CLI</span></td>
+              <td>Codexからスプレッドシートを作成・読み書きする。Section 10で使用</td>
+              <td><span class="diff diff-medium">中</span></td>
+              <td><a href="https://github.com/openclaw/gogcli" target="_blank" rel="noopener">GitHub</a></td>
+            </tr>
+            <tr>
+              <td><code>teng-lin/notebooklm-py</code><br><span style="color:var(--muted);font-size:12px;">NotebookLM連動</span></td>
+              <td>資料置き場をNotebookLMに集め、Codexから呼び出す。Section 12で使用</td>
+              <td><span class="diff diff-medium">中</span></td>
+              <td><a href="https://github.com/teng-lin/notebooklm-py" target="_blank" rel="noopener">GitHub</a></td>
+            </tr>
+            <tr>
+              <td><code>vercel-labs/agent-browser</code><br><span style="color:var(--muted);font-size:12px;">公開URLを読むCLI</span></td>
+              <td>Vercel/ngrokで公開したHTMLをAIに確認させる。Section 18で使用</td>
+              <td><span class="diff diff-medium">中</span></td>
+              <td><a href="https://github.com/vercel-labs/agent-browser" target="_blank" rel="noopener">GitHub</a></td>
+            </tr>
+            <tr>
+              <td><code>garrytan/gbrain</code><br><span style="color:var(--muted);font-size:12px;">PC記憶装置・知識グラフ</span></td>
+              <td>PC内の情報を知識グラフ＋ハイブリッド検索で整理し、AIの「長期記憶」として使う。MCP対応</td>
+              <td><span class="diff diff-medium">中</span></td>
+              <td><a href="https://github.com/garrytan/gbrain" target="_blank" rel="noopener">GitHub</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
     <!-- ====== 用語プライマー ====== -->
     <section id="terms">
       <h2>用語プライマー — AGENTS.md / CLAUDE.md とは</h2>
@@ -309,11 +423,17 @@ Goal: Codex App / Homebrew / Node.js / Git を使える状態にしたいです�
       <div class="resource">参考（常設）: <a href="https://developers.openai.com/codex/app/" target="_blank" rel="noopener">OpenAI Codex App</a> / <a href="https://note.com/munakata_souri/n/n4aacfa6d9729" target="_blank" rel="noopener">Codexセットアップ解説（むなかた note 2026年4月）</a></div>
     </section>
 
-    <!-- ====== STEP 4: ChatGPT Mobile ====== -->
+    <!-- ====== STEP 4: スマホからリモート ====== -->
     <section id="codex-mobile">
-      <h2><span class="section-no">4</span>ChatGPTアプリでCodexをスマホから見る</h2>
-      <p>Codexは長い作業を任せることがあります。Macの前にずっと座っていなくても、ChatGPTモバイルアプリから進捗確認、承認、方向修正ができます。</p>
-      <div class="note"><strong>ここで大事な前提</strong><br>Codex Mobileはスマホ単体でMac内のファイルを編集するものではありません。Mac側のCodex Appが動いていて、その作業状態をスマホのChatGPTアプリから見る・動かす、という理解です。</div>
+      <h2><span class="section-no">4</span>スマホからリモートで指示を出す</h2>
+      <p>AI組織のCEOは、Macの前にいる必要はありません。<strong>Codex も Claude Code も、スマホから指示・確認・承認できます。</strong>長い作業を任せながら移動する、会議中に方向修正する — リモコン操作が当日の基本動作になります。</p>
+      <div class="grid">
+        <div class="card accent"><strong>Codex Mobile（ChatGPTアプリ）</strong><span>Mac側のCodex Appが動いていれば、スマホのChatGPTアプリから進捗確認・承認・指示ができる</span></div>
+        <div class="card"><strong>Claude Code Remote Control</strong><span><code>claude rc</code> を実行するとQRコードが表示され、スマホブラウザ（claude.ai/code）から即リモート操作</span></div>
+      </div>
+
+      <h3>A. Codex Mobile（ChatGPTアプリ）</h3>
+      <div class="note"><strong>前提</strong><br>Codex Mobileはスマホ単体でMac内のファイルを編集するものではありません。Mac側のCodex Appが動いていて、その作業状態をスマホのChatGPTアプリから見る・動かす、という理解です。</div>
 
       <figure>
         <img src="assets/images/prep-mobile/codex-mobile-flow.svg" alt="Codexをスマホから見守る仕組み" loading="lazy">
@@ -360,6 +480,74 @@ Goal: Codex App / Homebrew / Node.js / Git を使える状態にしたいです�
         <div class="card"><strong>ただしMacは必要</strong><span>Mac側のCodex App、作業フォルダ、認証、起動状態が土台。スマホはリモコン。</span></div>
       </div>
       <div class="resource">参考（常設）: <a href="https://chatgpt.com/codex/mobile/" target="_blank" rel="noopener">Codex for mobile（OpenAI）</a> / <a href="https://openai.com/index/work-with-codex-from-anywhere/" target="_blank" rel="noopener">Work with Codex from anywhere（OpenAI）</a> / <a href="https://x.com/Codestudiopjbk/status/2055041039313035454" target="_blank" rel="noopener">Codex Studioさんの解説ポスト</a></div>
+
+      <h3 id="claude-remote">B. Claude Code Remote Control</h3>
+      <p>Claude Code には組み込みのリモートコントロール機能があります。ターミナルで1コマンド実行するだけで、スマホブラウザ（<code>claude.ai/code</code>）から同じセッションを操作できます。Codex Mobileと同じ「リモコン」用途を、Claudeで実現する方法です。</p>
+
+      <div class="grid">
+        <div class="card accent">
+          <strong>仕組み</strong>
+          <span>Mac側で <code>claude rc</code> を実行 → ターミナルにセッションURLとQRコードが表示 → スマホで読み取るだけで接続</span>
+        </div>
+        <div class="card">
+          <strong>常時有効にする</strong>
+          <span>Claude Code内で <code>/config</code> → 「Enable Remote Control for all sessions」を <code>true</code> にセットすれば、毎回コマンドを打たなくて済む</span>
+        </div>
+      </div>
+
+      <div class="image-grid">
+        <figure>
+          <div class="placeholder-fig" style="min-height:180px;">ターミナルに表示される<br><strong>セッションURL + QRコード</strong><br><span style="font-size:12px;">スペースバーでQRコードが出る</span></div>
+          <figcaption>claude rc を実行するとQRコードが表示される</figcaption>
+        </figure>
+        <figure>
+          <div class="placeholder-fig" style="min-height:180px;">スマホブラウザで<br><strong>claude.ai/code</strong> を開く<br><span style="font-size:12px;">またはQRコードを読み取る</span></div>
+          <figcaption>スマホから同じセッションをリモート操作できる</figcaption>
+        </figure>
+      </div>
+
+      <h4>セットアップ手順</h4>
+      <div class="step-flow">
+        <div class="step">
+          <div class="step-no">1</div>
+          <div>
+            <strong>Claude Code をインストール（まだの場合）</strong><br>
+            <span style="color:var(--muted);font-size:14px;">詳細は Section 6。<code>npm install -g @anthropic-ai/claude-code</code> で入ります。</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-no">2</div>
+          <div>
+            <strong>常時有効化（推奨）</strong><br>
+            <span style="color:var(--muted);font-size:14px;">Claude Code を起動し、<code>/config</code> を入力 → 「Enable Remote Control for all sessions」を <code>true</code> に設定する。以降は毎回自動でリモコン待機状態になる。</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-no">3</div>
+          <div>
+            <strong>リモートセッションを開始</strong><br>
+            <span style="color:var(--muted);font-size:14px;">プロジェクトフォルダで <code>claude rc</code> を実行するか、既存セッション内で <code>/rc</code> と打つ。ターミナルにURLとQRコードが表示される。</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-no done">4</div>
+          <div>
+            <strong>スマホで接続</strong><br>
+            <span style="color:var(--muted);font-size:14px;">スマホのカメラでQRコードを読み取るか、表示されたURLを <code>claude.ai/code</code> で開く。接続すればスマホから指示できる。</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-block">
+        <div class="code-label">リモートコントロールを起動（プロジェクトフォルダで実行）<button class="copy" data-copy>コピー</button></div>
+        <pre>claude rc</pre>
+      </div>
+      <div class="code-block">
+        <div class="code-label">既存セッション内で起動する場合（チャット欄に入力）<button class="copy" data-copy>コピー</button></div>
+        <pre>/rc</pre>
+      </div>
+      <div class="note">スマホ側は専用アプリ不要。ブラウザ（Safari / Chrome）で claude.ai/code を開くだけで接続できます。</div>
+      <div class="resource">参考（常設）: <a href="https://dev.classmethod.jp/articles/claude-coderemotecontrol-enables-you-to-work-on-your-local-machine-from-your-smartphone/" target="_blank" rel="noopener">Claude Code リモートコントロール解説（DevelopersIO）</a></div>
     </section>
 
     <!-- ====== STEP: リポジトリ同期 ====== -->
@@ -404,10 +592,10 @@ Goal: Codex App / Homebrew / Node.js / Git を使える状態にしたいです�
       <div class="ai-tip"><strong>わからなければAIに聞こう！</strong><br>「git clone って何をするの？」「このフォルダどこにできたの？」など、そのままCodexやChatGPTに聞けば教えてくれます。</div>
     </section>
 
-    <!-- ====== STEP 4: Claude Code（任意） ====== -->
+    <!-- ====== STEP 6: Claude Code ====== -->
     <section id="claude-code">
-      <h2><span class="section-no">6</span>Claude Code のセットアップ（任意）</h2>
-      <p>合宿では Codex メインですが、Claude Code も使える状態にしておくと、agmsg でのデュアル運用ができます（本編 agmsg セクション参照）。</p>
+      <h2><span class="section-no">6</span>Claude Code のセットアップ</h2>
+      <p>Codex と並んで使えるAIエージェント。<strong>スマホリモコン（<code>claude rc</code>）</strong>や agmsg デュアル運用のために入れておくと当日の幅が広がります。リモートコントロールの詳細は <a href="#claude-remote">Section 4B</a> を参照。</p>
       <div class="code-block">
         <div class="code-label">① Claude Code をインストール<button class="copy" data-copy>コピー</button></div>
         <pre>npm install -g @anthropic-ai/claude-code</pre>
