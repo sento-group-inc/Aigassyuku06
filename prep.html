@@ -94,6 +94,87 @@
 
   <div class="content">
 
+    <!-- ====== クイックスタート（一目TODO） ====== -->
+    <section id="quickstart">
+      <h2>クイックスタート — やることはこれだけ</h2>
+      <p>上から順にやればOK。まずここで全体像を掴んで、各項目の「→ 詳しく」で説明に飛んでください。<strong>説明を全部読む必要はありません。</strong></p>
+      <div class="step-flow">
+        <div class="step">
+          <div class="step-no">0</div>
+          <div>
+            <strong>【合宿前の宿題】悩みを書き出してくる</strong>
+            <span style="background:#dcfce7;color:#166534;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:700;margin-left:6px;">必須</span><br>
+            <span style="color:var(--muted);font-size:14px;">面倒なこと・進まないこと・任せたいことをメモor音声で。これが一番効く。 <a href="#homework">→ 詳しく</a></span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-no">1</div>
+          <div>
+            <strong>Homebrew を入れる</strong>
+            <span style="background:#dcfce7;color:#166534;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:700;margin-left:6px;">必須</span><br>
+            <span style="color:var(--muted);font-size:14px;">これが入れば他は1行で入る。 <a href="#homebrew">→ 詳しく</a></span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-no">2</div>
+          <div>
+            <strong>Node.js / Git を入れる</strong>
+            <span style="background:#dcfce7;color:#166534;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:700;margin-left:6px;">必須</span><br>
+            <span style="color:var(--muted);font-size:14px;"><code>brew install node git</code> で完了。 <a href="#node-git">→ 詳しく</a></span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-no">3</div>
+          <div>
+            <strong>Codex App を入れてログイン</strong>
+            <span style="background:#dcfce7;color:#166534;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:700;margin-left:6px;">必須</span><br>
+            <span style="color:var(--muted);font-size:14px;">合宿のメインAI。ChatGPTアカウントでログイン。 <a href="#codex-setup">→ 詳しく</a></span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-no">4</div>
+          <div>
+            <strong>合宿リポジトリを clone する</strong>
+            <span style="background:#dcfce7;color:#166534;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:700;margin-left:6px;">必須</span><br>
+            <span style="color:var(--muted);font-size:14px;"><code>git clone</code> して、そのフォルダをCodexで開く。 <a href="#sync">→ 詳しく</a></span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-no">5</div>
+          <div>
+            <strong>アカウントを作る</strong>
+            <span style="background:#dcfce7;color:#166534;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:700;margin-left:6px;">必須</span><br>
+            <span style="color:var(--muted);font-size:14px;">ChatGPT / GitHub / Vercel / Asana。 <a href="#accounts">→ 詳しく</a></span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-no" style="background:var(--muted);">6</div>
+          <div>
+            <strong>スマホからリモート操作の準備</strong>
+            <span style="background:#fef9c3;color:#854d0e;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:700;margin-left:6px;">推奨</span><br>
+            <span style="color:var(--muted);font-size:14px;">Codex Mobile か Claude <code>rc</code>。外出先からも指示できる。 <a href="#codex-mobile">→ 詳しく</a></span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-no" style="background:#c5d0ca;">7</div>
+          <div>
+            <strong>ngrok / agent-browser / Composio</strong>
+            <span style="background:#f1f5f3;color:#66736e;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:700;margin-left:6px;">任意</span><br>
+            <span style="color:var(--muted);font-size:14px;">余裕があれば。後日でもOK。 <a href="#ngrok">→ 詳しく</a></span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-no done">✓</div>
+          <div>
+            <strong>最終チェックリストで確認</strong>
+            <span style="background:#dcfce7;color:#166534;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:700;margin-left:6px;">必須</span><br>
+            <span style="color:var(--muted);font-size:14px;">全部チェックが付けば当日スムーズ。 <a href="#checklist">→ 詳しく</a></span>
+          </div>
+        </div>
+      </div>
+      <div class="note">詰まったら全部AIに聞けます。Homebrew〜Codexのインストールは「AIに頼むだけ」でほぼ終わります。完璧を目指さず、当日朝に詰まりを解消する時間もあります。</div>
+    </section>
+
     <!-- ====== なぜ事前準備か ====== -->
     <section id="why">
       <h2>なぜ事前準備をするのか</h2>
@@ -116,6 +197,38 @@ Goal: Codex App / Homebrew / Node.js / Git を使える状態にしたいです�
 
 初心者にもわかるように、次に何を確認して、どのコマンドを1つずつ実行すればいいか教えてください。</pre>
       </div>
+    </section>
+
+    <!-- ====== 合宿前の宿題 ====== -->
+    <section id="homework">
+      <h2>合宿前の宿題 — 悩みを書き出してくる（重要）</h2>
+      <p>当日の朝イチで、自分の業務をAIに深掘りさせます（grill-me）。その<strong>材料を事前に用意してくると、作るファイルの濃さが段違い</strong>になります。インストールより、これがいちばん効きます。</p>
+      <div class="grid">
+        <div class="card accent"><strong>なぜやるか</strong><span>当日その場で「悩みは？」と聞かれても、すぐには出てこない。事前に頭の中を出しておくと、AIが深く掘れる。</span></div>
+        <div class="card"><strong>どれくらい</strong><span>整理しなくてOK。箇条書きでも、ぐちゃぐちゃの文章でも、音声メモの文字起こしでもいい。量が多いほど良い。</span></div>
+      </div>
+      <h3>書き出すこと</h3>
+      <ul>
+        <li>仕事で「これが面倒」と感じていること</li>
+        <li>「これが進まない・詰まっている」こと</li>
+        <li>「これを誰か（AI）に任せたい」と思うこと</li>
+        <li>AIに頼むとき「毎回説明していて面倒」なこと</li>
+        <li>AIの出力を見て「自社っぽくないな」と感じた経験</li>
+      </ul>
+      <div class="code-block">
+        <div class="code-label">書き出し用テンプレート（メモ帳やスマホ音声入力で）<button class="copy" data-copy>コピー</button></div>
+        <pre>【面倒なこと】
+-
+【進まない・詰まっていること】
+-
+【AIに任せたいこと】
+-
+【毎回AIに説明していて面倒なこと】
+-
+【AIの出力で「自社っぽくない」と感じたこと】
+-</pre>
+      </div>
+      <div class="ai-tip"><strong>音声でもOK</strong><br>スマホのメモアプリや音声入力で話して、その文字起こしを当日そのまま貼ればOKです。話した方が本音が出やすい人はそちらで。</div>
     </section>
 
     <!-- ====== 全体像まとめ ====== -->
@@ -187,43 +300,50 @@ Goal: Codex App / Homebrew / Node.js / Git を使える状態にしたいです�
       </div>
 
       <h3>使うスキル・リポジトリ</h3>
+      <p>当日は「<strong>当日コア</strong>」だけ全員でやれば十分です。「<strong>後日でOK</strong>」は興味があれば帰ってから。全部を当日やろうとすると、ツアーで終わって何も身につきません。</p>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>リポジトリ</th><th>用途</th><th>難易度</th><th>リンク</th></tr></thead>
+          <thead><tr><th>リポジトリ</th><th>用途</th><th>使う時期</th><th>難易度</th><th>リンク</th></tr></thead>
           <tbody>
             <tr>
               <td><code>satya-janghu/agent-skills</code><br><span style="color:var(--muted);font-size:12px;">grill-me スキル</span></td>
               <td>業務の前提・詰まり・判断軸を深掘りするスキル。合宿Section 02で使用</td>
+              <td><span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">当日コア</span></td>
               <td><span class="diff diff-easy">易</span></td>
               <td><a href="https://github.com/satya-janghu/agent-skills/tree/main/skills/grill-me" target="_blank" rel="noopener">GitHub</a></td>
             </tr>
             <tr>
-              <td><code>upstash/context7</code><br><span style="color:var(--muted);font-size:12px;">最新ドキュメント参照MCP</span></td>
-              <td>古い書き方で詰まらないよう、ライブラリの公式ドキュメントをリアルタイム参照する</td>
-              <td><span class="diff diff-easy">易</span></td>
-              <td><a href="https://github.com/upstash/context7" target="_blank" rel="noopener">GitHub</a></td>
-            </tr>
-            <tr>
               <td><code>openclaw/gogcli</code><br><span style="color:var(--muted);font-size:12px;">Google Sheets/Drive CLI</span></td>
-              <td>Codexからスプレッドシートを作成・読み書きする。Section 10で使用</td>
+              <td>Codexからスプレッドシートを作成・読み書きする。PCをコックピットにする体験。Section 10で使用</td>
+              <td><span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">当日コア</span></td>
               <td><span class="diff diff-medium">中</span></td>
               <td><a href="https://github.com/openclaw/gogcli" target="_blank" rel="noopener">GitHub</a></td>
             </tr>
             <tr>
               <td><code>teng-lin/notebooklm-py</code><br><span style="color:var(--muted);font-size:12px;">NotebookLM連動</span></td>
-              <td>資料置き場をNotebookLMに集め、Codexから呼び出す。Section 12で使用</td>
+              <td>資料置き場をNotebookLMに集め、Codexから呼び出す。PCをコックピットにする体験。Section 12で使用</td>
+              <td><span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">当日コア</span></td>
               <td><span class="diff diff-medium">中</span></td>
               <td><a href="https://github.com/teng-lin/notebooklm-py" target="_blank" rel="noopener">GitHub</a></td>
             </tr>
             <tr>
+              <td><code>upstash/context7</code><br><span style="color:var(--muted);font-size:12px;">最新ドキュメント参照MCP</span></td>
+              <td>古い書き方で詰まらないよう、ライブラリの公式ドキュメントをリアルタイム参照する</td>
+              <td><span style="background:#f1f5f3;color:#66736e;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">後日でOK</span></td>
+              <td><span class="diff diff-easy">易</span></td>
+              <td><a href="https://github.com/upstash/context7" target="_blank" rel="noopener">GitHub</a></td>
+            </tr>
+            <tr>
               <td><code>vercel-labs/agent-browser</code><br><span style="color:var(--muted);font-size:12px;">公開URLを読むCLI</span></td>
               <td>Vercel/ngrokで公開したHTMLをAIに確認させる。Section 18で使用</td>
+              <td><span style="background:#f1f5f3;color:#66736e;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">後日でOK</span></td>
               <td><span class="diff diff-medium">中</span></td>
               <td><a href="https://github.com/vercel-labs/agent-browser" target="_blank" rel="noopener">GitHub</a></td>
             </tr>
             <tr>
               <td><code>garrytan/gbrain</code><br><span style="color:var(--muted);font-size:12px;">PC記憶装置・知識グラフ</span></td>
               <td>PC内の情報を知識グラフ＋ハイブリッド検索で整理し、AIの「長期記憶」として使う。MCP対応</td>
+              <td><span style="background:#f1f5f3;color:#66736e;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">後日でOK</span></td>
               <td><span class="diff diff-medium">中</span></td>
               <td><a href="https://github.com/garrytan/gbrain" target="_blank" rel="noopener">GitHub</a></td>
             </tr>

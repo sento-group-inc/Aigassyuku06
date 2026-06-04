@@ -891,7 +891,7 @@ flowchart TB
         </div>
         <div class="cards">
           <div class="card"><h4>Before</h4><p>AIに毎回背景を説明し、出てきたものを場当たり的に直す。再説明コストが積み上がる。</p></div>
-          <div class="card"><h4>After</h4><p>引き継ぎ書（AGENTS.md群）を渡したAIチームが、業務の文脈を読んで自律で動く。あなたはCEOとしてレビューと判断だけをする。</p></div>
+          <div class="card"><h4>After</h4><p>引き継ぎ書（AGENTS.md群）を渡したAIチームが、業務の文脈を読んで作業を進める。あなたは操縦席（コックピット）から作業を振り、レビューと判断をする。</p></div>
         </div>
         <div class="check">今日作るのは「全自動で放置する仕組み」ではなく、引き継ぎ書を渡し、仕事を任せ、レビューして育てる環境です。</div>
         <div class="note"><strong>合宿での対話型ガイドについて</strong><br>このサイトのGitHubリポジトリ（<code>sento-group-inc/Aigassyuku06</code>）を各自のMacに同期（git clone）し、そのフォルダをCodex/Claudeで開きます。あとは「<code>このリポジトリの journey/README.md を開いて読んで、その手順で私を導いて</code>」と言えばCEOへの道が始まります。同期手順は <a href="prep.html#sync">事前準備ページ</a> 参照。</div>
@@ -1446,12 +1446,13 @@ URL: https://github.com/openclaw/gogcli
           </div>
         </div>
         <div class="intro-punch">
-          <div><strong>あるある</strong><span>AIにタスクを整理させても、最後に人間がAsanaへ手入力している。</span></div>
-          <div><strong>だから</strong><span>PATを用意して、CodexがAPI経由でタスク登録できる入口を作る。</span></div>
-          <div><strong>終わると</strong><span>議事録や深掘り結果から、次のタスク化まで一気に進められる。</span></div>
+          <div><strong>あるある</strong><span>やることが頭の中やバラバラのメモに散らばっていて、全体が見えない。</span></div>
+          <div><strong>だから</strong><span>Asanaに集約して「やることのコックピット」にする。PATでCodexからメモ登録も楽にする。</span></div>
+          <div><strong>終わると</strong><span>Asanaを見ながら「これはAIに振る／これは自分でやる」を判断して渡せる。</span></div>
         </div>
+        <div class="note"><strong>Asanaは"操縦席"であって、全自動の実行装置ではありません。</strong>AIに全部のタスクを自律実行させる場所ではなく、あなたが全体を把握して作業を振り分けるための台帳です。手を動かすのがAI、ハンドルを握るのがあなた。</div>
         <div class="meaning">
-          <div class="box"><strong>何ができるようになるか</strong><span>タスク作成・一覧取得・更新をCodexに依頼できる。</span></div>
+          <div class="box"><strong>何ができるようになるか</strong><span>タスクの作成・一覧取得・更新をCodexに頼める。メモ作業が楽になる。</span></div>
           <div class="box"><strong>今やること</strong><span>Asanaアカウントを作り、Personal Access Tokenを取得する。</span></div>
           <div class="box"><strong>注意</strong><span>PATはパスワード同等。教材やGitHubに載せない。</span></div>
         </div>
@@ -1843,7 +1844,7 @@ flowchart TB
         </div>
         <div class="meaning">
           <div class="box"><strong>何が見えるようになるか</strong><span>途中停止の原因がMacのスリープか切り分けられる。</span></div>
-          <div class="box"><strong>今やること</strong><span>6時間だけ起動維持して作業させる。</span></div>
+          <div class="box"><strong>今やること</strong><span>作業している間だけ起動維持して、スリープで止まらないことを体験する。</span></div>
           <div class="box"><strong>全員が同じようにできるか</strong><span>標準コマンドとGUIアプリの2択を用意。</span></div>
         </div>
         <div class="code-block">
@@ -1858,7 +1859,7 @@ flowchart TB
           <li><code>-u</code>: ユーザー操作があった扱いにする。</li>
           <li><code>-t 21600</code>: 21600秒、つまり6時間。</li>
         </ul>
-        <div class="note">GUIがよければ <a href="https://apps.apple.com/us/app/amphetamine/id937984704" target="_blank" rel="noopener">Amphetamine</a> を使う。メニューバーから「指定時間だけ起動維持」を選べるので、講義中や長いCodex作業に向いています。</div>
+        <div class="note">GUIがよければ <a href="https://apps.apple.com/us/app/amphetamine/id937984704" target="_blank" rel="noopener">Amphetamine</a> を使う。メニューバーから「指定時間だけ起動維持」を選べるので、講義中や長いCodex作業に向いています。<br><strong>夜通し動かす必要はありません。</strong>「スリープオフにすればAIを止めずに作業を任せられる」を体験できれば十分です。</div>
       </section>
 
       <section id="grow">
