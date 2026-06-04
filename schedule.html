@@ -198,24 +198,56 @@
 
   <div class="content">
 
+    <!-- ====== オリエンテーション ====== -->
+    <section id="orientation">
+      <h2>まずオリエンテーション — この2日で何をするか</h2>
+      <p>最初に全体像だけ掴んでください。「何のために・何を・どう進めるか」がここで分かります。あとは<strong>各自のペースで始めてOK</strong>です。</p>
+
+      <h3>背景：なぜこの2日があるのか</h3>
+      <p>みんなAIは使っている。でも毎回「うちの会社はこうで」「この判断軸で」「この表現はうちっぽくない」と説明し直して、本題の前に疲れている。さらに、一人のAIに全部やらせて品質が安定しない。<strong>この「再説明コスト」をゼロにし、自分専用に育てたAIに業務を任せられる状態を作る</strong>——それがこの2日の狙いです。</p>
+
+      <h3>ゴール：何を持ち帰るか</h3>
+      <div class="milestone-grid">
+        <div class="milestone"><strong>分身OS（AGENTS.md群）</strong><span>会社・判断軸・口調を読んだAI環境。毎回の説明が要らなくなる。</span></div>
+        <div class="milestone"><strong>AIのコックピット</strong><span>役割分担したAIに、操縦席から業務を振れる。あなたがCEO。</span></div>
+        <div class="milestone done"><strong>業務改善HTMLの種</strong><span>自分の業務が前に進む成果物の種。磨きは持ち帰り。</span></div>
+        <div class="milestone"><strong>続けられる型</strong><span>失敗をAGENTS.mdに追記し、週次で手入れする習慣。</span></div>
+      </div>
+
+      <h3>進め方：journeyガイドに沿って対話で進める（ここが本体）</h3>
+      <div style="background:var(--accent-soft);border:1px solid #b6ded7;border-radius:var(--radius);padding:18px;margin:14px 0;">
+        <p style="margin:0 0 10px;font-weight:800;color:var(--accent-strong);font-size:16px;">基本は journey ガイドに沿って、AIとの対話で進めます。</p>
+        <p style="margin:0 0 12px;">同期したリポジトリをCodex / Claudeで開いて、下の<strong>合言葉を貼るだけ</strong>。あとはAIがあなたのペースに合わせて質問しながら導いてくれます。対話をじっくりやりたい人は深く、設定を先に進めたい人はサクサク。<strong>隣と進み方が違ってOK</strong>です。</p>
+        <div style="background:#fff;border:1px solid #b6ded7;border-radius:var(--radius);padding:12px 15px;">
+          <strong style="color:var(--accent-strong);">▶ 開始の合言葉（Codex / Claude にそのまま貼る）</strong><br>
+          <code style="display:inline-block;margin-top:6px;">このリポジトリの journey/README.md を開いて読んで、その手順で私を導いてください。</code>
+        </div>
+        <p style="margin:12px 0 0;font-size:13px;color:var(--muted);">※ 下のタイムラインや本編の各Sectionは「辞書」です。journeyを進める中で、必要なツールの手順だけ本編から引いて使います。各時間のリンクから該当セクションに飛べます。</p>
+      </div>
+
+      <p>では、準備ができた人から <strong>Session 01（文脈エンジンを作る）</strong> を始めましょう。</p>
+    </section>
+
+    <!-- ====== 全体フロー（横並び） ====== -->
     <section>
       <h2>2日間の全体フロー</h2>
       <div class="mermaid">
-flowchart TB
+flowchart LR
     subgraph D1["Day 1 — 6/9(火)"]
         direction TB
-        A["9:00\nスタート・開会"] --> B["9:30〜13:00\nSection 00-06\n深掘り・IPOA・環境作り"]
-        B --> C["13:00〜18:00\n各自作業\n(Section 07-18)"]
-        C --> D["18:00\n翌日目標を\n全体発表"]
-        D --> E["18:30〜\n夜の作業\n自由時間"]
+        A["9:00 開会・全体像"] --> B["9:30〜 深掘り・IPOA・環境作り"]
+        B --> C["11:00〜 grill-me 実行"]
+        C --> CC["14:00〜 各自作業\n当日コアを1本通す"]
+        CC --> D["18:00 翌日の発表を共有"]
     end
     subgraph D2["Day 2 — 6/10(水)"]
         direction TB
-        F["9:00\n朝作業"] --> G["10:00\n業務改善HTML発表\n(各自10分)"]
-        G --> H["11:45〜\n振り返り\n閉会"]
+        F["9:00 朝・最終準備"] --> G["10:00 HTML種を発表\n各自10分"]
+        G --> H["11:45 振り返り・閉会"]
     end
-    E --> F
+    D1 --> D2
       </div>
+      <p style="font-size:13px;color:var(--muted);margin-top:8px;">下に各時間の詳細。気になる時間から、関連する講義セクションへ飛べます。</p>
     </section>
 
     <section>
@@ -228,17 +260,17 @@ flowchart TB
         <div class="tl">
           <span class="time">09:00</span>
           <strong>受付・開会</strong>
-          <span>自己紹介。合宿の目的と全体像を確認（Section 00）。</span>
+          <span>自己紹介。合宿の目的と全体像を確認。 <a href="index.html#overview">→ Section00 全体像</a></span>
         </div>
         <div class="tl">
           <span class="time">09:30</span>
           <strong>深掘り・IPOA・環境作り（Section 01-06）</strong>
-          <span>grill-me登録 → IPOA → AGENTS.md作成 → MCP設定まで。Codexインストールは事前準備ページに寄せる。</span>
+          <span>grill-me登録 → IPOA → AGENTS.md作成 → MCP設定まで。Codexインストールは事前準備ページに寄せる。<br> <a href="index.html#why">→ 本編 Section01〜06</a> / <a href="ipoa.html">IPOA</a> / <a href="prep.html">事前準備</a></span>
         </div>
         <div class="tl highlight">
           <span class="time">11:00 ごろ</span>
           <strong>grill-me実行タイム</strong>
-          <span>全員が自分の業務をgrill-meで深掘り。概要.mdを生成する。これが午後の各自作業の土台になる。</span>
+          <span>全員が自分の業務をgrill-meで深掘り。概要.mdを生成する。これが午後の各自作業の土台になる。 <a href="index.html#grill">→ Section02 grill-me</a></span>
         </div>
         <div class="tl">
           <span class="time">13:00</span>
@@ -248,12 +280,12 @@ flowchart TB
         <div class="tl">
           <span class="time">14:00〜18:00</span>
           <strong>各自作業 — まず「当日コア」を1本通す</strong>
-          <span><strong>当日コア（全員）</strong>：Skill化 → gogcli（Sheets）→ NotebookLM（資料）→ Asana（タスクのコックピット）→ 業務改善HTMLの種 → Vercel/ngrokで公開。<br><strong>後日でOK（興味があれば）</strong>：agmsg、agent-browser、エージェント作成、GASの作り込み。全部を当日やろうとせず、自分の業務が1つ前に進む状態を優先。</span>
+          <span><strong>当日コア（全員）</strong>：Skill化 → gogcli（Sheets）→ NotebookLM（資料）→ Asana（タスクのコックピット）→ 業務改善HTMLの種 → Vercel/ngrokで公開。<br><strong>後日でOK（興味があれば）</strong>：agmsg、agent-browser、エージェント作成、GASの作り込み。全部を当日やろうとせず、自分の業務が1つ前に進む状態を優先。<br><strong>各セクションへ飛ぶ：</strong><a href="index.html#intake">Skill化</a> / <a href="index.html#gog">gogcli</a> / <a href="index.html#notebooklm">NotebookLM</a> / <a href="index.html#asana">Asana</a> / <a href="index.html#vercel">Vercel</a> / <a href="index.html#ngrok">ngrok</a> / <a href="repos.html">リポジトリ一覧</a></span>
         </div>
         <div class="tl goal">
           <span class="time">18:00</span>
           <strong>翌朝の発表HTMLを全体に共有</strong>
-          <span>「明日10時にどの業務改善HTMLを見せるか」を声に出す。完成度より、Actionが定義されていることを優先。</span>
+          <span>「明日10時にどの業務改善HTMLを見せるか」を声に出す。完成度より、Actionが定義されていることを優先。 <a href="ipoa.html">→ IPOAで整理</a></span>
         </div>
         <div class="tl">
           <span class="time">18:30〜</span>
@@ -293,7 +325,7 @@ flowchart TB
         <div class="tl">
           <span class="time">09:00</span>
           <strong>朝作業・発表の最終準備</strong>
-          <span>業務改善HTMLの「種」にIPOA・現状の詰まり・次の2週間の方針を足す。完成させる必要はない。仕上げ・磨き込みは帰ってからでOK。</span>
+          <span>業務改善HTMLの「種」にIPOA・現状の詰まり・次の2週間の方針を足す。完成させる必要はない。仕上げ・磨き込みは帰ってからでOK。 <a href="ipoa.html">→ IPOA</a></span>
         </div>
         <div class="tl highlight">
           <span class="time">10:00</span>
