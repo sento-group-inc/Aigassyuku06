@@ -9,3 +9,6 @@ codex-bunshin-os/
 .env
 *.pem
 auth.json
+
+# 個人作業メモ（GitHub/Vercelに反映しない）
+my-notes.html

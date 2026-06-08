@@ -1259,10 +1259,11 @@ args = ["-y", "mcp-remote", "https://mcp.exa.ai/mcp?exaApiKey=YOUR_EXA_API_KEY"]
 command = "npx"
 args = ["chrome-devtools-mcp@latest"]</pre>
         </div>
+        <div class="resource">キー取得で迷ったら → <a href="mcp-keys.html"><strong>MCP APIキー取得手順（画面ごとの詳細・スクショ付き）</strong></a>。Context7 / Exa / GitHub Token を1つずつ画面手順で解説しています。</div>
         <div class="timeline">
-          <div class="tl"><strong>1. Context7キーを取得</strong><span><a href="https://context7.com/docs/howto/api-keys" target="_blank" rel="noopener">Context7 API Keys</a> を開き、キーを作る。</span></div>
-          <div class="tl"><strong>2. Exaキーを取得</strong><span><a href="https://dashboard.exa.ai/api-keys" target="_blank" rel="noopener">Exa Dashboard</a> を開き、API Keyを作る。</span></div>
-          <div class="tl"><strong>3. GitHub Tokenを取得</strong><span><a href="https://github.com/settings/tokens" target="_blank" rel="noopener">GitHub Tokens</a> を開き、必要な権限だけで作る。</span></div>
+          <div class="tl"><strong>1. Context7キーを取得</strong><span><a href="https://context7.com/docs/howto/api-keys" target="_blank" rel="noopener">Context7 API Keys</a> を開き、キーを作る。<a href="mcp-keys.html">詳しい手順</a></span></div>
+          <div class="tl"><strong>2. Exaキーを取得</strong><span><a href="https://dashboard.exa.ai/api-keys" target="_blank" rel="noopener">Exa Dashboard</a> を開き、API Keyを作る。<a href="mcp-keys.html">詳しい手順</a></span></div>
+          <div class="tl"><strong>3. GitHub Tokenを取得</strong><span><a href="https://github.com/settings/tokens" target="_blank" rel="noopener">GitHub Tokens</a> を開き、必要な権限（Classic + <code>repo</code>）で作る。<a href="mcp-keys.html">推奨scope</a></span></div>
           <div class="tl"><strong>4. Codexに置換を依頼</strong><span>下の依頼文をCodexに貼り、<code>~/.codex/config.toml</code> のプレースホルダを置き換える。</span></div>
           <div class="tl"><strong>5. /mcpで確認</strong><span>Codexのチャットで <code>/mcp</code> を実行し、接続状態を見る。</span></div>
         </div>

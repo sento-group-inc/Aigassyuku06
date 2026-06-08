@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Context7 / Exa / GitHub セットアップガイド | Codex＆Claude分身OS合宿</title>
+  <style>
+    :root { --bg:#f7f8f7; --surface:#fff; --surface-soft:#f1f5f3; --ink:#17211d; --muted:#66736e; --line:#dce4df; --accent:#0f766e; --accent-soft:#e6f5f2; --accent-strong:#0b5d56; --gold-soft:#fff7e6; --blue-soft:#eff6ff; --red-soft:#fff1f0; --radius:8px; --shadow:0 10px 28px rgba(23,33,29,.08); --max:1480px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",system-ui,-apple-system,sans-serif; font-size:15px; line-height:1.78; }
+    a { color:var(--accent-strong); text-underline-offset:3px; }
+    code { background:var(--surface-soft); border:1px solid var(--line); border-radius:5px; padding:1px 5px; font-family:"SFMono-Regular","Menlo",monospace; font-size:.88em; }
+    .page-header { background:#fff; border-bottom:1px solid var(--line); padding:34px clamp(16px,4vw,40px) 24px; }
+    .page-header-inner, .content, footer { max-width:var(--max); margin:0 auto; }
+    .breadcrumb { margin:0 0 12px; color:var(--muted); font-size:13px; }
+    h1 { margin:0 0 10px; font-size:clamp(30px,5vw,52px); line-height:1.1; }
+    .lead { margin:0; max-width:920px; color:var(--muted); font-size:17px; }
+    .flow { margin:14px 0 0; font-weight:800; color:var(--accent-strong); }
+    .page-nav { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+    .page-nav a { border:1px solid #b6ded7; border-radius:999px; background:var(--accent-soft); padding:7px 13px; font-weight:800; font-size:13px; text-decoration:none; }
+    .content { padding:28px clamp(16px,4vw,40px) 70px; display:grid; gap:22px; }
+    section { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:28px; box-shadow:var(--shadow); }
+    h2 { margin:0 0 14px; font-size:clamp(21px,3vw,30px); line-height:1.24; }
+    h2 .svc-tag { display:inline-block; vertical-align:middle; margin-left:10px; padding:3px 10px; border-radius:999px; background:var(--accent-soft); border:1px solid #b6ded7; color:var(--accent-strong); font-size:12px; font-weight:800; }
+    h3 { margin:22px 0 10px; font-size:18px; }
+    p { margin:0 0 12px; }
+    ul, ol { margin:0 0 14px 22px; padding:0; }
+    .note, .warn, .resource { border-radius:var(--radius); padding:13px 15px; border:1px solid var(--line); margin:14px 0; }
+    .note { background:var(--blue-soft); color:#193f8f; border-color:#c7d8ff; }
+    .warn { background:var(--red-soft); color:#8e1d13; border-color:#ffd2cc; }
+    .resource { background:var(--gold-soft); color:#7a4d0b; border-color:#f2d7a5; }
+    .checklist { list-style:none; margin:14px 0; padding:0; display:grid; gap:8px; }
+    .checklist li { position:relative; padding-left:30px; }
+    .checklist li::before { content:"✓"; position:absolute; left:6px; top:0; color:var(--accent); font-weight:800; }
+    .steps { counter-reset:step; list-style:none; margin:16px 0; padding:0; display:grid; gap:10px; }
+    .steps li { counter-increment:step; position:relative; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface-soft); padding:14px 16px 14px 52px; }
+    .steps li::before { content:counter(step); position:absolute; left:14px; top:13px; width:26px; height:26px; border-radius:50%; background:var(--accent); color:#fff; font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center; }
+    .steps li strong { display:block; margin-bottom:2px; }
+    .steps li span { color:var(--muted); font-size:13px; display:block; }
+    figure { margin:14px 0; }
+    figure img { width:100%; max-width:780px; border:1px solid var(--line); border-radius:var(--radius); display:block; }
+    figcaption { margin-top:6px; color:var(--muted); font-size:13px; }
+    .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); margin:16px 0; }
+    table { width:100%; border-collapse:collapse; min-width:560px; background:#fff; }
+    th, td { padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { background:var(--surface-soft); color:var(--muted); font-size:12px; }
+    tr:last-child td { border-bottom:none; }
+    .code-block { margin:14px 0 18px; border-radius:var(--radius); overflow:hidden; border:1px solid #26332f; background:#101513; }
+    .code-label { display:flex; justify-content:space-between; gap:12px; min-height:40px; padding:8px 10px 8px 14px; color:#9fb4ad; border-bottom:1px solid #26332f; font-size:12px; font-weight:800; }
+    button.copy { border:1px solid #3b4b45; border-radius:6px; background:#1a2420; color:#e7f1ed; padding:6px 10px; font:inherit; font-size:12px; cursor:pointer; }
+    pre { margin:0; padding:16px; overflow-x:auto; white-space:pre-wrap; color:#e7f1ed; font-family:"SFMono-Regular","Menlo",monospace; font-size:13px; line-height:1.62; }
+    footer { padding:20px clamp(16px,4vw,40px) 46px; color:var(--muted); font-size:13px; }
+    @media (max-width:920px) { section { padding:22px 18px; } }
+  </style>
+</head>
+<body>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <p class="breadcrumb"><a href="index.html">合宿サイト TOP</a> / <a href="index.html#mcp">MCPを取り込む</a> / セットアップガイド</p>
+      <h1>Context7 / Exa / GitHub<br />セットアップガイド</h1>
+      <p class="lead">Context7・Exa・GitHub の3つの API キー / トークンを取得し、Codex（コーディングエージェント）に MCP として接続するための、はじめての人向け手順書です。</p>
+      <p class="flow">進め方： 各サービスでキーを発行 → Codex に登録 → 動作確認</p>
+      <div class="page-nav">
+        <a href="index.html#mcp">本編 Section 06 へ戻る</a>
+        <a href="index.html">講義本編</a>
+        <a href="prep.html">事前準備</a>
+        <a href="repos.html">便利リポジトリ</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <section id="intro">
+      <h2>0. はじめに知っておくこと<span class="svc-tag">全サービス共通</span></h2>
+      <ul class="checklist">
+        <li><strong>キーは発行直後の一度しか全文表示されない</strong>ことが多いです。表示されたら必ずその場でコピーしてください。</li>
+        <li>コピーしたキーは <strong>1Password などのパスワードマネージャー</strong>に保管します。</li>
+        <li><strong>コードに直書きしない / GitHub にコミットしない / チャットに貼らない。</strong></li>
+        <li>可能なものは<strong>有効期限を設定</strong>し、<strong>用途がわかる名前</strong>を付けておくと、後の管理・無効化が楽です。</li>
+      </ul>
+      <div class="note">このページで3つのキーを集め、最後に <a href="index.html#mcp">本編 Section 06</a> の置換プロンプトで Codex（<code>~/.codex/config.toml</code>）にまとめて登録します。先に本編の一括設定でプレースホルダ（<code>YOUR_CONTEXT7_API_KEY</code> 等）を入れておくとスムーズです。</div>
+    </section>
+
+    <section id="context7">
+      <h2>1. Context7<span class="svc-tag">最新ドキュメントの取得</span></h2>
+      <p>Context7 は、ライブラリやフレームワークの<strong>最新ドキュメント</strong>を Codex に読ませる MCP です。GAS / Vercel などの調査で効きます。</p>
+      <ol class="steps">
+        <li><strong><a href="https://context7.com/" target="_blank" rel="noopener">context7.com</a> を開いてサインイン</strong><span>右上の Sign in。</span>
+          <figure>
+            <img src="assets/images/mcp-keys/context7_beforesignin.png" alt="Context7 サインインのモーダル（GitHub / Google）" loading="lazy">
+            <figcaption>Sign in。GitHub または Google で入れます。</figcaption>
+          </figure>
+        </li>
+        <li><strong>ダッシュボードの「API Keys」を開く</strong><span>ログイン後、<a href="https://context7.com/dashboard" target="_blank" rel="noopener">Dashboard</a> → API Keys。参考: <a href="https://context7.com/docs/howto/api-keys" target="_blank" rel="noopener">公式ガイド</a>。</span>
+          <figure>
+            <img src="assets/images/mcp-keys/context7_aftersignin.png" alt="Context7 ダッシュボードのOverviewとAPI Keysセクション" loading="lazy">
+            <figcaption>ダッシュボードの「API Keys」。まだ無ければ「Create your first API key」。</figcaption>
+          </figure>
+        </li>
+        <li><strong>「Create API Key」を押す</strong><span>用途がわかる名前（例: <code>Codex</code>）を付けて Create API Key。合宿は無料枠で十分です。</span>
+          <figure>
+            <img src="assets/images/mcp-keys/context7_createAPIKey.png" alt="Create New API Key モーダル。名前にCodexと入力" loading="lazy">
+            <figcaption>「Create New API Key」。名前を入れて Create API Key。</figcaption>
+          </figure>
+        </li>
+        <li><strong>表示された <code>ctx7sk-…</code> をコピーして保管</strong><span>これが <code>YOUR_CONTEXT7_API_KEY</code> に入ります。</span></li>
+      </ol>
+    </section>
+
+    <section id="exa">
+      <h2>2. Exa<span class="svc-tag">Web・X検索</span></h2>
+      <p>Exa は <strong>Web や X 由来の情報を探す目</strong>です。記事や X 投稿の裏取りに使います。初回はオンボーディングのウィザードに沿って進めると、API キーと「Codex に貼る用のセットアップ手順」が同時に手に入ります。</p>
+      <ol class="steps">
+        <li><strong><a href="https://dashboard.exa.ai/" target="_blank" rel="noopener">dashboard.exa.ai</a> を開いてサインアップ／ログイン</strong><span>Google または GitHub アカウントで入れます。</span></li>
+        <li><strong>「Create your setup prompt」の項目を選ぶ</strong><span><strong>What are you coding with?</strong> → <strong>Codex</strong> ／ <strong>What integration should the prompt generate?</strong> → <strong>MCP</strong> ／ <strong>What are you building?</strong> → 用途（例: <code>Web search tool</code>）。</span>
+          <figure>
+            <img src="assets/images/mcp-keys/exa_setup.png" alt="Exa の Create your setup prompt ウィザード。Codex / MCP を選択" loading="lazy">
+            <figcaption>What are you coding with? = <strong>Codex</strong>、integration = <strong>MCP</strong>、用途を選ぶ。</figcaption>
+          </figure>
+        </li>
+        <li><strong>「Generate MCP Config」をクリック</strong><span>設定が生成されます。</span></li>
+        <li><strong>「You're all set!」画面で2つを取得</strong><span><strong>Your API Key</strong> → コピーして保管（これがキー本体 = <code>YOUR_EXA_API_KEY</code>）。<strong>Setup prompt</strong>（Copy setup prompt）→ Codex に貼り付けて設定できる手順書。</span>
+          <figure>
+            <img src="assets/images/mcp-keys/exa_generate.png" alt="Exa の You're all set! 画面。Setup prompt と Your API Key" loading="lazy">
+            <figcaption>「You're all set!」で <strong>Copy setup prompt</strong> と <strong>Your API Key</strong> を取得。初回は $10 の無料クレジット付き。</figcaption>
+          </figure>
+        </li>
+        <li><strong>無料クレジット（$10 分）を確認</strong><span>初回付与されます。合宿の試用には十分です。</span></li>
+      </ol>
+     
+    </section>
+
+    <section id="github">
+      <h2>3. GitHub<span class="svc-tag">リポジトリ操作用トークン</span></h2>
+      <p>Codex から GitHub のリポジトリを読み書きするためのトークンです。本編の設定では <code>Bearer YOUR_GITHUB_TOKEN</code> として渡します。</p>
+      <ol class="steps">
+        <li><strong><a href="https://github.com/settings/tokens" target="_blank" rel="noopener">github.com/settings/tokens</a> を開く</strong><span>Settings → Developer settings → Personal access tokens。</span></li>
+        <li><strong>「Generate new token (classic)」を選ぶ</strong><span>右上の「Generate new token」から classic を選択。</span>
+          <figure>
+            <img src="assets/images/mcp-keys/github_generatenewtoken.png" alt="GitHub Personal access tokens (classic) の Generate new token ドロップダウン" loading="lazy">
+            <figcaption>「Generate new token」→ <strong>Generate new token (classic)</strong> を選択。</figcaption>
+          </figure>
+        </li>
+        <li><strong>Note・Expiration・スコープを設定</strong><span>Note: <code>Codex</code> など。Expiration: <strong>30〜90日</strong>程度の短め推奨。Select scopes で <strong>repo</strong> にチェック。</span>
+          <figure>
+            <img src="assets/images/mcp-keys/github_newPAT.png" alt="New personal access token (classic)。Note=Codex、repoにチェック" loading="lazy">
+            <figcaption>Note（例: <code>Codex</code>）・Expiration を設定し、Select scopes で <strong>repo</strong> にチェック。</figcaption>
+          </figure>
+        </li>
+        <li><strong>「Generate token」を押し、<code>ghp_…</code> をコピーして保管</strong><span>この画面を離れると二度と表示されません。これが <code>YOUR_GITHUB_TOKEN</code> に入ります。</span></li>
+      </ol>
+    </section>
+
+  </div>
+
+  <footer>
+    <a href="index.html#mcp">本編 Section 06</a> /
+    <a href="index.html">講義本編</a> /
+    <a href="prep.html">事前準備</a> /
+    <a href="repos.html">便利リポジトリ</a>
+  </footer>
+
+  <script>
+    document.querySelectorAll('[data-copy]').forEach((button) => button.addEventListener('click', async () => {
+      const text = button.closest('.code-block')?.querySelector('pre')?.innerText || '';
+      await navigator.clipboard.writeText(text);
+      const old = button.textContent;
+      button.textContent = 'コピー済み';
+      setTimeout(() => button.textContent = old, 1300);
+    }));
+  </script>
+</body>
+</html>
