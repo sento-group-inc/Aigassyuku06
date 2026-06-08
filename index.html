@@ -693,43 +693,45 @@
       <div class="eyebrow">
         <span class="pill primary">2026.06.09-10</span>
         <span class="pill">千葉・古民家</span>
-        <span class="pill">IPOA / Codex / Claude / AGENTS.md / MCP / GAS / Vercel</span>
+        <span class="pill">Codex / GitHub / Vercel / agent-browser / gbrain / repo-intake</span>
       </div>
       <h1>Codex＆Claude分身OS<br />合宿サイト</h1>
-      <p class="lead">「なにをやりたい？」の手前から始める。IPOAで業務の因果を定義し、自分の会社・判断軸・業務の型を読んだCodex / Claude環境で、業務改善HTMLまで一気に作る。</p>
+      <p class="lead">まず全員のMacをAIコックピットにする。午前にCodex、GitHub、Vercel、agent-browser、gbrain、repo-intakeまで通し、午後はgrill-meで深掘りしながら業務改善HTMLを育てる。</p>
 
       <div class="hero-grid">
         <div class="outcome-panel">
-          <h2>持ち帰るもの</h2>
+          <h2>最初に見る順番</h2>
           <ul class="outcomes">
-            <li><strong>IPOA</strong>Actionから逆算した業務改善の設計図</li>
-            <li><strong>分身OS</strong>AGENTS / memory / state / logs がある作業環境</li>
-            <li><strong>業務改善HTML</strong>現状、詰まり、次の一手が見える成果物</li>
-            <li><strong>外部取り込み</strong>GitHub / X / MCP / NotebookLMをCodexに接続</li>
+            <li><strong>Step 0</strong>事前準備でCodexとリポジトリを開く</li>
+            <li><strong>Step 1</strong>スケジュールページで当日の流れを確認</li>
+            <li><strong>Step 2</strong>仮の業務改善HTMLを公開する</li>
+            <li><strong>Step 3</strong>午後にgrill-meで中身を育てる</li>
           </ul>
         </div>
         <div class="status-panel">
-          <h2>合宿の目的</h2>
-          <div class="big">「自分の業務をAIで進める型」を持ち帰る</div>
-          <p>まず個人でできる状態を作る。そのうえで、組織では共有標準に外部化していく、という次の射程まで見えるようにする。</p>
+          <h2>今日の目的</h2>
+          <div class="big">このMacからOutputをURLで出せる状態にする</div>
+          <p>このページの本編は講義辞書です。時間割の正本はスケジュールページ。迷ったらまずスケジュールに戻ります。</p>
         </div>
       </div>
       <div class="page-nav">
         <a href="prep.html">事前準備</a>
-        <a href="ipoa.html">IPOAフレームワーク</a>
-        <a href="shared-standard.html">個人OSからチーム標準へ</a>
         <a href="schedule.html">合宿スケジュール</a>
         <a href="repos.html">便利なリポジトリ一覧</a>
+        <a href="#intake">repo-intake</a>
+        <a href="ipoa.html">Appendix: IPOA</a>
+        <a href="shared-standard.html">個人OSからチーム標準へ</a>
       </div>
     </div>
   </header>
 
   <nav class="flow-wrap" aria-label="現在地フロー">
     <div class="flow" id="flow">
-      <a href="#overview"><span class="num">00</span><span class="label">全体像</span></a>
-      <a href="#why"><span class="num">01</span><span class="label">なぜ作る</span></a>
-      <a href="#grill"><span class="num">02</span><span class="label">深掘り</span></a>
-      <a href="#ipoa"><span class="num">03</span><span class="label">IPOA</span></a>
+      <a href="prep.html"><span class="num">0</span><span class="label">事前準備</span></a>
+      <a href="schedule.html"><span class="num">1</span><span class="label">スケジュール</span></a>
+      <a href="#overview"><span class="num">辞</span><span class="label">使い方</span></a>
+      <a href="#grill"><span class="num">深</span><span class="label">grill-me</span></a>
+      <a href="#ipoa"><span class="num">附</span><span class="label">IPOA</span></a>
       <a href="#claude-migrate"><span class="num">04</span><span class="label">引っ越し</span></a>
       <a href="#agents"><span class="num">05</span><span class="label">AGENTS</span></a>
       <a href="#mcp"><span class="num">06</span><span class="label">MCP</span></a>
@@ -751,10 +753,10 @@
   <div class="layout">
     <aside class="toc" aria-label="目次">
       <p class="toc-title">目次</p>
-      <a href="#overview">00 合宿の全体像</a>
-      <a href="#why">01 なぜ分身OSを作るのか</a>
-      <a href="#grill">02 grill-me型プロンプト</a>
-      <a href="#ipoa">03 IPOAフレームワーク</a>
+      <a href="#overview">まず読む: このページの使い方</a>
+      <a href="#why">辞書: なぜ分身OSを作るのか</a>
+      <a href="#grill">午後制作: grill-me型プロンプト</a>
+      <a href="#ipoa">Appendix: IPOAフレームワーク</a>
       <a href="#claude-migrate">04 Claude Codeから引っ越す</a>
       <a href="#agents">05 AGENTS / memory / state</a>
       <a href="#mcp">06 MCPを取り込む</a>
@@ -772,7 +774,7 @@
       <a href="#agent-browser">18 agent-browser</a>
       <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--line)">
         <a href="prep.html" style="color:var(--accent-strong)">事前準備</a>
-        <a href="ipoa.html" style="color:var(--accent-strong)">IPOAフレームワーク</a>
+        <a href="ipoa.html" style="color:var(--accent-strong)">Appendix: IPOA</a>
         <a href="shared-standard.html" style="color:var(--accent-strong)">個人OSからチーム標準へ</a>
         <a href="schedule.html" style="color:var(--accent-strong)">合宿スケジュール</a>
         <a href="repos.html" style="color:var(--accent-strong)">リポジトリ一覧</a>
@@ -784,65 +786,44 @@
         <div class="section-head">
           <div class="section-no" style="background:var(--accent);">00</div>
           <div>
-            <h2>合宿の全体像</h2>
-            <p class="section-sub">最初に全体を把握する。どのツールが・なぜ・どの順でつながるか。</p>
+            <h2>このページの使い方</h2>
+            <p class="section-sub">当日の正本はスケジュール。このページは必要な手順だけ引くツール辞書。</p>
           </div>
         </div>
-        <div class="check">目的は「AI使える人」ではなく<strong>「業務をAIで前に進める型を持つ人」</strong>になること。最終アウトカムは、自分の業務改善HTMLを見せて、次のActionを説明できる状態です。</div>
+        <div class="check"><strong>Step 0:</strong> <a href="prep.html">事前準備</a>を済ませる。<strong>Step 1:</strong> <a href="schedule.html">スケジュールページ</a>を見る。そこから必要な辞書セクションだけ開く。</div>
         <div class="intro-punch">
-          <div><strong>あるある</strong><span>ツールが多すぎると、いま自分が何をしているのか見失う。</span></div>
-          <div><strong>だから</strong><span>最初に全体地図を見て、深掘り、IPOA、公開までの因果をつなぐ。</span></div>
-          <div><strong>終わると</strong><span>次の章で何を押すか、何を貼るか、何のためかが迷子にならない。</span></div>
+          <div><strong>午前</strong><span>全員でCodex、GitHub、Vercel、agent-browser、gbrain、repo-intakeまで揃える。</span></div>
+          <div><strong>午後</strong><span>grill-meで深掘りし、公開済みの仮HTMLを業務改善HTMLへ育てる。</span></div>
+          <div><strong>迷ったら</strong><span>このページを上から読まず、スケジュールの現在地に戻る。</span></div>
         </div>
 
-        <h3>ツール連携の全体像</h3>
+        <h3>午前に通すコックピット導線</h3>
         <div class="diagram">
-          <p class="diagram-title">この合宿で作る「分身OS」の構成</p>
+          <p class="diagram-title">先に器と出口を作り、午後に中身を育てる</p>
           <div class="mermaid">
 flowchart TB
-    A["事前準備\nCodexセットアップ"] --> B["grill-me\n深掘りの型を知る"]
-    B --> C["IPOA\nActionから逆算"]
-    C --> D["AGENTS.md\nmemory / state"]
-    D --> E["MCP\nContext7 / Exa / GitHub"]
-    E --> F["Skill化\n長い依頼を保存"]
-    F --> G["gogcli / GAS\nデータと社内アプリ"]
-    G --> H["業務改善HTML\nVercel / ngrokで共有"]
-    H -.-> I["継続改善\n個人OSからチーム標準へ"]
-          </div>
-        </div>
-
-        <h3>2日間の流れ</h3>
-        <div class="diagram">
-          <p class="diagram-title">合宿スケジュール概要 → 詳細は <a href="schedule.html">スケジュールページ</a></p>
-          <div class="mermaid">
-flowchart TB
-    subgraph D1["Day 1 (6/9)"]
-        direction TB
-        A["9:00\nスタート"] --> B["〜13:00\n深掘り・IPOA・環境作り\n(Section 00-06)"]
-        B --> C["13:00〜\n各自作業"]
-        C --> D["18:00\n翌日目標を\n全体発表"]
-    end
-    subgraph D2["Day 2 (6/10)"]
-        direction TB
-        E["9:00\n朝作業"] --> F["10:00\n業務改善HTML発表\n(各自10分)"]
-        F --> G["11:00\n振り返り\n閉会"]
-    end
-    D1 --> D2
+    A["Step 0\n事前準備"] --> B["Step 1\nスケジュール確認"]
+    B --> C["Codex / GitHub\n作業場を開く"]
+    C --> D["Vercel / ngrok\n仮HTMLを公開"]
+    D --> E["agent-browser\n公開URLをAIに読ませる"]
+    E --> F["gbrain\n記憶の器を作る"]
+    F --> G["repo-intake\n必要リポジトリを判断"]
+    G --> H["grill-me\n午後に制作物を育てる"]
           </div>
         </div>
 
         <div class="cards">
           <div class="card">
-            <h4><a href="schedule.html">合宿スケジュール詳細 →</a></h4>
-            <p>何時に何をするか、10分発表のフォーマットまで確認できます。</p>
+            <h4><a href="prep.html">Step 0 事前準備 →</a></h4>
+            <p>Codex、GitHub、アカウント、合宿リポジトリを開ける状態にします。</p>
           </div>
           <div class="card">
-            <h4><a href="ipoa.html">IPOAフレームワーク →</a></h4>
-            <p>「なにを作るか」の前に、どのActionを起こしたいかを定義します。</p>
+            <h4><a href="schedule.html">Step 1 スケジュール →</a></h4>
+            <p>当日の正本。午前セットアップと午後制作の流れを確認します。</p>
           </div>
           <div class="card">
-            <h4><a href="repos.html">便利なリポジトリ一覧 →</a></h4>
-            <p>合宿で参考になるGitHubリポジトリを用途別に整理しています。</p>
+            <h4><a href="repos.html">repo-intake演習 →</a></h4>
+            <p>便利リポジトリは読むだけでなく、Codexに導入判断させます。</p>
           </div>
         </div>
       </section>
@@ -923,7 +904,7 @@ flowchart TB
           </div>
           <div class="benefit-card">
             <strong>AGENTS.mdに直結する</strong>
-            <span>インタビュー結果がそのままAGENTS.md / state.md / memory.mdに変換できる。深掘りが環境構築の最初の一歩になる。</span>
+            <span>インタビュー結果がそのままAGENTS.md / state.md / memory.mdに変換できる。gbrain導入後に、記憶として残しながら育てる。</span>
           </div>
         </div>
 
@@ -937,8 +918,8 @@ flowchart TD
     D -- "まだ" --> C
     D -- "OK" --> E["方針が言語化される"]
     E --> F["変換プロンプトを実行"]
-    F --> G["AGENTS.md / state.md\n/ memory.md に反映"]
-    G --> H["Section 17 へ\nエージェント設計に進む"]
+    F --> G["gbrainに残す"]
+    G --> H["AGENTS.md / state.md\n/ memory.md に反映"]
           </div>
         </div>
 
@@ -948,8 +929,8 @@ flowchart TD
           <div class="box"><strong>全員が同じようにできるか</strong><span>単語登録で誰でも同じ入口から始められる。</span></div>
         </div>
         <p>「自分の業務でAIに任せたい作業を書いてください」では浅くなる。本人もまだ因果を掘れていないからです。</p>
-        <p>そこで先に、AIに執拗にインタビューさせる。Matt Pocockが発表したgrill-meスキルはGitHub 10万スター超え（2026年5月現在）のバイラルスキル。合宿の最初の道具として使います。</p>
-        <div class="resource">参考: <a href="https://www.aihero.dev/my-grill-me-skill-has-gone-viral" target="_blank" rel="noopener">AI Hero: My Grill Me Skill Has Gone Viral</a> / <a href="https://github.com/satya-janghu/agent-skills/tree/main/skills/grill-me" target="_blank" rel="noopener">SKILL.md (GitHub)</a></div>
+        <p>午後の制作に入ったら、AIに執拗にインタビューさせます。Matt Pocockが発表したgrill-me型の深掘りは、仮HTMLを自分の業務改善HTMLへ育てる入口として使います。</p>
+        <div class="resource">参考: <a href="https://www.aihero.dev/my-grill-me-skill-has-gone-viral" target="_blank" rel="noopener">AI Hero: My Grill Me Skill Has Gone Viral</a></div>
         <div class="code-block">
           <div class="code-label">単語登録するプロンプト<button class="copy" data-copy>コピー</button></div>
           <pre>この件のあらゆる側面について執拗にインタビューして。共通理解に達するまで、デザインの因果関係と決定事項間の依存関係を1つずつ解決し、各質問に推奨回答も提示して。</pre>
@@ -981,8 +962,8 @@ flowchart TD
         <div class="section-head">
           <div class="section-no">3</div>
           <div>
-            <h2>IPOAで「なにをやりたい」の手前を定義する</h2>
-            <p class="section-sub">Outputから始めず、Actionから逆算して必要なInputを決める。</p>
+            <h2>Appendix: IPOAで「なにをやりたい」の手前を定義する</h2>
+            <p class="section-sub">本筋ではなく補助フレーム。必要な人だけ、Actionから逆算して整理する。</p>
           </div>
         </div>
         <div class="intro-punch">
@@ -1361,9 +1342,10 @@ flowchart TB
           <div><strong>終わると</strong><span>URLを渡すだけで、導入判断や記事取り込みが同じ品質で回る。</span></div>
         </div>
         <div class="section-purpose">
-          <div class="purpose-card"><strong>この章の目的</strong><span>GitHub repo導入判断、X投稿の取り込み、grill-me深掘りをSkillとして保存する。</span></div>
-          <div class="purpose-card action"><strong>ここでやること</strong><span>長いプロンプトを3つのSkillにし、URLを渡すだけで使う。</span></div>
+          <div class="purpose-card"><strong>この章の目的</strong><span>便利リポジトリを眺めるのではなく、自分の業務に導入すべきかCodexに判断させる。</span></div>
+          <div class="purpose-card action"><strong>午前の必須</strong><span>repo-intakeを作り、リポジトリURLを渡すだけで導入 / 保留 / 見送りを出せる状態にする。</span></div>
         </div>
+        <div class="check"><strong>リポジトリ一覧の使い方</strong><br>URLをコピーして、Codexに次を貼る: <code>repo-intakeスキルを使ってこのリポジトリを導入判断してください。URL: [URL]</code></div>
         <p>長いプロンプトは教材には載せます。でも実務で毎回人間が打つものではないです。大事なのは「良い依頼文を覚えること」ではなく「良い依頼文をSkillとして保存し、短く呼ぶこと」です。</p>
         <div class="diagram">
           <p class="diagram-title">Skill化の流れ</p>
@@ -1985,7 +1967,7 @@ AGENTS.md / memory.md / state.md / contexts/ / skills/ を全部読んでくだ�
           <label><input type="checkbox"> NotebookLM-pyで資料置き場と連動できる</label>
           <label><input type="checkbox"> VercelでHTMLを公開する流れを理解した</label>
           <label><input type="checkbox"> ngrokで一時公開できる</label>
-          <label><input type="checkbox"> 業務改善HTMLにIPOAと次の2週間の方針を入れた</label>
+          <label><input type="checkbox"> 業務改善HTMLに現状の詰まりと次の2週間の方針を入れた</label>
           <label><input type="checkbox"> 作業後レビューで環境を育てられる</label>
           <label><input type="checkbox"> エージェントを1つ設計・実行できた</label>
           <label><input type="checkbox"> 公開URLをagent-browserで読ませられる</label>
@@ -2005,7 +1987,7 @@ AGENTS.md / memory.md / state.md / contexts/ / skills/ を全部読んでくだ�
         </div>
         <div class="intro-punch">
           <div><strong>あるある</strong><span>「エージェント作りたい」と思っても、任せる仕事が曖昧で止まる。</span></div>
-          <div><strong>だから</strong><span>IPOAとgrill-meの結果から、最初の1体だけ設計する。</span></div>
+          <div><strong>だから</strong><span>grill-meの結果から、最初の1体だけ設計する。必要な人だけIPOAも補助で使う。</span></div>
           <div><strong>終わると</strong><span>抽象的なAI活用ではなく、自分の業務に刺さる担当者が1つできる。</span></div>
         </div>
         <div class="meaning">
@@ -2043,7 +2025,7 @@ flowchart TB
         </div>
 
         <div class="code-block">
-          <div class="code-label">grill-me結果から概要.mdを生成（Section 02の深掘り後に実行）<button class="copy" data-copy>コピー</button></div>
+          <div class="code-label">grill-me結果から概要.mdを生成（午後の深掘り後に実行）<button class="copy" data-copy>コピー</button></div>
           <pre>今のインタビュー結果を「概要.md」として保存してください。
 
 含める内容:

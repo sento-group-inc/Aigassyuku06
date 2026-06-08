@@ -81,10 +81,10 @@
     <div class="page-header-inner">
       <p class="breadcrumb"><a href="index.html">合宿サイト TOP</a> / 事前準備</p>
       <h1>事前準備</h1>
-      <p class="lead">午前をセットアップで溶かさないための準備ページ。当日9:30から自分の業務深掘りに入れる状態をここで作る。</p>
+      <p class="lead">午前の共通セットアップを滑らかに進めるための準備ページ。Codex、GitHub、Vercel、公開確認、記憶の入口まで揃えます。</p>
       <div class="page-nav">
         <a href="index.html">講義本編</a>
-        <a href="ipoa.html">IPOA</a>
+        <a href="ipoa.html">Appendix: IPOA</a>
         <a href="shared-standard.html">チーム標準へ</a>
         <a href="schedule.html">スケジュール</a>
         <a href="repos.html">リポジトリ一覧</a>
@@ -156,11 +156,11 @@
           </div>
         </div>
         <div class="step">
-          <div class="step-no" style="background:#c5d0ca;">7</div>
+          <div class="step-no">7</div>
           <div>
-            <strong>ngrok / agent-browser / Composio</strong>
-            <span style="background:#f1f5f3;color:#66736e;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:700;margin-left:6px;">任意</span><br>
-            <span style="color:var(--muted);font-size:14px;">余裕があれば。後日でもOK。 <a href="#ngrok">→ 詳しく</a></span>
+            <strong>Vercel公開後の確認道具を入れる</strong>
+            <span style="background:#dcfce7;color:#166534;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:700;margin-left:6px;">必須</span><br>
+            <span style="color:var(--muted);font-size:14px;">ngrok / agent-browser / gbrain。午前に公開・確認・記憶の入口まで揃える。 <a href="#ngrok">→ 詳しく</a></span>
           </div>
         </div>
         <div class="step">
@@ -292,15 +292,21 @@ Goal: Codex App / Homebrew / Node.js / Git を使える状態にしたいです�
             </tr>
             <tr>
               <td><strong>agent-browser</strong></td>
-              <td><span style="background:#fef9c3;color:#854d0e;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">推奨</span></td>
+              <td><span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">必須</span></td>
               <td>公開URLをAIに自律的に読ませる</td>
               <td><a href="#agent-browser">→ Section 8</a></td>
+            </tr>
+            <tr>
+              <td><strong>gbrain</strong></td>
+              <td><span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">必須</span></td>
+              <td>AGENTS.md / memory / state を作る前に入れる記憶の器</td>
+              <td><a href="#gbrain">→ Section 9</a></td>
             </tr>
             <tr>
               <td><strong>Composio</strong></td>
               <td><span style="background:#f1f5f3;color:#66736e;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">任意</span></td>
               <td>GitHub / Asana / Slack など1000以上のMCPを一元管理</td>
-              <td><a href="#composio">→ Section 9</a></td>
+              <td><a href="#composio">→ Section 10</a></td>
             </tr>
             <tr>
               <td><strong>Obsidian</strong></td>
@@ -318,13 +324,6 @@ Goal: Codex App / Homebrew / Node.js / Git を使える状態にしたいです�
         <table>
           <thead><tr><th>リポジトリ</th><th>用途</th><th>使う時期</th><th>難易度</th><th>リンク</th></tr></thead>
           <tbody>
-            <tr>
-              <td><code>satya-janghu/agent-skills</code><br><span style="color:var(--muted);font-size:12px;">grill-me スキル</span></td>
-              <td>業務の前提・詰まり・判断軸を深掘りするスキル。合宿Section 02で使用</td>
-              <td><span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">当日コア</span></td>
-              <td><span class="diff diff-easy">易</span></td>
-              <td><a href="https://github.com/satya-janghu/agent-skills/tree/main/skills/grill-me" target="_blank" rel="noopener">GitHub</a></td>
-            </tr>
             <tr>
               <td><code>openclaw/gogcli</code><br><span style="color:var(--muted);font-size:12px;">Google Sheets/Drive CLI</span></td>
               <td>Codexからスプレッドシートを作成・読み書きする。PCをコックピットにする体験。Section 10で使用</td>
@@ -349,14 +348,14 @@ Goal: Codex App / Homebrew / Node.js / Git を使える状態にしたいです�
             <tr>
               <td><code>vercel-labs/agent-browser</code><br><span style="color:var(--muted);font-size:12px;">公開URLを読むCLI</span></td>
               <td>Vercel/ngrokで公開したHTMLをAIに確認させる。Section 18で使用</td>
-              <td><span style="background:#f1f5f3;color:#66736e;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">後日でOK</span></td>
+              <td><span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">当日コア</span></td>
               <td><span class="diff diff-medium">中</span></td>
               <td><a href="https://github.com/vercel-labs/agent-browser" target="_blank" rel="noopener">GitHub</a></td>
             </tr>
             <tr>
               <td><code>garrytan/gbrain</code><br><span style="color:var(--muted);font-size:12px;">PC記憶装置・知識グラフ</span></td>
               <td>PC内の情報を知識グラフ＋ハイブリッド検索で整理し、AIの「長期記憶」として使う。MCP対応</td>
-              <td><span style="background:#f1f5f3;color:#66736e;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">後日でOK</span></td>
+              <td><span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;">当日コア</span></td>
               <td><span class="diff diff-medium">中</span></td>
               <td><a href="https://github.com/garrytan/gbrain" target="_blank" rel="noopener">GitHub</a></td>
             </tr>
@@ -757,7 +756,7 @@ Goal: Codex App / Homebrew / Node.js / Git を使える状態にしたいです�
         <div class="code-label">② 認証（YOUR_NGROK_TOKEN を自分のトークンに置き換え）<button class="copy" data-copy>コピー</button></div>
         <pre>ngrok config add-authtoken YOUR_NGROK_TOKEN</pre>
       </div>
-      <div class="note">ここまでやれば当日すぐ使えます。詳細な使い方は本編 Section 16 で。</div>
+      <div class="note">ここまでやれば当日すぐ使えます。詳細な使い方は本編の ngrok セクションで確認します。</div>
     </section>
 
     <!-- ====== STEP 6: agent-browser ====== -->
@@ -775,9 +774,30 @@ Goal: Codex App / Homebrew / Node.js / Git を使える状態にしたいです�
       <div class="resource">参考（常設）: <a href="https://github.com/vercel-labs/agent-browser" target="_blank" rel="noopener">vercel-labs/agent-browser</a></div>
     </section>
 
-    <!-- ====== STEP 7: Composio ====== -->
+    <!-- ====== STEP 7: gbrain ====== -->
+    <section id="gbrain">
+      <h2><span class="section-no">9</span>gbrain のインストール</h2>
+      <p>gbrain は、PC内の判断履歴・業務ナレッジ・作業ログをAIが参照しやすい形にする記憶の器です。AGENTS.md / memory.md / state.md を作る前に入れておくと、午後の深掘り結果を蓄積しやすくなります。</p>
+      <div class="grid">
+        <div class="card"><strong>午前にやること</strong><span>インストールと起動確認まで。深い運用は午後以降でOK。</span></div>
+        <div class="card"><strong>午後に使うこと</strong><span>grill-meの結果、仮HTML、判断軸を記憶として残す。</span></div>
+      </div>
+      <div class="code-block">
+        <div class="code-label">① gbrain を導入判断してからインストール<button class="copy" data-copy>コピー</button></div>
+        <pre>repo-intakeスキルを使ってこのリポジトリを導入判断してください。
+URL: https://github.com/garrytan/gbrain</pre>
+      </div>
+      <div class="code-block">
+        <div class="code-label">② 導入する場合だけ、最小セットアップを依頼<button class="copy" data-copy>コピー</button></div>
+        <pre>gbrainをこのMacに最小セットアップしてください。
+まず公式READMEを確認し、インストール、起動確認、AGENTS.md / memory.md / state.md を作る前にどう使うかを短く説明してください。</pre>
+      </div>
+      <div class="resource">参考（常設）: <a href="https://github.com/garrytan/gbrain" target="_blank" rel="noopener">garrytan/gbrain</a></div>
+    </section>
+
+    <!-- ====== STEP 8: Composio ====== -->
     <section id="composio">
-      <h2><span class="section-no">9</span>Composio — MCP をまとめて管理する</h2>
+      <h2><span class="section-no">10</span>Composio — MCP をまとめて管理する</h2>
       <p>MCP を1つずつ手で設定するのが面倒な人向け。Composio Connect を使うと <strong>GitHub / Asana / Slack / Notion など 1000以上のツール</strong> を、1つのMCP接続から扱えるようになります。</p>
 
       <h3>Composio とは</h3>
@@ -928,7 +948,7 @@ flowchart TB
 
   <footer>
     <a href="index.html">講義本編</a> /
-    <a href="ipoa.html">IPOA</a> /
+    <a href="ipoa.html">Appendix: IPOA</a> /
     <a href="shared-standard.html">個人OSからチーム標準へ</a> /
     <a href="schedule.html">合宿スケジュール</a> /
     <a href="repos.html">リポジトリ一覧</a>

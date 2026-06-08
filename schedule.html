@@ -190,7 +190,7 @@
 
   <div class="page-header">
     <div class="page-header-inner">
-      <p class="breadcrumb"><a href="index.html">合宿サイト TOP</a> / <a href="prep.html">事前準備</a> / <a href="ipoa.html">IPOA</a> / 合宿スケジュール</p>
+      <p class="breadcrumb"><a href="index.html">合宿サイト TOP</a> / <a href="prep.html">事前準備</a> / <a href="ipoa.html">Appendix: IPOA</a> / 合宿スケジュール</p>
       <h1>合宿スケジュール</h1>
       <p class="lead">2026年6月9日(火)〜10日(水) — 千葉・古民家</p>
     </div>
@@ -200,32 +200,33 @@
 
     <!-- ====== オリエンテーション ====== -->
     <section id="orientation">
-      <h2>まずオリエンテーション — この2日で何をするか</h2>
-      <p>最初に全体像だけ掴んでください。「何のために・何を・どう進めるか」がここで分かります。あとは<strong>各自のペースで始めてOK</strong>です。</p>
+      <h2>まずオリエンテーション — このMacをコックピットにする</h2>
+      <p>今日のゴールは、みんなのMacを仕事のコックピットにすることです。NotebookLM、Google Sheets、GitHubリポジトリ、指示書HTML、Vercel公開URLまで、この1台から扱える状態を作ります。</p>
+      <p>午前は全員で足並みを揃えられるセットアップを先に通します。午後は各自の制作時間です。grill-meで深掘りしながら、公開済みの仮HTMLを自分の業務改善HTMLへ育てていきます。</p>
 
       <h3>背景：なぜこの2日があるのか</h3>
       <p>みんなAIは使っている。でも毎回「うちの会社はこうで」「この判断軸で」「この表現はうちっぽくない」と説明し直して、本題の前に疲れている。さらに、一人のAIに全部やらせて品質が安定しない。<strong>この「再説明コスト」をゼロにし、自分専用に育てたAIに業務を任せられる状態を作る</strong>——それがこの2日の狙いです。</p>
 
       <h3>ゴール：何を持ち帰るか</h3>
       <div class="milestone-grid">
-        <div class="milestone"><strong>分身OS（AGENTS.md群）</strong><span>会社・判断軸・口調を読んだAI環境。毎回の説明が要らなくなる。</span></div>
-        <div class="milestone"><strong>AIのコックピット</strong><span>役割分担したAIに、操縦席から業務を振れる。あなたがCEO。</span></div>
-        <div class="milestone done"><strong>業務改善HTMLの種</strong><span>自分の業務が前に進む成果物の種。磨きは持ち帰り。</span></div>
-        <div class="milestone"><strong>続けられる型</strong><span>失敗をAGENTS.mdに追記し、週次で手入れする習慣。</span></div>
+        <div class="milestone done"><strong>公開導線</strong><span>GitHub / Vercel / ngrokで、仮HTMLをURL共有できる。</span></div>
+        <div class="milestone done"><strong>AIの手足</strong><span>agent-browser、gbrain、repo-intakeで調査・確認・記憶の入口を持つ。</span></div>
+        <div class="milestone"><strong>業務改善HTMLの種</strong><span>午後に深掘りして育てる、空欄付きの制作物。</span></div>
+        <div class="milestone"><strong>分身OS（AGENTS.md群）</strong><span>gbrain導入後に、会社・判断軸・現在地を記憶として整える。</span></div>
       </div>
 
-      <h3>進め方：journeyガイドに沿って対話で進める（ここが本体）</h3>
+      <h3>進め方：午前は共通セットアップ、午後は各自制作</h3>
       <div style="background:var(--accent-soft);border:1px solid #b6ded7;border-radius:var(--radius);padding:18px;margin:14px 0;">
-        <p style="margin:0 0 10px;font-weight:800;color:var(--accent-strong);font-size:16px;">基本は journey ガイドに沿って、AIとの対話で進めます。</p>
-        <p style="margin:0 0 12px;">同期したリポジトリをCodex / Claudeで開いて、下の<strong>合言葉を貼るだけ</strong>。あとはAIがあなたのペースに合わせて質問しながら導いてくれます。対話をじっくりやりたい人は深く、設定を先に進めたい人はサクサク。<strong>隣と進み方が違ってOK</strong>です。</p>
+        <p style="margin:0 0 10px;font-weight:800;color:var(--accent-strong);font-size:16px;">まずは全員で、OutputをURLで出せるところまで揃えます。</p>
+        <p style="margin:0 0 12px;">同期したリポジトリをCodex / Claudeで開いて、下の合言葉を貼ります。午前はセットアップと仮HTML公開を優先し、AGENTS.md / memory / state は gbrain を入れた後に作ります。</p>
         <div style="background:#fff;border:1px solid #b6ded7;border-radius:var(--radius);padding:12px 15px;">
           <strong style="color:var(--accent-strong);">▶ 開始の合言葉（Codex / Claude にそのまま貼る）</strong><br>
           <code style="display:inline-block;margin-top:6px;">このリポジトリの journey/README.md を開いて読んで、その手順で私を導いてください。</code>
         </div>
-        <p style="margin:12px 0 0;font-size:13px;color:var(--muted);">※ 下のタイムラインや本編の各Sectionは「辞書」です。journeyを進める中で、必要なツールの手順だけ本編から引いて使います。各時間のリンクから該当セクションに飛べます。</p>
+        <p style="margin:12px 0 0;font-size:13px;color:var(--muted);">※ 下のタイムラインが正本です。本編の各Sectionは、必要になった時に引く辞書として使います。</p>
       </div>
 
-      <p>では、準備ができた人から <strong>Session 01（文脈エンジンを作る）</strong> を始めましょう。</p>
+      <p>では、準備ができた人から <strong>Step 0 事前準備</strong> と <strong>Step 1 スケジュール確認</strong> を済ませ、午前セットアップへ進みましょう。</p>
     </section>
 
     <!-- ====== 全体フロー（横並び） ====== -->
@@ -235,10 +236,10 @@
 flowchart LR
     subgraph D1["Day 1 — 6/9(火)"]
         direction TB
-        A["9:00 開会・全体像"] --> B["9:30〜 深掘り・IPOA・環境作り"]
-        B --> C["11:00〜 grill-me 実行"]
-        C --> CC["14:00〜 各自作業\n当日コアを1本通す"]
-        CC --> D["18:00 翌日の発表を共有"]
+        A["9:00 開会\n今日のゴール確認"] --> B["9:30〜 共通セットアップ\nCodex / GitHub / Vercel"]
+        B --> C["11:00〜 手足を増やす\nagent-browser / gbrain / repo-intake"]
+        C --> CC["13:30〜 制作開始\n仮HTMLを育てる"]
+        CC --> D["18:00 URL付きHTML種を共有"]
     end
     subgraph D2["Day 2 — 6/10(水)"]
         direction TB
@@ -260,32 +261,32 @@ flowchart LR
         <div class="tl">
           <span class="time">09:00</span>
           <strong>受付・開会</strong>
-          <span>自己紹介。合宿の目的と全体像を確認。 <a href="index.html#overview">→ Section00 全体像</a></span>
+          <span>自己紹介。今日の目的は「このMacをAIコックピットにする」こと。まず <a href="index.html">TOP</a> から Step 0 / Step 1 を確認する。</span>
         </div>
         <div class="tl">
           <span class="time">09:30</span>
-          <strong>深掘り・IPOA・環境作り（Section 01-06）</strong>
-          <span>grill-me登録 → IPOA → AGENTS.md作成 → MCP設定まで。Codexインストールは事前準備ページに寄せる。<br> <a href="index.html#why">→ 本編 Section01〜06</a> / <a href="ipoa.html">IPOA</a> / <a href="prep.html">事前準備</a></span>
+          <strong>共通セットアップ — まず公開導線まで通す</strong>
+          <span>Codex起動、GitHubログイン、合宿リポジトリ同期、Vercelログイン、仮の業務改善HTML公開まで進める。<br><a href="prep.html">→ 事前準備</a> / <a href="index.html#vercel">Vercel公開</a> / <a href="index.html#ngrok">ngrok一時公開</a></span>
         </div>
         <div class="tl highlight">
           <span class="time">11:00 ごろ</span>
-          <strong>grill-me実行タイム</strong>
-          <span>全員が自分の業務をgrill-meで深掘り。概要.mdを生成する。これが午後の各自作業の土台になる。 <a href="index.html#grill">→ Section02 grill-me</a></span>
+          <strong>AIの手足を増やす — agent-browser / gbrain / repo-intake</strong>
+          <span>公開URLをAIに読ませる agent-browser、記憶の器になる gbrain、便利リポジトリを導入判断する repo-intake を揃える。AGENTS.md / memory / state は gbrain 後に作る。<br><a href="index.html#agent-browser">agent-browser</a> / <a href="prep.html#gbrain">gbrain</a> / <a href="repos.html">repo-intake演習</a> / <a href="prep.html#agent-browser">事前準備</a></span>
         </div>
         <div class="tl">
           <span class="time">13:00</span>
           <strong>昼食・休憩</strong>
-          <span>セットアップの完了状態を各自確認。詰まっていたら午後前半に解消する。</span>
+          <span>仮HTMLのURL、Vercel/ngrok、agent-browser、gbrain、repo-intake のどこで詰まっているか確認する。</span>
         </div>
         <div class="tl">
-          <span class="time">14:00〜18:00</span>
-          <strong>各自作業 — まず「当日コア」を1本通す</strong>
-          <span><strong>当日コア（全員）</strong>：Skill化 → gogcli（Sheets）→ NotebookLM（資料）→ Asana（タスクのコックピット）→ 業務改善HTMLの種 → Vercel/ngrokで公開。<br><strong>後日でOK（興味があれば）</strong>：agmsg、agent-browser、エージェント作成、GASの作り込み。全部を当日やろうとせず、自分の業務が1つ前に進む状態を優先。<br><strong>各セクションへ飛ぶ：</strong><a href="index.html#intake">Skill化</a> / <a href="index.html#gog">gogcli</a> / <a href="index.html#notebooklm">NotebookLM</a> / <a href="index.html#asana">Asana</a> / <a href="index.html#vercel">Vercel</a> / <a href="index.html#ngrok">ngrok</a> / <a href="repos.html">リポジトリ一覧</a></span>
+          <span class="time">13:30〜18:00</span>
+          <strong>それでは深掘りをやっていきましょう！ — grill-meから各自制作へ</strong>
+          <span>ここからは各自制作。grill-meで業務を深掘りし、仮の業務改善HTMLへ反映する。必要に応じて Sheets、NotebookLM、Asana、MCP を足す。<br><strong>各セクションへ飛ぶ：</strong><a href="index.html#grill">grill-me</a> / <a href="index.html#agents">AGENTS</a> / <a href="index.html#gog">gogcli</a> / <a href="index.html#notebooklm">NotebookLM</a> / <a href="index.html#asana">Asana</a> / <a href="repos.html">repo-intake</a></span>
         </div>
         <div class="tl goal">
           <span class="time">18:00</span>
-          <strong>翌朝の発表HTMLを全体に共有</strong>
-          <span>「明日10時にどの業務改善HTMLを見せるか」を声に出す。完成度より、Actionが定義されていることを優先。 <a href="ipoa.html">→ IPOAで整理</a></span>
+          <strong>URL付きの業務改善HTMLの種を共有</strong>
+          <span>完成度は問わない。公開URLがあり、午後の深掘り結果が反映され始めている状態ならOK。明日10時に何を見せるかを声に出す。</span>
         </div>
         <div class="tl">
           <span class="time">18:30〜</span>
@@ -305,12 +306,12 @@ flowchart LR
           <span>「ぐりる」と打つとプロンプトが出る状態</span>
         </div>
         <div class="milestone">
-          <strong>AGENTS.md初版</strong>
-          <span>会社情報・判断軸・安全ルールが入った状態</span>
+          <strong>Vercel / ngrok公開</strong>
+          <span>仮の業務改善HTMLがURLで見える状態</span>
         </div>
         <div class="milestone">
-          <strong>悩みの吐き出し済み</strong>
-          <span>事前に書き出した悩みをAIに渡し、grill-meで深掘りできた状態</span>
+          <strong>agent-browser / gbrain / repo-intake</strong>
+          <span>公開確認、記憶化、導入判断の入口がある状態</span>
         </div>
       </div>
     </section>
@@ -325,7 +326,7 @@ flowchart LR
         <div class="tl">
           <span class="time">09:00</span>
           <strong>朝作業・発表の最終準備</strong>
-          <span>業務改善HTMLの「種」にIPOA・現状の詰まり・次の2週間の方針を足す。完成させる必要はない。仕上げ・磨き込みは帰ってからでOK。 <a href="ipoa.html">→ IPOA</a></span>
+          <span>業務改善HTMLの「種」に、現状の詰まり・判断材料・次の2週間の方針を足す。完成させる必要はない。仕上げ・磨き込みは帰ってからでOK。</span>
         </div>
         <div class="tl highlight">
           <span class="time">10:00</span>
@@ -346,8 +347,8 @@ flowchart LR
       <h3>成果発表のフォーマット（各自10分）</h3>
       <div class="milestone-grid">
         <div class="milestone">
-          <strong>① IPOA</strong>
-          <span>Input / Process / Output / Action。特にActionを最初に話す。</span>
+          <strong>① 起こしたいAction</strong>
+          <span>誰が何を判断・実行できるようにするためのHTMLかを最初に話す。</span>
         </div>
         <div class="milestone">
           <strong>② 現状の詰まり</strong>
@@ -373,9 +374,9 @@ flowchart LR
 flowchart TD
     A["詰まった"] --> B{"何で詰まっているか"}
     B -->|"セットアップ系"| C["隣の人に画面を見せる\n講師に声をかける"]
-    B -->|"方針が決まらない"| D["grill-meを実行\n概要.mdを先に作る"]
+    B -->|"方針が決まらない"| D["午後のgrill-meへ\n仮HTMLを育てる"]
     B -->|"コマンドが動かない"| E["エラーメッセージをCodexに貼る\n原因→修正→確認"]
-    B -->|"何から始めればいいか"| F["Section 00の全体像を見る\n今どこにいるか確認"]
+    B -->|"何から始めればいいか"| F["このスケジュールの\n今の時間を見る"]
       </div>
       <div class="note">Codexへの問い合わせ方: エラーメッセージをそのまま貼るのが最速です。「〇〇をしようとしたら△△というエラーが出た。原因と修正手順を教えて」で答えが出ます。</div>
     </section>
@@ -385,7 +386,7 @@ flowchart TD
   <footer>
     <a href="index.html">合宿サイト TOP</a> /
     <a href="prep.html">事前準備</a> /
-    <a href="ipoa.html">IPOA</a> /
+    <a href="ipoa.html">Appendix: IPOA</a> /
     <a href="shared-standard.html">個人OSからチーム標準へ</a> /
     <a href="repos.html">リポジトリ一覧</a>
   </footer>

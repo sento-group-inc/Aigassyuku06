@@ -153,6 +153,26 @@
       font-size: 13px;
       margin-top: 14px;
     }
+    .repo-callout {
+      background: var(--accent-soft);
+      border: 1px solid #b6ded7;
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-top: 16px;
+      color: var(--accent-strong);
+    }
+    .repo-callout strong { display: block; margin-bottom: 6px; font-size: 15px; }
+    .repo-callout code {
+      display: block;
+      margin-top: 8px;
+      padding: 10px 12px;
+      background: #fff;
+      border: 1px solid #b6ded7;
+      border-radius: var(--radius);
+      color: var(--ink);
+      font-size: 13px;
+      white-space: normal;
+    }
 
     footer {
       max-width: var(--max);
@@ -167,10 +187,14 @@
 
   <div class="page-header">
     <div class="page-header-inner">
-      <p class="breadcrumb"><a href="index.html">合宿サイト TOP</a> / <a href="prep.html">事前準備</a> / <a href="ipoa.html">IPOA</a> / リポジトリ一覧</p>
+      <p class="breadcrumb"><a href="index.html">合宿サイト TOP</a> / <a href="prep.html">事前準備</a> / <a href="ipoa.html">Appendix: IPOA</a> / リポジトリ一覧</p>
       <h1>便利なリポジトリ一覧</h1>
-      <p class="lead">合宿で参考になるGitHubリポジトリを用途別に整理。気になるものを選んで、Codexの「repo-intake」Skillで導入判断してみてください。</p>
-      <div class="note">使い方: リポジトリURLをコピーして、Codexに「repo-intakeスキルを使ってこのリポジトリを導入判断してください。URL: [URL]」と依頼する。</div>
+      <p class="lead">このページは読むだけの一覧ではありません。気になるGitHubリポジトリを選び、Codexの repo-intake Skill で導入判断するための演習台です。</p>
+      <div class="repo-callout">
+        <strong>本筋: repo-intakeで導入判断する</strong>
+        リポジトリURLをコピーして、Codexに次を貼ってください。
+        <code>repo-intakeスキルを使ってこのリポジトリを導入判断してください。URL: [URL]</code>
+      </div>
     </div>
   </div>
 
@@ -180,9 +204,9 @@
     <div class="category-section" id="lecture-main">
       <div class="cat-header">
         <span class="cat-badge skill">講義内で使用</span>
-        <h2>まず押さえる主要リポジトリ</h2>
+        <h2>午前に押さえる主要リポジトリ</h2>
       </div>
-      <div class="note">講義中に名前が出るものを先にまとめています。迷ったらまずここを見て、詳細な分類は下のカテゴリで確認してください。</div>
+      <div class="note">午前セットアップと午後制作で使うものだけを先にまとめています。ここにないものは、必要になった時にrepo-intakeで判断してください。</div>
       <div class="table-wrap" style="margin-top:14px">
         <table>
           <thead>
@@ -194,12 +218,6 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><span class="repo-name">satya-janghu/agent-skills</span><p>grill-me Skill</p></td>
-              <td>Section 02。最初に業務の前提、詰まり、判断軸を深掘りする。</td>
-              <td>「なにをやりたい？」にいきなり答えず、必要なInputを先に出すため。</td>
-              <td><a href="https://github.com/satya-janghu/agent-skills/tree/main/skills/grill-me" target="_blank" rel="noopener">GitHub</a></td>
-            </tr>
             <tr>
               <td><span class="repo-name">upstash/context7</span><p>最新ドキュメント参照MCP</p></td>
               <td>Section 06。ライブラリやAPIの古い書き方で詰まるのを避ける。</td>
@@ -220,7 +238,7 @@
             </tr>
             <tr>
               <td><span class="repo-name">vercel-labs/agent-browser</span><p>公開URLをAIに読ませる</p></td>
-              <td>Section 18。Vercelやngrokで公開したHTMLをAIに確認させる。</td>
+              <td>午前に導入。Vercelやngrokで公開したHTMLをAIに確認させる。</td>
               <td>人間の目視だけでなく、公開ページをAIにも読ませて改善点を拾うため。</td>
               <td><a href="https://github.com/vercel-labs/agent-browser" target="_blank" rel="noopener">GitHub</a></td>
             </tr>
@@ -321,6 +339,7 @@
         <span class="cat-badge agent">Agent / Skill</span>
         <h2>エージェント・スキル関連</h2>
       </div>
+      <div class="note">午前は agent-browser と gbrain を必須導入にします。マルチエージェント系の実験リポジトリは今回の本筋から外します。</div>
       <div class="table-wrap">
         <table>
           <thead>
@@ -333,26 +352,8 @@
           </thead>
           <tbody>
             <tr>
-              <td><span class="repo-name">satya-janghu/agent-skills</span><p>grill-me等スキル集</p></td>
-              <td>Matt Pocockのgrill-meを含むスキル集。SKILL.mdをそのまま流用できる。GitHub 10万スター超え（2026年5月）。</td>
-              <td><span class="diff diff-easy">易</span></td>
-              <td><a href="https://github.com/satya-janghu/agent-skills" target="_blank" rel="noopener">GitHub</a></td>
-            </tr>
-            <tr>
-              <td><span class="repo-name">desplega-ai/agent-swarm</span><p>Agent Swarm フレームワーク</p></td>
-              <td>複数エージェントを協調させるSwarmフレームワーク。Section 17のエージェント作成で参考に。</td>
-              <td><span class="diff diff-hard">難</span></td>
-              <td><a href="https://github.com/desplega-ai/agent-swarm" target="_blank" rel="noopener">GitHub</a></td>
-            </tr>
-            <tr>
-              <td><span class="repo-name">win4r/ClawTeam-OpenClaw</span><p>ClawTeam マルチエージェント</p></td>
-              <td>OpenClawをデフォルトエージェントとしたマルチエージェント協調。Swarms実験に。</td>
-              <td><span class="diff diff-hard">難</span></td>
-              <td><a href="https://github.com/win4r/ClawTeam-OpenClaw" target="_blank" rel="noopener">GitHub</a></td>
-            </tr>
-            <tr>
               <td><span class="repo-name">vercel-labs/agent-browser</span><p>ブラウザ操作CLI</p></td>
-              <td>公開URLをAIに読ませ、snapshotを見ながら改善する。Section 18で使用。</td>
+              <td>公開URLをAIに読ませ、snapshotを見ながら改善する。午前に導入し、午後の制作確認で使う。</td>
               <td><span class="diff diff-medium">中</span></td>
               <td><a href="https://github.com/vercel-labs/agent-browser" target="_blank" rel="noopener">GitHub</a></td>
             </tr>
@@ -414,7 +415,7 @@
           <tbody>
             <tr>
               <td><span class="repo-name">vercel/vercel</span><p>Vercel CLI</p></td>
-              <td>GitHubにpushするだけで静的HTMLを自動デプロイ。Section 13で使用。</td>
+              <td>GitHubにpushするだけで静的HTMLを自動デプロイ。午前に仮HTMLを公開する。</td>
               <td><span class="diff diff-easy">易</span></td>
               <td><a href="https://github.com/vercel/vercel" target="_blank" rel="noopener">GitHub</a></td>
             </tr>
@@ -489,7 +490,7 @@
   <footer>
     <a href="index.html">合宿サイト TOP</a> /
     <a href="prep.html">事前準備</a> /
-    <a href="ipoa.html">IPOA</a> /
+    <a href="ipoa.html">Appendix: IPOA</a> /
     <a href="shared-standard.html">個人OSからチーム標準へ</a> /
     <a href="schedule.html">合宿スケジュール</a>
   </footer>
