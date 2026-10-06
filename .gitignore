@@ -12,3 +12,8 @@ auth.json
 
 # 個人作業メモ（GitHub/Vercelに反映しない）
 my-notes.html
+
+# ローカル環境変数・Vercel連携（コミットしない）
+.env*.local
+.vercel/
+.codex/
